@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ca991e9ee8c5ffb4a9465870d66eb0a6
+timeCreated: 1519850049
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - streetLane60m: {instanceID: 0}
+  - streetCrossXRoads: {instanceID: 0}
+  - streetTurn90DownLeft: {instanceID: 0}
+  - streetTurn90TopLeft: {instanceID: 0}
+  - streetTurn90DownRight: {instanceID: 0}
+  - streetTurn90TopRight: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
