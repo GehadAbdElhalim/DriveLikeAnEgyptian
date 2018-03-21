@@ -17,6 +17,7 @@ public class CityDesgin1 : MonoBehaviour {
     public GameObject streetLane60mVertical;
     public GameObject streetCrossXRoads;
     public GameObject streetTurn90DownLeft;
+
 	/// <summary>
 	/// 	if auto generate is checked 
 	/// 		a rondam map with the number of road blocks is equal to NumberOfBlocks
@@ -84,6 +85,18 @@ public class CityDesgin1 : MonoBehaviour {
 	/// </summary>
     void Start()
     {
+
+		streetLane60mVertical.AddComponent<NavMeshSourceTag>();
+		streetCrossXRoads.AddComponent<NavMeshSourceTag>();
+//		streetCrossXRoads.transform.Find("Cube").gameObject.AddComponent<NavMeshSourceTag>();
+		streetCrossXRoads.transform.Find("CrossX").gameObject.AddComponent<NavMeshSourceTag>();
+//		streetCrossXRoads.transform.Find("Street1Lane30m").gameObject.AddComponent<NavMeshSourceTag>();
+//		streetCrossXRoads.transform.Find("Street1Lane30m (1)").gameObject.AddComponent<NavMeshSourceTag>();
+//		streetCrossXRoads.transform.Find("Street1Lane30m (2)").gameObject.AddComponent<NavMeshSourceTag>();
+//		streetCrossXRoads.transform.Find("Street1Lane30m (3)").gameObject.AddComponent<NavMeshSourceTag>();
+//		streetCrossXRoads.transform.Find("Cube (1)").gameObject.AddComponent<NavMeshSourceTag>();
+
+		streetTurn90DownLeft.AddComponent<NavMeshSourceTag>();
         //Gehad things
         Waypoints = new Vector3[NumberOfBlocks];
         //Gehad things
@@ -312,6 +325,8 @@ public class CityDesgin1 : MonoBehaviour {
         road1Obj.transform.eulerAngles = road1.Rotation.eulerAngles;
         road2Obj.transform.eulerAngles = road2.Rotation.eulerAngles;
 
+//		road1Obj.AddComponent<NavMeshSourceTag>();
+//		road2Obj.AddComponent<NavMeshSourceTag>();
 
         Vector3 BoxObj1Min = road1Obj.GetComponent<BoxCollider>().bounds.min;
         Vector3 BoxObj1Max = road1Obj.GetComponent<BoxCollider>().bounds.max;
