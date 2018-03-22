@@ -53,17 +53,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   streetLane60mVertical: {fileID: 1988005603711568, guid: ff6306988907c0b4680dfe5d21089c10,
     type: 2}
-  streetLane60mHorizontal: {fileID: 1988005603711568, guid: ff6306988907c0b4680dfe5d21089c10,
-    type: 2}
   streetCrossXRoads: {fileID: 1393684782092686, guid: e0431dabb01b8ca45b3fbfe98f847593,
     type: 2}
   streetTurn90DownLeft: {fileID: 1058622889863672, guid: 6f214c0401b98f34ab15e7507e48fbe4,
     type: 2}
-  streetTurn90TopLeft: {fileID: 1058622889863672, guid: 6f214c0401b98f34ab15e7507e48fbe4,
+  streetIntersection: {fileID: 1870233620453242, guid: 132209f5334ae477fbf2b39254fc0c9f,
     type: 2}
-  streetTurn90DownRight: {fileID: 1058622889863672, guid: 6f214c0401b98f34ab15e7507e48fbe4,
-    type: 2}
-  streetTurn90TopRight: {fileID: 1058622889863672, guid: 6f214c0401b98f34ab15e7507e48fbe4,
-    type: 2}
-  GridSize: 100
-  curRoadsNum: 0
+  JSONFileWirttern: 
+  AutoGenerte: 0
+  JSONFile: 
+  NumberOfBlocks: 0
+  Waypoints: []
+  CarAI: {fileID: 0}
+  Car: {fileID: 0}
