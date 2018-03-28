@@ -57,7 +57,12 @@ MonoBehaviour:
     type: 2}
   streetTurn90DownLeft: {fileID: 1335842038830748, guid: f18db509edf7fb84c89707b6ff23e0fe,
     type: 2}
-  JSONFileWirttern: D:\GUC\semester8\self\Streets\Assets\Files\writtenRoad.txt
-  AutoGenerte: 0
-  JSONFile: D:\GUC\semester8\self\Streets\Assets\Files\roads.txt
-  NumberOfBlocks: 0
+  JSONFileWirttern: D:\game\test project\Assets\Files\writtenRoad.txt
+  AutoGenerte: 1
+  JSONFile: D:\game\test project\Assets\Files\roads.txt
+  NumberOfBlocks: 20
+  Waypoints: []
+  CarAI: {fileID: 1318548613186078, guid: de20d17a4cc53044c8af8ad8adddeb33, type: 2}
+  Car: {fileID: 1631615196890734, guid: f7b9d2a6c514b2f41befa270f33b63ad, type: 2}
+  ObstacleGenerator: {fileID: 1644025562524226, guid: da077fd5cb75ed0469068dd2c2cdd451,
+    type: 2}

@@ -1600,6 +1600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goal: {fileID: 0}
   anim: {fileID: 0}
+  player: {x: 0, y: 0, z: 0}
 --- !u!114 &114178388570890402
 MonoBehaviour:
   m_ObjectHideFlags: 1

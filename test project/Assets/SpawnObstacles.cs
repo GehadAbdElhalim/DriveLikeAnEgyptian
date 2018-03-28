@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnObstacles : MonoBehaviour {
-    public Vector3 StartPoint1;
-    public Vector3 StartPoint2;
-    public Vector3 EndPoint1;
-    public Vector3 EndPoint2;
+    public Vector3 StartPoint;
+    public Vector3 EndPoint;
     public GameObject[] Obstacles; // 0 is the bump , 1 is the people , 2 is RoadBlock Left , 3 is RoadBlock Right
     public Vector3 bumpPosition;
     public Vector3 PeoplePosition;
     public Vector3 RoadBlockLeftPosition;
     public Vector3 RoadBlockRightPosition;
+    public bool Rotated;
 
     // Use this for initialization
     /*void Start () {
@@ -25,13 +24,11 @@ public class SpawnObstacles : MonoBehaviour {
 
         if (randomNumber == 0)
         {
-            bumpPosition = new Vector3((StartPoint1.x+StartPoint2.x)/2,0,Random.Range(StartPoint1.z,EndPoint1.z));
             Invoke("SpawnBump",1);
         }
 
         if(randomNumber == 1)
         {
-            PeoplePosition = new Vector3(StartPoint1.x, 0, Random.Range(StartPoint1.z,EndPoint1.z));
             Invoke("SpawnPeople", 1);
         }
 
@@ -47,8 +44,6 @@ public class SpawnObstacles : MonoBehaviour {
 
         if (randomNumber == 4)
         {
-            bumpPosition = new Vector3((StartPoint1.x + StartPoint2.x) / 2, 0, Random.Range(StartPoint1.z, EndPoint1.z-5));
-            PeoplePosition = new Vector3(StartPoint1.x, 0, Random.Range(StartPoint1.z, EndPoint1.z));
             Invoke("SpawnBump", 1);
             Invoke("SpawnPeople", 1);
         }
@@ -80,33 +75,81 @@ public class SpawnObstacles : MonoBehaviour {
 
     void SpawnBump()
     {
-        float X = (StartPoint1.x + StartPoint2.x) / 2;
-        float Z = Random.Range((StartPoint1.z + EndPoint1.z) / 2, EndPoint1.z - 2);
-        bumpPosition = new Vector3(X, -0.2f, Z);
-        Instantiate(Obstacles[0], bumpPosition, Obstacles[0].transform.rotation);
+        float X ;
+		float Z ;
+        if (!Rotated)
+        {
+			X = StartPoint.x;
+		 	Z = Random.Range(StartPoint.z , EndPoint.z);
+            bumpPosition = new Vector3(X, -0.2f, Z);
+            Instantiate(Obstacles[0], bumpPosition, Obstacles[0].transform.rotation);
+        }
+        else
+        {
+			X = Random.Range(StartPoint.x , EndPoint.x);
+			Z = StartPoint.z;
+            bumpPosition = new Vector3(X, -0.2f, Z);
+            Instantiate(Obstacles[0], bumpPosition, Obstacles[0].transform.rotation*Quaternion.Euler(90,0,0));
+        }
     }
 
     void SpawnPeople()
     {
-        float X = StartPoint1.x;
-        float Z = Random.Range(StartPoint1.z, EndPoint1.z);
-        PeoplePosition = new Vector3(X, 0, Z);
-        Instantiate(Obstacles[1], PeoplePosition, Quaternion.identity);
+		float X ;
+        float Z ;
+        if (!Rotated)
+        {
+			X = StartPoint.x + 5;
+			Z = Random.Range(StartPoint.z, EndPoint.z);
+            PeoplePosition = new Vector3(X, 0, Z);
+            Instantiate(Obstacles[1], PeoplePosition, Quaternion.identity);
+        }
+        else
+        {
+			Z = StartPoint.z + 5;
+			X = Random.Range(StartPoint.x, EndPoint.x);
+            PeoplePosition = new Vector3(X, 0, Z);
+            Instantiate(Obstacles[1], PeoplePosition, Quaternion.identity * Quaternion.Euler(0, -90, 0));
+        }
     }
 
     void SpawnRoadBlockLeft()
     {
-        float X = StartPoint2.x + 10f;
-        float Z = Random.Range(StartPoint1.z + 5, EndPoint1.z - 5);
-        RoadBlockLeftPosition = new Vector3(X, 3, Z);
-        Instantiate(Obstacles[2], RoadBlockLeftPosition, Quaternion.identity);
+        float X ;
+        float Z ;
+        if (!Rotated)
+        {
+			X = StartPoint.x - 1;
+			Z = Random.Range(StartPoint.z, EndPoint.z);
+            RoadBlockLeftPosition = new Vector3(X, 3, Z);
+            Instantiate(Obstacles[2], RoadBlockLeftPosition, Quaternion.identity);
+        }
+        else
+        {
+			Z = StartPoint.z + 1;
+			X = Random.Range(StartPoint.x, EndPoint.x);
+            RoadBlockLeftPosition = new Vector3(X, 3, Z);
+            Instantiate(Obstacles[2], RoadBlockLeftPosition, Quaternion.identity * Quaternion.Euler(0, 90, 0));
+        }
     }
 
     void SpawnRoadBlockRight()
     {
-        float X = StartPoint1.x - 13f;
-        float Z = Random.Range(StartPoint1.z + 5, EndPoint1.z - 5);
-        RoadBlockRightPosition = new Vector3(X, 4.05f, Z);
-        Instantiate(Obstacles[3], RoadBlockRightPosition, Quaternion.identity);
+        float X ;
+        float Z ;
+        if (!Rotated)
+        {
+			X = StartPoint.x - 3;
+			Z = Random.Range(StartPoint.z , EndPoint.z);
+            RoadBlockRightPosition = new Vector3(X, 4.05f, Z);
+            Instantiate(Obstacles[3], RoadBlockRightPosition, Quaternion.identity);
+        }
+        else
+        {
+			Z = StartPoint.z + 3;
+			X = Random.Range(StartPoint.x , EndPoint.x);
+            RoadBlockRightPosition = new Vector3(X, 4.05f, Z);
+            Instantiate(Obstacles[3], RoadBlockRightPosition, Quaternion.identity * Quaternion.Euler(0, 90, 0));
+        }
     }
 }

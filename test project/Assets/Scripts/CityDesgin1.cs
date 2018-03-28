@@ -35,6 +35,7 @@ public class CityDesgin1 : MonoBehaviour {
     public Vector3[] Waypoints;
     public GameObject CarAI;
     public GameObject Car;
+    public GameObject ObstacleGenerator;
 
 
 
@@ -208,6 +209,12 @@ public class CityDesgin1 : MonoBehaviour {
         for (int i = 0; i < NumberOfBlocks; i++)
         {
             Instantiate(arr[i].roadType, arr[i].postion + arr[i].startPos, arr[i].Rotation);
+            //Obstacle Spawning
+			if (arr[i].roadType == streetLane60mVertical) 
+			{
+				SpawnObsatcle(arr[i]);
+			}
+            //Obstacle Spawning
             Waypoints[i] = arr[i].postion + arr[i].startPos;
         }
         SpawnAICar();
@@ -443,5 +450,20 @@ public class CityDesgin1 : MonoBehaviour {
     void SpawnCar()
     {
         Instantiate(Car, new Vector3(0f, 1.5f, 0f), Quaternion.identity);
+    }
+
+	void SpawnObsatcle(Road a)
+    {
+		GameObject clone = (GameObject)Instantiate(ObstacleGenerator, new Vector3(0, 0, 0), Quaternion.identity);
+		if (a.name == "upDown" || a.name == "downUp") {
+			clone.GetComponent<SpawnObstacles> ().StartPoint = new Vector3 (a.startPos.x+a.postion.x , a.startPos.y+a.postion.y, a.startPos.z+a.postion.z);
+			clone.GetComponent<SpawnObstacles> ().EndPoint = new Vector3 (a.endPos.x+a.postion.x , a.endPos.y+a.postion.y, a.endPos.z+a.postion.z);
+			clone.GetComponent<SpawnObstacles> ().Rotated = false;
+		} else {
+			clone.GetComponent<SpawnObstacles> ().StartPoint = new Vector3 (a.startPos.x+a.postion.x , a.startPos.y+a.postion.y, a.startPos.z+a.postion.z);
+			clone.GetComponent<SpawnObstacles> ().EndPoint = new Vector3 (a.endPos.x+a.postion.x , a.endPos.y+a.postion.y, a.endPos.z+a.postion.z);
+			clone.GetComponent<SpawnObstacles> ().Rotated = true;
+		}
+
     }
 }
