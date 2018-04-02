@@ -217,6 +217,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4229655435148160}
+  - component: {fileID: 65483496696169198}
   m_Layer: 8
   m_Name: intersection
   m_TagString: Untagged
@@ -819,6 +820,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6091882, y: 0.6025427, z: 4.842849}
   m_Center: {x: 0.0033166409, y: 5.9891396e-15, z: 2.4214487}
+--- !u!65 &65483496696169198
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1775077648361798}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 55, y: 1, z: 55}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65538965457264746
 BoxCollider:
   m_ObjectHideFlags: 1

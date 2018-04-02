@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scences/demo.unity
+- path: Assets/AICarTestScene.unity
   isLoaded: 1
   isActive: 1

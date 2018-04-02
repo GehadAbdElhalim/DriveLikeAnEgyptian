@@ -12,10 +12,10 @@ MonoImporter:
       type: 2}
   - streetTurn90DownLeft: {fileID: 1335842038830748, guid: f18db509edf7fb84c89707b6ff23e0fe,
       type: 2}
-  - streetIntersection: {fileID: 1870233620453242, guid: 132209f5334ae477fbf2b39254fc0c9f,
+  - streetIntersection: {fileID: 1775077648361798, guid: 132209f5334ae477fbf2b39254fc0c9f,
       type: 2}
-  - CarAI: {instanceID: 0}
-  - Car: {instanceID: 0}
+  - CarAI: {fileID: 1318548613186078, guid: de20d17a4cc53044c8af8ad8adddeb33, type: 2}
+  - Car: {fileID: 100042, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
