@@ -18,7 +18,8 @@ public class CityDesgin1 : MonoBehaviour {
 	public GameObject streetCrossXRoads;
 	public GameObject streetTurn90DownLeft;
 	public GameObject streetBump;
-//	public GameObject streetHole;
+	public GameObject streetHole;
+
 	/// <summary>
 	/// 	if auto generate is checked 
 	/// 		a rondam map with the number of road blocks is equal to NumberOfBlocks
@@ -44,7 +45,7 @@ public class CityDesgin1 : MonoBehaviour {
     const int left = 2;
     const int down = 3;
     int NumOfCol = 0;
-    static Road[] roadKinds = new Road[20];
+    static Road[] roadKinds = new Road[24];
     Road[] arr;
     struct Myx
     {
@@ -149,7 +150,7 @@ public class CityDesgin1 : MonoBehaviour {
         roadKinds[14] = RightDown;
         Road DownRight = new Road();
         DownRight.set(streetTurn90DownLeft, down, right, 80, 20, new Vector3(15, 0, 5), Quaternion.Euler(-90, 225, 0), "DownRight", new Vector3(0, 0, 0));
-        roadKinds[15] = DownRight;
+		roadKinds[15] = DownRight;
 
 		Road upDownBump = new Road();
 		upDown.set(streetBump, up, down, 0, -60, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0), "upDown", new Vector3(0, 0, 0));
@@ -166,6 +167,22 @@ public class CityDesgin1 : MonoBehaviour {
 		Road rightLeftBump = new Road();
 		rightLeft.set(streetBump, right, left, -60, 0, new Vector3(0, 0, 0), Quaternion.Euler(-90, -90, 0), "rightLeft", new Vector3(0, 0, 0));
 		roadKinds[19] = rightLeft;
+
+		Road upDownHole = new Road();
+		upDown.set(streetHole, up, down, 0, -60, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0), "upDown", new Vector3(0, 0, 0));
+		roadKinds[20] = upDown;
+
+		Road downUpHole = new Road();
+		downUp.set(streetHole, down, up, 0, 60, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0), "downUp", new Vector3(0, 0, 0));
+		roadKinds[21] = downUp;
+
+		Road leftRightHole = new Road();
+		leftRight.set(streetHole, left, right, 60, 0, new Vector3(0, 0, 0), Quaternion.Euler(-90, -90, 0), "leftRight", new Vector3(0, 0, 0));
+		roadKinds[22] = leftRight;
+
+		Road rightLeftHole = new Road();
+		rightLeft.set(streetHole, right, left, -60, 0, new Vector3(0, 0, 0), Quaternion.Euler(-90, -90, 0), "rightLeft", new Vector3(0, 0, 0));
+		roadKinds[23] = rightLeft;
 
 		if (AutoGenerte)
 			creatMap ();
