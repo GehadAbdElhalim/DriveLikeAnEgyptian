@@ -15,8 +15,10 @@ public class CityDesgin1 : MonoBehaviour {
 	/// 	 
 	/// </summary>
     public GameObject streetLane60mVertical;
-    public GameObject streetCrossXRoads;
-    public GameObject streetTurn90DownLeft;
+	public GameObject streetCrossXRoads;
+	public GameObject streetTurn90DownLeft;
+	public GameObject streetBump;
+//	public GameObject streetHole;
 	/// <summary>
 	/// 	if auto generate is checked 
 	/// 		a rondam map with the number of road blocks is equal to NumberOfBlocks
@@ -42,7 +44,7 @@ public class CityDesgin1 : MonoBehaviour {
     const int left = 2;
     const int down = 3;
     int NumOfCol = 0;
-    static Road[] roadKinds = new Road[16];
+    static Road[] roadKinds = new Road[20];
     Road[] arr;
     struct Myx
     {
@@ -148,6 +150,22 @@ public class CityDesgin1 : MonoBehaviour {
         Road DownRight = new Road();
         DownRight.set(streetTurn90DownLeft, down, right, 80, 20, new Vector3(15, 0, 5), Quaternion.Euler(-90, 225, 0), "DownRight", new Vector3(0, 0, 0));
         roadKinds[15] = DownRight;
+
+		Road upDownBump = new Road();
+		upDown.set(streetBump, up, down, 0, -60, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0), "upDown", new Vector3(0, 0, 0));
+		roadKinds[16] = upDown;
+
+		Road downUpBump = new Road();
+		downUp.set(streetBump, down, up, 0, 60, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0), "downUp", new Vector3(0, 0, 0));
+		roadKinds[17] = downUp;
+
+		Road leftRightBump = new Road();
+		leftRight.set(streetBump, left, right, 60, 0, new Vector3(0, 0, 0), Quaternion.Euler(-90, -90, 0), "leftRight", new Vector3(0, 0, 0));
+		roadKinds[18] = leftRight;
+
+		Road rightLeftBump = new Road();
+		rightLeft.set(streetBump, right, left, -60, 0, new Vector3(0, 0, 0), Quaternion.Euler(-90, -90, 0), "rightLeft", new Vector3(0, 0, 0));
+		roadKinds[19] = rightLeft;
 
 		if (AutoGenerte)
 			creatMap ();
