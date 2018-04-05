@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -183,6 +183,18 @@ Prefab:
       propertyPath: Car
       value: 
       objectReference: {fileID: 1631615196890734, guid: f7b9d2a6c514b2f41befa270f33b63ad,
+        type: 2}
+    - target: {fileID: 114574395622879734, guid: fec8a65fe55145c4c8a76409e61a5594,
+        type: 2}
+      propertyPath: streetBump
+      value: 
+      objectReference: {fileID: 1814154072404432, guid: dce76b92e6ecd43bc9f0a611a4067b55,
+        type: 2}
+    - target: {fileID: 114574395622879734, guid: fec8a65fe55145c4c8a76409e61a5594,
+        type: 2}
+      propertyPath: streetHole
+      value: 
+      objectReference: {fileID: 1833020897958878, guid: 115418702953d4f1c89edf653d8273a3,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fec8a65fe55145c4c8a76409e61a5594, type: 2}
