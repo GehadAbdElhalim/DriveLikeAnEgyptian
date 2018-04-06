@@ -113,7 +113,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &458217414
+--- !u!1001 &135387218
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -154,14 +154,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114574395622879734, guid: fec8a65fe55145c4c8a76409e61a5594,
         type: 2}
-      propertyPath: JSONFileWirttern
-      value: D:\game\test project\Assets\Files\writtenRoad.txt
-      objectReference: {fileID: 0}
-    - target: {fileID: 114574395622879734, guid: fec8a65fe55145c4c8a76409e61a5594,
+      propertyPath: streetIntersection
+      value: 
+      objectReference: {fileID: 1743167383796942, guid: 132209f5334ae477fbf2b39254fc0c9f,
         type: 2}
-      propertyPath: JSONFile
-      value: D:\game\test project\Assets\Files\roads.txt
-      objectReference: {fileID: 0}
     - target: {fileID: 114574395622879734, guid: fec8a65fe55145c4c8a76409e61a5594,
         type: 2}
       propertyPath: NumberOfBlocks
@@ -172,18 +168,6 @@ Prefab:
       propertyPath: AutoGenerte
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114574395622879734, guid: fec8a65fe55145c4c8a76409e61a5594,
-        type: 2}
-      propertyPath: CarAI
-      value: 
-      objectReference: {fileID: 1318548613186078, guid: de20d17a4cc53044c8af8ad8adddeb33,
-        type: 2}
-    - target: {fileID: 114574395622879734, guid: fec8a65fe55145c4c8a76409e61a5594,
-        type: 2}
-      propertyPath: Car
-      value: 
-      objectReference: {fileID: 1631615196890734, guid: f7b9d2a6c514b2f41befa270f33b63ad,
-        type: 2}
     - target: {fileID: 114574395622879734, guid: fec8a65fe55145c4c8a76409e61a5594,
         type: 2}
       propertyPath: streetBump
