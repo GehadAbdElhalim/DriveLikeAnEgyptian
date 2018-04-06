@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.AI;
 
 /*
  * a rondom city genertator
@@ -432,7 +433,8 @@ public class CityDesgin1 : MonoBehaviour {
 
     void SpawnAICar()
     {
-        GameObject car = (GameObject)Instantiate(CarAI, new Vector3(0, 0, 0), Quaternion.identity);
+		GameObject car = (GameObject)Instantiate(CarAI, new Vector3(0,1,0), Quaternion.identity);
+		//car.GetComponent<NavMeshAgent> ().Warp (new Vector3 (0, 0, 0));
         int i = 1;
         for (i = 1; i < Waypoints.Length; i++)
         {
@@ -456,12 +458,12 @@ public class CityDesgin1 : MonoBehaviour {
     {
 		GameObject clone = (GameObject)Instantiate(ObstacleGenerator, new Vector3(0, 0, 0), Quaternion.identity);
 		if (a.name == "upDown" || a.name == "downUp") {
-			clone.GetComponent<SpawnObstacles> ().StartPoint = new Vector3 (a.startPos.x+a.postion.x , a.startPos.y+a.postion.y, a.startPos.z+a.postion.z);
-			clone.GetComponent<SpawnObstacles> ().EndPoint = new Vector3 (a.endPos.x+a.postion.x , a.endPos.y+a.postion.y, a.endPos.z+a.postion.z);
+			clone.GetComponent<SpawnObstacles> ().StartPoint = new Vector3 (a.startPos.x+a.postion.x , a.startPos.y+a.postion.y, a.startPos.z-30);
+			clone.GetComponent<SpawnObstacles> ().EndPoint = new Vector3 (a.startPos.x+a.postion.x , a.startPos.y+a.postion.y, a.startPos.z+30);
 			clone.GetComponent<SpawnObstacles> ().Rotated = false;
 		} else {
-			clone.GetComponent<SpawnObstacles> ().StartPoint = new Vector3 (a.startPos.x+a.postion.x , a.startPos.y+a.postion.y, a.startPos.z+a.postion.z);
-			clone.GetComponent<SpawnObstacles> ().EndPoint = new Vector3 (a.endPos.x+a.postion.x , a.endPos.y+a.postion.y, a.endPos.z+a.postion.z);
+			clone.GetComponent<SpawnObstacles> ().StartPoint = new Vector3 (a.startPos.x - 30 , a.startPos.y+a.postion.y, a.startPos.z+a.postion.z);
+			clone.GetComponent<SpawnObstacles> ().EndPoint = new Vector3 (a.startPos.x + 30 , a.startPos.y+a.postion.y, a.startPos.z+a.postion.z);
 			clone.GetComponent<SpawnObstacles> ().Rotated = true;
 		}
 
