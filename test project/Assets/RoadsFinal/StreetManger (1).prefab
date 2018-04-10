@@ -57,7 +57,12 @@ MonoBehaviour:
     type: 2}
   streetTurn90DownLeft: {fileID: 1335842038830748, guid: f18db509edf7fb84c89707b6ff23e0fe,
     type: 2}
+  streetIntersection: {fileID: 1775077648361798, guid: 132209f5334ae477fbf2b39254fc0c9f,
+    type: 2}
   JSONFileWirttern: D:\GUC\semester8\self\Streets\Assets\Files\writtenRoad.txt
-  AutoGenerte: 0
+  AutoGenerte: 1
   JSONFile: D:\GUC\semester8\self\Streets\Assets\Files\roads.txt
-  NumberOfBlocks: 0
+  NumberOfBlocks: 20
+  Waypoints: []
+  CarAI: {fileID: 0}
+  Car: {fileID: 0}
