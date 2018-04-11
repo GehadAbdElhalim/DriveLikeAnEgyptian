@@ -135,7 +135,10 @@ namespace UnityStandardAssets.Vehicles.Car
 
         // Use this for initialization
         private void Start ()
-        {
+		{
+			//Ignore the collisions between layer 10 (Car body) and layer 9 (Sensors)
+//			Physics.IgnoreLayerCollision(10, 9);
+
             m_WheelMeshLocalRotations = new Quaternion[4];
             for (int i = 0; i < 4; i++) {
                 m_WheelMeshLocalRotations [i] = m_WheelMeshes [i].transform.localRotation;
@@ -144,9 +147,10 @@ namespace UnityStandardAssets.Vehicles.Car
 
             m_MaxHandbrakeTorque = float.MaxValue;
 
-            m_Rigidbody = GetComponent<Rigidbody> ();
+			m_Rigidbody = GetComponent<Rigidbody> ();
+
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl * m_FullTorqueOverAllWheels);
-        }
+		}
 
         private void GearChanging ()
         {
