@@ -7,7 +7,7 @@ public class sensorsScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		print (this);
+//		print (this);
 	}
 	
 	// Update is called once per frame
@@ -18,10 +18,6 @@ public class sensorsScript : MonoBehaviour {
 
 	void OnCollisionStay(Collision collision)
 	{
-		print (collision.gameObject);
-		print (this);
-//		foreach (ContactPoint contact in collision.contacts)
-//		{
-//		}
+		Debug.Log("Sensor "+this.gameObject.name+" hit the GameObject : " + collision.gameObject.name);
 	}
 }

@@ -8,211 +8,226 @@ namespace UnityStandardAssets.Vehicles.Car
 	[RequireComponent(typeof(CarController))]
 	public class RecordingScript : MonoBehaviour {
 
-		public string logFilePath;
-//		private CarController m_Car; // the car controller we want to use
+		public Line [] lines; 
 
-//		public float SteeringAngle { get; set; b
+		string logFilePath;
+
+		void Awake (){
+			print (Application.dataPath);
+			logFilePath = Application.dataPath + "/LogFiles/state-action.json";
+		}
 
 		// Use this for initialization
 		void Start () {
+			lines = new Line[36];
+			print (Application.persistentDataPath);
 		}
 		
 		// Update is called once per frame
 		void Update () {
 			//		JsonUtility.ToJson(obj[i]) + "*";
 
-	//		GameObject skycar = GameObject.Find ("Car");
 			State currentState = new State()
 			{
 				line0 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type0,
+					position = SensorsGlobalManager.Instance.position0
 				},
 				line5 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type5,
+					position = SensorsGlobalManager.Instance.position5
 				},
 				line10 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type10,
+					position = SensorsGlobalManager.Instance.position10
 				},
 				line15 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type15,
+					position = SensorsGlobalManager.Instance.position15
 				},
 				line20 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type20,
+					position = SensorsGlobalManager.Instance.position20
 				},
 				line25 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type25,
+					position = SensorsGlobalManager.Instance.position25
 				},
 				line30 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type30,
+					position = SensorsGlobalManager.Instance.position30
 				},
 				line35 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type35,
+					position = SensorsGlobalManager.Instance.position35
 				},
 				line40 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type40,
+					position = SensorsGlobalManager.Instance.position40
 				},
 				line45 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type45,
+					position = SensorsGlobalManager.Instance.position45
 				},
 				line50 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type50,
+					position = SensorsGlobalManager.Instance.position50
 				},
 				line55 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type55,
+					position = SensorsGlobalManager.Instance.position55
 				},
 				line60 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type60,
+					position = SensorsGlobalManager.Instance.position60
 				},
 				line65 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type65,
+					position = SensorsGlobalManager.Instance.position65
 				},
 				line70 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type70,
+					position = SensorsGlobalManager.Instance.position70
 				},
 				line75 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type75,
+					position = SensorsGlobalManager.Instance.position75
 				},
 				line80 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type80,
+					position = SensorsGlobalManager.Instance.position80
 				},
 				line85 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type85,
+					position = SensorsGlobalManager.Instance.position85
 				},
 				line90 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type90,
+					position = SensorsGlobalManager.Instance.position90
 				},
 				line95 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type95,
+					position = SensorsGlobalManager.Instance.position95
 				},
 				line100 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type100,
+					position = SensorsGlobalManager.Instance.position100
 				},
 				line105 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type105,
+					position = SensorsGlobalManager.Instance.position105
 				},
 				line110 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type110,
+					position = SensorsGlobalManager.Instance.position110
 				},
 				line115 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type115,
+					position = SensorsGlobalManager.Instance.position115
 				},
 				line120 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type120,
+					position = SensorsGlobalManager.Instance.position120
 				},
 				line125 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type125,
+					position = SensorsGlobalManager.Instance.position125
 				},
 				line130 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type130,
+					position = SensorsGlobalManager.Instance.position130
 				},
 				line135 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type135,
+					position = SensorsGlobalManager.Instance.position135
 				},
 				line140 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type140,
+					position = SensorsGlobalManager.Instance.position140
 				},
 				line145 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type145,
+					position = SensorsGlobalManager.Instance.position145
 				},
 				line150 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type150,
+					position = SensorsGlobalManager.Instance.position150
 				},
 				line155 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type155,
+					position = SensorsGlobalManager.Instance.position155
 				},
 				line160 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type160,
+					position = SensorsGlobalManager.Instance.position160
 				},
 				line165 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type165,
+					position = SensorsGlobalManager.Instance.position165
 				},
 				line170 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type170,
+					position = SensorsGlobalManager.Instance.position170
 				},
 				line175 = new Line()
 				{
-					type = "v",
-					position = new Vector3(0.0f,0.0f,0.0f)
+					type = SensorsGlobalManager.Instance.type175,
+					position = SensorsGlobalManager.Instance.position175
 				},
 
 				car_velocity = (GetComponent("CarController") as CarController).CurrentSpeed,
 //				traffic_light =  GameObject.Find ("") //get current roadblock
 			};
 
-			string currentState_JSON = JsonUtility.ToJson(currentState,true);
 //			print (currentState_JSON+ "\t\n"	);
-			Action newAction = new Action ();
-//			print ((GetComponent("CarController") as CarController).CurrentSteerAngle);	
+			Action newAction = new Action (){
+				acceleration = (GetComponent("CarController") as CarController).AccelInput,
+				steer_angle = (GetComponent("CarController") as CarController).CurrentSteerAngle
+			};
+
+			StateActionPair newPair = new StateActionPair() {
+				a = newAction,
+				s = currentState
+			};
+
+			string newPair_JSON = JsonUtility.ToJson(newPair,true);
+			logStateAction (newPair_JSON, logFilePath);	
+
 		}
 
 
@@ -280,8 +295,15 @@ namespace UnityStandardAssets.Vehicles.Car
 		public class Action
 		{
 			public float acceleration;
-			public bool steer_left;
-			public bool steer_right;
+			public float steer_angle;
+
+		}
+
+		[System.Serializable]
+		public class StateActionPair
+		{
+			public State s;
+			public Action a;
 
 		}
 	}
