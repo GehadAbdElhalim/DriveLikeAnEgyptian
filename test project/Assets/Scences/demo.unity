@@ -237,7 +237,7 @@ Prefab:
     - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
         type: 2}
       propertyPath: NumberOfBlocks
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
         type: 2}

@@ -16,11 +16,12 @@ public class sensorScript : MonoBehaviour {
 		
 	}
 
-//	void OnCollisionStay(Collision collide)
-//	{
-//		//Output the name of the GameObject you collide with
-//		Debug.Log("Sensor "+this.gameObject.name+" hit the GameObject : " + collide.gameObject.name);
-//	}
+	void OnCollisionExit(Collision collide)
+	{
+		//Output the name of the GameObject you collide with
+		Debug.Log("Sensor "+this.gameObject.name+" hit the GameObject : " + collide.gameObject.name);
+	}
+
 	void OnCollisionEnter(Collision collide)
 	{
 		Vector3 carPosition = GameObject.Find ("Car").transform.position;
@@ -46,6 +47,7 @@ public class sensorScript : MonoBehaviour {
 			
 			switch (this.gameObject.name) {
 			case "line0":
+				SensorsGlobalManager.Instance.id0 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type0 = nearest_type;
 				SensorsGlobalManager.Instance.position0 = nearest_position;
 				break;
@@ -63,6 +65,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line10":
+				SensorsGlobalManager.Instance.id10 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type10 = nearest_type;
 				SensorsGlobalManager.Instance.position10 = nearest_position;
 				break;
@@ -80,6 +83,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line20":
+				SensorsGlobalManager.Instance.id20 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type20 = nearest_type;
 				SensorsGlobalManager.Instance.position20 = nearest_position;
 				break;
@@ -97,6 +101,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line30":
+				SensorsGlobalManager.Instance.id30 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type30 = nearest_type;
 				SensorsGlobalManager.Instance.position30 = nearest_position;
 				break;
@@ -114,6 +119,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line40":
+				SensorsGlobalManager.Instance.id40 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type40 = nearest_type;
 				SensorsGlobalManager.Instance.position40 = nearest_position;
 				break;
@@ -131,6 +137,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line50":
+				SensorsGlobalManager.Instance.id50 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type50 = nearest_type;
 				SensorsGlobalManager.Instance.position50 = nearest_position;
 				break;
@@ -148,6 +155,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line60":
+				SensorsGlobalManager.Instance.id60 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type60 = nearest_type;
 				SensorsGlobalManager.Instance.position60 = nearest_position;
 				break;
@@ -165,6 +173,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line70":
+				SensorsGlobalManager.Instance.id70 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type70 = nearest_type;
 				SensorsGlobalManager.Instance.position70 = nearest_position;
 				break;
@@ -182,6 +191,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line80":
+				SensorsGlobalManager.Instance.id80 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type80 = nearest_type;
 				SensorsGlobalManager.Instance.position80 = nearest_position;
 				break;
@@ -199,6 +209,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line90":
+				SensorsGlobalManager.Instance.id90 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type90 = nearest_type;
 				SensorsGlobalManager.Instance.position90 = nearest_position;
 				break;
@@ -216,6 +227,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line100":
+				SensorsGlobalManager.Instance.id100 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type100 = nearest_type;
 				SensorsGlobalManager.Instance.position100 = nearest_position;
 				break;
@@ -233,6 +245,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line110":
+				SensorsGlobalManager.Instance.id110 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type110 = nearest_type;
 				SensorsGlobalManager.Instance.position110 = nearest_position;
 				break;
@@ -250,6 +263,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line120":
+				SensorsGlobalManager.Instance.id120 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type120 = nearest_type;
 				SensorsGlobalManager.Instance.position120 = nearest_position;
 				break;
@@ -267,6 +281,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line130":
+				SensorsGlobalManager.Instance.id130 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type130 = nearest_type;
 				SensorsGlobalManager.Instance.position130 = nearest_position;
 				break;
@@ -284,6 +299,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line140":
+				SensorsGlobalManager.Instance.id140 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type140 = nearest_type;
 				SensorsGlobalManager.Instance.position140 = nearest_position;
 				break;
@@ -301,6 +317,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line150":
+				SensorsGlobalManager.Instance.id150 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type150 = nearest_type;
 				SensorsGlobalManager.Instance.position150 = nearest_position;
 				break;
@@ -318,6 +335,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line160":
+				SensorsGlobalManager.Instance.id160 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type160 = nearest_type;
 				SensorsGlobalManager.Instance.position160 = nearest_position;
 				break;
@@ -335,6 +353,7 @@ public class sensorScript : MonoBehaviour {
 //				break;
 
 			case "line170":
+				SensorsGlobalManager.Instance.id170 = this.gameObject.GetInstanceID ();
 				SensorsGlobalManager.Instance.type170 = nearest_type;
 				SensorsGlobalManager.Instance.position170 = nearest_position;
 				break;
@@ -350,6 +369,114 @@ public class sensorScript : MonoBehaviour {
 //				SensorsGlobalManager.Instance.type175 = nearest_type;
 //				SensorsGlobalManager.Instance.position175 = nearest_position;
 //				break;
+
+			case "line180":
+				SensorsGlobalManager.Instance.id180 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type180 = nearest_type;
+				SensorsGlobalManager.Instance.position180 = nearest_position;
+				break;
+
+			case "line190":
+				SensorsGlobalManager.Instance.id190 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type190 = nearest_type;
+				SensorsGlobalManager.Instance.position190 = nearest_position;
+				break;
+
+			case "line200":
+				SensorsGlobalManager.Instance.id200 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type200 = nearest_type;
+				SensorsGlobalManager.Instance.position200 = nearest_position;
+				break;
+
+			case "line210":
+				SensorsGlobalManager.Instance.id210 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type210 = nearest_type;
+				SensorsGlobalManager.Instance.position210 = nearest_position;
+				break;
+
+			case "line220":
+				SensorsGlobalManager.Instance.id220 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type220 = nearest_type;
+				SensorsGlobalManager.Instance.position220 = nearest_position;
+				break;
+
+			case "line230":
+				SensorsGlobalManager.Instance.id230 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type230 = nearest_type;
+				SensorsGlobalManager.Instance.position230 = nearest_position;
+				break;
+
+			case "line240":
+				SensorsGlobalManager.Instance.id240 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type240 = nearest_type;
+				SensorsGlobalManager.Instance.position240 = nearest_position;
+				break;
+
+			case "line250":
+				SensorsGlobalManager.Instance.id250 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type250 = nearest_type;
+				SensorsGlobalManager.Instance.position250 = nearest_position;
+				break;
+
+			case "line260":
+				SensorsGlobalManager.Instance.id260 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type260 = nearest_type;
+				SensorsGlobalManager.Instance.position260 = nearest_position;
+				break;
+
+			case "line270":
+				SensorsGlobalManager.Instance.id270 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type270 = nearest_type;
+				SensorsGlobalManager.Instance.position270 = nearest_position;
+				break;
+
+			case "line280":
+				SensorsGlobalManager.Instance.id280 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type280 = nearest_type;
+				SensorsGlobalManager.Instance.position280 = nearest_position;
+				break;
+
+			case "line290":
+				SensorsGlobalManager.Instance.id290 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type290 = nearest_type;
+				SensorsGlobalManager.Instance.position290 = nearest_position;
+				break;
+
+			case "line300":
+				SensorsGlobalManager.Instance.id300 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type300 = nearest_type;
+				SensorsGlobalManager.Instance.position300 = nearest_position;
+				break;
+
+			case "line310":
+				SensorsGlobalManager.Instance.id310 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type310 = nearest_type;
+				SensorsGlobalManager.Instance.position310 = nearest_position;
+				break;
+
+			case "line320":
+				SensorsGlobalManager.Instance.id320 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type320 = nearest_type;
+				SensorsGlobalManager.Instance.position320 = nearest_position;
+				break;
+
+			case "line330":
+				SensorsGlobalManager.Instance.id330 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type330 = nearest_type;
+				SensorsGlobalManager.Instance.position330 = nearest_position;
+				break;
+
+			case "line340":
+				SensorsGlobalManager.Instance.id340 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type340 = nearest_type;
+				SensorsGlobalManager.Instance.position340 = nearest_position;
+				break;
+
+			case "line350":
+				SensorsGlobalManager.Instance.id350 = this.gameObject.GetInstanceID ();
+				SensorsGlobalManager.Instance.type350 = nearest_type;
+				SensorsGlobalManager.Instance.position350 = nearest_position;
+				break;
 
 			}
 			//Output the name of the GameObject you collide with

@@ -6,6 +6,43 @@ public class SensorsGlobalManager : MonoBehaviour {
 
 	public static SensorsGlobalManager Instance { get; set; }
 
+	public int id0;
+	public int id10;
+	public int id20;
+	public int id30;
+	public int id40;
+	public int id50;
+	public int id60;
+	public int id70;
+	public int id80;
+	public int id90;
+	public int id100;
+	public int id110;
+	public int id120;
+	public int id130;
+	public int id140;
+	public int id150;
+	public int id160;
+	public int id170;
+	public int id180;
+	public int id190;
+	public int id200;
+	public int id210;
+	public int id220;
+	public int id230;
+	public int id240;
+	public int id250;
+	public int id260;
+	public int id270;
+	public int id280;
+	public int id290;
+	public int id300;
+	public int id310;
+	public int id320;
+	public int id330;
+	public int id340;
+	public int id350;
+
 	public string type0;
 //	public string type5;
 	public string type10;

@@ -34,6 +34,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			{
 				line0 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id0,
 					type = SensorsGlobalManager.Instance.type0,
 					position = SensorsGlobalManager.Instance.position0
 				},
@@ -44,6 +45,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line10 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id10,
 					type = SensorsGlobalManager.Instance.type10,
 					position = SensorsGlobalManager.Instance.position10
 				},
@@ -54,6 +56,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line20 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id20,
 					type = SensorsGlobalManager.Instance.type20,
 					position = SensorsGlobalManager.Instance.position20
 				},
@@ -64,6 +67,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line30 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id30,
 					type = SensorsGlobalManager.Instance.type30,
 					position = SensorsGlobalManager.Instance.position30
 				},
@@ -74,6 +78,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line40 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id40,
 					type = SensorsGlobalManager.Instance.type40,
 					position = SensorsGlobalManager.Instance.position40
 				},
@@ -84,6 +89,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line50 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id50,
 					type = SensorsGlobalManager.Instance.type50,
 					position = SensorsGlobalManager.Instance.position50
 				},
@@ -94,6 +100,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line60 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id60,
 					type = SensorsGlobalManager.Instance.type60,
 					position = SensorsGlobalManager.Instance.position60
 				},
@@ -104,6 +111,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line70 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id70,
 					type = SensorsGlobalManager.Instance.type70,
 					position = SensorsGlobalManager.Instance.position70
 				},
@@ -114,6 +122,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line80 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id80,
 					type = SensorsGlobalManager.Instance.type80,
 					position = SensorsGlobalManager.Instance.position80
 				},
@@ -124,6 +133,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line90 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id90,
 					type = SensorsGlobalManager.Instance.type90,
 					position = SensorsGlobalManager.Instance.position90
 				},
@@ -134,6 +144,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line100 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id100,
 					type = SensorsGlobalManager.Instance.type100,
 					position = SensorsGlobalManager.Instance.position100
 				},
@@ -144,6 +155,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line110 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id110,
 					type = SensorsGlobalManager.Instance.type110,
 					position = SensorsGlobalManager.Instance.position110
 				},
@@ -154,6 +166,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line120 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id120,
 					type = SensorsGlobalManager.Instance.type120,
 					position = SensorsGlobalManager.Instance.position120
 				},
@@ -164,6 +177,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line130 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id130,
 					type = SensorsGlobalManager.Instance.type130,
 					position = SensorsGlobalManager.Instance.position130
 				},
@@ -174,6 +188,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line140 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id140,
 					type = SensorsGlobalManager.Instance.type140,
 					position = SensorsGlobalManager.Instance.position140
 				},
@@ -184,6 +199,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line150 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id150,
 					type = SensorsGlobalManager.Instance.type150,
 					position = SensorsGlobalManager.Instance.position150
 				},
@@ -194,6 +210,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line160 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id160,
 					type = SensorsGlobalManager.Instance.type160,
 					position = SensorsGlobalManager.Instance.position160
 				},
@@ -204,6 +221,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line170 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id170,
 					type = SensorsGlobalManager.Instance.type170,
 					position = SensorsGlobalManager.Instance.position170
 				},
@@ -214,91 +232,109 @@ namespace UnityStandardAssets.Vehicles.Car
 				//				},
 				line180 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id180,
 					type = SensorsGlobalManager.Instance.type180,
 					position = SensorsGlobalManager.Instance.position180
 				},
 				line190 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id190,
 					type = SensorsGlobalManager.Instance.type190,
 					position = SensorsGlobalManager.Instance.position190
 				},
 				line200 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id200,
 					type = SensorsGlobalManager.Instance.type200,
 					position = SensorsGlobalManager.Instance.position200
 				},
 				line210 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id210,
 					type = SensorsGlobalManager.Instance.type210,
 					position = SensorsGlobalManager.Instance.position210
 				},
 				line220 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id220,
 					type = SensorsGlobalManager.Instance.type220,
 					position = SensorsGlobalManager.Instance.position220
 				},
 				line230 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id230,
 					type = SensorsGlobalManager.Instance.type230,
 					position = SensorsGlobalManager.Instance.position230
 				},
 				line240 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id240,
 					type = SensorsGlobalManager.Instance.type240,
 					position = SensorsGlobalManager.Instance.position240
 				},
 				line250 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id250,
 					type = SensorsGlobalManager.Instance.type250,
 					position = SensorsGlobalManager.Instance.position250
 				},
 				line260 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id260,
 					type = SensorsGlobalManager.Instance.type260,
 					position = SensorsGlobalManager.Instance.position260
 				},
 				line270 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id270,
 					type = SensorsGlobalManager.Instance.type270,
 					position = SensorsGlobalManager.Instance.position270
 				},
 				line280 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id280,
 					type = SensorsGlobalManager.Instance.type280,
 					position = SensorsGlobalManager.Instance.position280
 				},
 				line290 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id290,
 					type = SensorsGlobalManager.Instance.type290,
 					position = SensorsGlobalManager.Instance.position290
 				},
 				line300 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id300,
 					type = SensorsGlobalManager.Instance.type300,
 					position = SensorsGlobalManager.Instance.position300
 				},
 				line310 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id310,
 					type = SensorsGlobalManager.Instance.type310,
 					position = SensorsGlobalManager.Instance.position310
 				},
 				line320 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id320,
 					type = SensorsGlobalManager.Instance.type320,
 					position = SensorsGlobalManager.Instance.position320
 				},
 				line330 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id330,
 					type = SensorsGlobalManager.Instance.type330,
 					position = SensorsGlobalManager.Instance.position330
 				},
 				line340 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id340,
 					type = SensorsGlobalManager.Instance.type340,
 					position = SensorsGlobalManager.Instance.position340
 				},
 				line350 = new Line()
 				{
+					id = SensorsGlobalManager.Instance.id350,
 					type = SensorsGlobalManager.Instance.type350,
 					position = SensorsGlobalManager.Instance.position350
 				},
@@ -333,6 +369,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		[System.Serializable]
 		public class Line
 		{
+			public int id;
 			public string type;
 			public Vector3 position;
 		}
