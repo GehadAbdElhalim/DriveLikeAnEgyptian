@@ -13,7 +13,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		string logFilePath;
 
 		[Header("Sensors")]
-		public float sensorLength = 10.0f;
+		public float sensorLength = 20.0f;
 		public float angle0 = 0.0f;
 		public float angle10 = 10;
 		public float angle20 = 20;
@@ -501,11 +501,32 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.type350 = null;
 				SensorsGlobalManager.Instance.position350 = Vector3.zero;
 			}
+//			print(tran
+		}
+
+		void trafficLights(){
+			
+			GameObject[] goWithTag = GameObject.FindGameObjectsWithTag("TrafficLight");
+			Renderer TrafficLights_renderer;
+
+			for (int i = 0; i < goWithTag.Length; ++i)
+			{
+				TrafficLights_renderer = goWithTag [i].GetComponent<Renderer> ();
+				if (TrafficLights_renderer.isVisible && Vector3.Distance (transform.position, goWithTag [i].transform.position) <= 10.0f) {
+					return goWithTag [i].Find("red_light").GetComponent<Light>().intensity!=0;
+				}
+			}
+
+			return false;
+
+//			GameObject TrafficLights = GameObject.Find ("LampPost_A");
+//			Renderer TrafficLights_renderer = TrafficLights.GetComponent<Renderer> ();
 		}
 
 		// Update is called once per frame
 		void Update () {
-			Sensors();
+//			Sensors(); 
+			print(transform.forward);
 		}
 
 		void getStateAction(){
@@ -728,7 +749,9 @@ namespace UnityStandardAssets.Vehicles.Car
 				},
 
 				car_velocity = (GetComponent("CarController") as CarController).CurrentSpeed,
-				//				traffic_light =  GameObject.Find ("") //get current roadblock
+				car_angle = transform.forward,
+				traffic_light =  trafficLights(), //get current roadblock?? -> cheat
+
 			};
 
 			//			print (currentState_JSON+ "\t\n"	);
@@ -805,7 +828,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			public bool rain;
 			public float car_velocity;
 			public float car_angle;
-			public bool traffic_light;
+			public bool traffic_light; //{true:red, false:green}
 		}
 
 		[System.Serializable]
