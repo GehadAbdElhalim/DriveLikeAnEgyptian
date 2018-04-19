@@ -5121,7 +5121,7 @@ GameObject:
   - component: {fileID: 1209400121}
   m_Layer: 0
   m_Name: Street1Lane60mHorizontal
-  m_TagString: Untagged
+  m_TagString: RoadBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5402,78 +5402,114 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cc0bc551ec24a5d9f972e3f51af04d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id0: 
+  id10: 
+  id20: 
+  id30: 
+  id40: 
+  id50: 
+  id60: 
+  id70: 
+  id80: 
+  id90: 
+  id100: 
+  id110: 
+  id120: 
+  id130: 
+  id140: 
+  id150: 
+  id160: 
+  id170: 
+  id180: 
+  id190: 
+  id200: 
+  id210: 
+  id220: 
+  id230: 
+  id240: 
+  id250: 
+  id260: 
+  id270: 
+  id280: 
+  id290: 
+  id300: 
+  id310: 
+  id320: 
+  id330: 
+  id340: 
+  id350: 
   type0: 
-  type5: 
   type10: 
-  type15: 
   type20: 
-  type25: 
   type30: 
-  type35: 
   type40: 
-  type45: 
   type50: 
-  type55: 
   type60: 
-  type65: 
   type70: 
-  type75: 
   type80: 
-  type85: 
   type90: 
-  type95: 
   type100: 
-  type105: 
   type110: 
-  type115: 
   type120: 
-  type125: 
   type130: 
-  type135: 
   type140: 
-  type145: 
   type150: 
-  type155: 
   type160: 
-  type165: 
   type170: 
-  type175: 
+  type180: 
+  type190: 
+  type200: 
+  type210: 
+  type220: 
+  type230: 
+  type240: 
+  type250: 
+  type260: 
+  type270: 
+  type280: 
+  type290: 
+  type300: 
+  type310: 
+  type320: 
+  type330: 
+  type340: 
+  type350: 
   position0: {x: 0, y: 0, z: 0}
-  position5: {x: 0, y: 0, z: 0}
   position10: {x: 0, y: 0, z: 0}
-  position15: {x: 0, y: 0, z: 0}
   position20: {x: 0, y: 0, z: 0}
-  position25: {x: 0, y: 0, z: 0}
   position30: {x: 0, y: 0, z: 0}
-  position35: {x: 0, y: 0, z: 0}
   position40: {x: 0, y: 0, z: 0}
-  position45: {x: 0, y: 0, z: 0}
   position50: {x: 0, y: 0, z: 0}
-  position55: {x: 0, y: 0, z: 0}
   position60: {x: 0, y: 0, z: 0}
-  position65: {x: 0, y: 0, z: 0}
   position70: {x: 0, y: 0, z: 0}
-  position75: {x: 0, y: 0, z: 0}
   position80: {x: 0, y: 0, z: 0}
-  position85: {x: 0, y: 0, z: 0}
   position90: {x: 0, y: 0, z: 0}
-  position95: {x: 0, y: 0, z: 0}
   position100: {x: 0, y: 0, z: 0}
-  position105: {x: 0, y: 0, z: 0}
   position110: {x: 0, y: 0, z: 0}
-  position115: {x: 0, y: 0, z: 0}
   position120: {x: 0, y: 0, z: 0}
-  position125: {x: 0, y: 0, z: 0}
   position130: {x: 0, y: 0, z: 0}
-  position135: {x: 0, y: 0, z: 0}
   position140: {x: 0, y: 0, z: 0}
-  position145: {x: 0, y: 0, z: 0}
   position150: {x: 0, y: 0, z: 0}
-  position155: {x: 0, y: 0, z: 0}
   position160: {x: 0, y: 0, z: 0}
-  position165: {x: 0, y: 0, z: 0}
   position170: {x: 0, y: 0, z: 0}
-  position175: {x: 0, y: 0, z: 0}
+  position180: {x: 0, y: 0, z: 0}
+  position190: {x: 0, y: 0, z: 0}
+  position200: {x: 0, y: 0, z: 0}
+  position210: {x: 0, y: 0, z: 0}
+  position220: {x: 0, y: 0, z: 0}
+  position230: {x: 0, y: 0, z: 0}
+  position240: {x: 0, y: 0, z: 0}
+  position250: {x: 0, y: 0, z: 0}
+  position260: {x: 0, y: 0, z: 0}
+  position270: {x: 0, y: 0, z: 0}
+  position280: {x: 0, y: 0, z: 0}
+  position290: {x: 0, y: 0, z: 0}
+  position300: {x: 0, y: 0, z: 0}
+  position310: {x: 0, y: 0, z: 0}
+  position320: {x: 0, y: 0, z: 0}
+  position330: {x: 0, y: 0, z: 0}
+  position340: {x: 0, y: 0, z: 0}
+  position350: {x: 0, y: 0, z: 0}
 --- !u!4 &1538128238
 Transform:
   m_ObjectHideFlags: 0
@@ -6305,42 +6341,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines: []
   sensorLength: 10
-  angle0: 0
-  angle10: 10
-  angle20: 20
-  angle30: 30
-  angle40: 40
-  angle50: 50
-  angle60: 60
-  angle70: 70
-  angle80: 80
-  angle90: 90
-  angle100: 100
-  angle110: 110
-  angle120: 120
-  angle130: 130
-  angle140: 140
-  angle150: 150
-  angle160: 160
-  angle170: 170
-  angle180: 180
-  angle190: 190
-  angle200: 200
-  angle210: 210
-  angle220: 220
-  angle230: 230
-  angle240: 240
-  angle250: 250
-  angle260: 260
-  angle270: 270
-  angle280: 280
-  angle290: 290
-  angle300: 300
-  angle310: 310
-  angle320: 320
-  angle330: 330
-  angle340: 340
-  angle350: 350
 --- !u!1 &2070390147
 GameObject:
   m_ObjectHideFlags: 0

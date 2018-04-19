@@ -7,6 +7,8 @@ TagManager:
   - CARAI
   - passanger
   - Sensors
+  - TrafficLight
+  - RoadBlock
   layers:
   - Default
   - TransparentFX
