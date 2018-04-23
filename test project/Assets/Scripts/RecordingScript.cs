@@ -126,438 +126,439 @@ namespace UnityStandardAssets.Vehicles.Car
 
 		void Sensors(){
 			RaycastHit hit;
-			Vector3 sensorStartPos = transform.position;
-			sensorStartPos.y = 0.2f;
+			Vector3 sensorLowStartPos = transform.position;
+			Vector3 sensorHighStartPos = transform.position;
+			sensorLowStartPos.y = 0.2f;
+			sensorHighStartPos.y = 0.5f;
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (0, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorLowStartPos, Quaternion.AngleAxis (0, transform.up) * transform.forward, out hit, sensorLength)) {
 				print (hit.collider.name);
 
 				SensorsGlobalManager.Instance.id0 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type0 = hit.collider.name;
 				SensorsGlobalManager.Instance.position0 = hit.point;
 
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorLowStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id0 = null;
 				SensorsGlobalManager.Instance.type0 = null;
 				SensorsGlobalManager.Instance.position0 = Vector3.zero;
 			}
-			print (SensorsGlobalManager.Instance.id0);
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (10, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (10, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id10 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type10 = hit.collider.name;
 				SensorsGlobalManager.Instance.position10 = hit.point;
 
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id10 = null;
 				SensorsGlobalManager.Instance.type10 = null;
 				SensorsGlobalManager.Instance.position10 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (20, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorLowStartPos, Quaternion.AngleAxis (20, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id20 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type20 = hit.collider.name;
 				SensorsGlobalManager.Instance.position20 = hit.point;
 
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorLowStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id20 = null;
 				SensorsGlobalManager.Instance.type20 = null;
 				SensorsGlobalManager.Instance.position20 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (30, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (30, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id30 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type30 = hit.collider.name;
 				SensorsGlobalManager.Instance.position30 = hit.point;
 
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id30 = null;
 				SensorsGlobalManager.Instance.type30 = null;
 				SensorsGlobalManager.Instance.position30 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (40, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (40, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id40 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type40 = hit.collider.name;
 				SensorsGlobalManager.Instance.position40 = hit.point;
 
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id40 = null;
 				SensorsGlobalManager.Instance.type40 = null;
 				SensorsGlobalManager.Instance.position40 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (50, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (50, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id50 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type50 = hit.collider.name;
 				SensorsGlobalManager.Instance.position50 = hit.point;
 
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id50 = null;
 				SensorsGlobalManager.Instance.type50 = null;
 				SensorsGlobalManager.Instance.position50 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (60, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (60, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id60 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type60 = hit.collider.name;
 				SensorsGlobalManager.Instance.position60 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id60 = null;
 				SensorsGlobalManager.Instance.type60 = null;
 				SensorsGlobalManager.Instance.position60 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (70, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (70, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id70 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type70 = hit.collider.name;
 				SensorsGlobalManager.Instance.position70 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id70 = null;
 				SensorsGlobalManager.Instance.type70 = null;
 				SensorsGlobalManager.Instance.position70 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (80, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (80, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id80 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type80 = hit.collider.name;
 				SensorsGlobalManager.Instance.position80 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id80 = null;
 				SensorsGlobalManager.Instance.type80 = null;
 				SensorsGlobalManager.Instance.position80 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id90 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type90 = hit.collider.name;
 				SensorsGlobalManager.Instance.position90 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id90 = null;
 				SensorsGlobalManager.Instance.type90 = null;
 				SensorsGlobalManager.Instance.position90 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (100, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (100, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id100 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type100 = hit.collider.name;
 				SensorsGlobalManager.Instance.position100 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id100 = null;
 				SensorsGlobalManager.Instance.type100 = null;
 				SensorsGlobalManager.Instance.position100 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (110, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (110, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id110 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type110 = hit.collider.name;
 				SensorsGlobalManager.Instance.position110 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id110 = null;
 				SensorsGlobalManager.Instance.type110 = null;
 				SensorsGlobalManager.Instance.position110 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (120, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (120, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id120 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type120 = hit.collider.name;
 				SensorsGlobalManager.Instance.position120 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id120 = null;
 				SensorsGlobalManager.Instance.type120 = null;
 				SensorsGlobalManager.Instance.position120 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (130, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (130, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id130 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type130 = hit.collider.name;
 				SensorsGlobalManager.Instance.position130 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id130 = null;
 				SensorsGlobalManager.Instance.type130 = null;
 				SensorsGlobalManager.Instance.position130 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (140, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (140, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id140 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type140 = hit.collider.name;
 				SensorsGlobalManager.Instance.position140 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id140 = null;
 				SensorsGlobalManager.Instance.type140 = null;
 				SensorsGlobalManager.Instance.position140 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (150, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (150, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id150 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type150 = hit.collider.name;
 				SensorsGlobalManager.Instance.position150 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id150 = null;
 				SensorsGlobalManager.Instance.type150 = null;
 				SensorsGlobalManager.Instance.position150 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (160, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (160, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id160 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type160 = hit.collider.name;
 				SensorsGlobalManager.Instance.position160 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id160 = null;
 				SensorsGlobalManager.Instance.type160 = null;
 				SensorsGlobalManager.Instance.position160 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (170, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (170, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id170 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type170 = hit.collider.name;
 				SensorsGlobalManager.Instance.position170 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id170 = null;
 				SensorsGlobalManager.Instance.type170 = null;
 				SensorsGlobalManager.Instance.position170 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (180, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (180, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id180 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type180 = hit.collider.name;
 				SensorsGlobalManager.Instance.position180 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id180 = null;
 				SensorsGlobalManager.Instance.type180 = null;
 				SensorsGlobalManager.Instance.position180 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (190, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (190, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id190 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type190 = hit.collider.name;
 				SensorsGlobalManager.Instance.position190 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id190 = null;
 				SensorsGlobalManager.Instance.type190 = null;
 				SensorsGlobalManager.Instance.position190 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (200, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (200, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id200 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type200 = hit.collider.name;
 				SensorsGlobalManager.Instance.position200 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id200 = null;
 				SensorsGlobalManager.Instance.type200 = null;
 				SensorsGlobalManager.Instance.position200 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (210, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (210, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id210 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type210 = hit.collider.name;
 				SensorsGlobalManager.Instance.position210 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id210 = null;
 				SensorsGlobalManager.Instance.type210 = null;
 				SensorsGlobalManager.Instance.position210 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (220, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (220, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id220 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type220 = hit.collider.name;
 				SensorsGlobalManager.Instance.position220 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id220 = null;
 				SensorsGlobalManager.Instance.type220 = null;
 				SensorsGlobalManager.Instance.position220 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (230, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (230, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id230 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type230 = hit.collider.name;
 				SensorsGlobalManager.Instance.position230 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id230 = null;
 				SensorsGlobalManager.Instance.type230 = null;
 				SensorsGlobalManager.Instance.position230 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (240, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (240, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id240 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type240 = hit.collider.name;
 				SensorsGlobalManager.Instance.position240 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id240 = null;
 				SensorsGlobalManager.Instance.type240 = null;
 				SensorsGlobalManager.Instance.position240 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (250, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (250, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id250 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type250 = hit.collider.name;
 				SensorsGlobalManager.Instance.position250 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id250 = null;
 				SensorsGlobalManager.Instance.type250 = null;
 				SensorsGlobalManager.Instance.position250 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (260, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (260, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id260 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type260 = hit.collider.name;
 				SensorsGlobalManager.Instance.position260 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id260 = null;
 				SensorsGlobalManager.Instance.type260 = null;
 				SensorsGlobalManager.Instance.position260 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id270 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type270 = hit.collider.name;
 				SensorsGlobalManager.Instance.position270 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id270 = null;
 				SensorsGlobalManager.Instance.type270 = null;
 				SensorsGlobalManager.Instance.position270 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (280, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (280, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id280 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type280 = hit.collider.name;
 				SensorsGlobalManager.Instance.position280 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id280 = null;
 				SensorsGlobalManager.Instance.type280 = null;
 				SensorsGlobalManager.Instance.position280 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (290, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (290, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id290 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type290 = hit.collider.name;
 				SensorsGlobalManager.Instance.position290 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id290 = null;
 				SensorsGlobalManager.Instance.type290 = null;
 				SensorsGlobalManager.Instance.position290 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (300, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (300, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id300 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type300 = hit.collider.name;
 				SensorsGlobalManager.Instance.position300 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id300 = null;
 				SensorsGlobalManager.Instance.type300 = null;
 				SensorsGlobalManager.Instance.position300 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (310, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (310, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id310 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type310 = hit.collider.name;
 				SensorsGlobalManager.Instance.position310 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id310 = null;
 				SensorsGlobalManager.Instance.type310 = null;
 				SensorsGlobalManager.Instance.position310 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (320, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (320, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id320 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type320 = hit.collider.name;
 				SensorsGlobalManager.Instance.position320 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id320 = null;
 				SensorsGlobalManager.Instance.type320 = null;
 				SensorsGlobalManager.Instance.position320 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (330, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (330, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id330 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type330 = hit.collider.name;
 				SensorsGlobalManager.Instance.position330 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id330 = null;
 				SensorsGlobalManager.Instance.type330 = null;
 				SensorsGlobalManager.Instance.position330 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (340, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorLowStartPos, Quaternion.AngleAxis (340, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id340 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type340 = hit.collider.name;
 				SensorsGlobalManager.Instance.position340 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorLowStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id340 = null;
 				SensorsGlobalManager.Instance.type340 = null;
 				SensorsGlobalManager.Instance.position340 = Vector3.zero;
 			}
 
-			if (Physics.Raycast (sensorStartPos, Quaternion.AngleAxis (350, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (350, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id350 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type350 = hit.collider.name;
 				SensorsGlobalManager.Instance.position350 = hit.point;
 			
-				Debug.DrawLine (sensorStartPos, hit.point);
+				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id350 = null;
 				SensorsGlobalManager.Instance.type350 = null;
