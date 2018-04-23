@@ -15,7 +15,6 @@ namespace UnityStandardAssets.Vehicles.Car
 
 		public Line [] lines; 
 		GameObject current_roadblock;
-//		float current_car_angle;
 
 		string logFilePath;
 
@@ -62,48 +61,48 @@ namespace UnityStandardAssets.Vehicles.Car
 			print (Application.dataPath);
 			logFilePath = Application.dataPath + "/LogFiles/state-action.json";
 
-			string[] rowDataTemp = new string[112];
-			rowDataTemp[0] = SensorsGlobalManager.Instance.id0; rowDataTemp[1] = SensorsGlobalManager.Instance.type0; rowDataTemp [2] = SensorsGlobalManager.Instance.position0;
-			rowDataTemp[3] = SensorsGlobalManager.Instance.id10; rowDataTemp[4] = SensorsGlobalManager.Instance.type10; rowDataTemp[5] = SensorsGlobalManager.Instance.position10;
-			rowDataTemp[6] = SensorsGlobalManager.Instance.id20; rowDataTemp[7] = SensorsGlobalManager.Instance.type20; rowDataTemp[8] = SensorsGlobalManager.Instance.position20;
-			rowDataTemp[9] = SensorsGlobalManager.Instance.id30; rowDataTemp[10] = SensorsGlobalManager.Instance.type30; rowDataTemp[11] = SensorsGlobalManager.Instance.position30;
-			rowDataTemp[12] = SensorsGlobalManager.Instance.id40; rowDataTemp[13] = SensorsGlobalManager.Instance.type40; rowDataTemp[14] = SensorsGlobalManager.Instance.position40;
-			rowDataTemp[15] = SensorsGlobalManager.Instance.id50; rowDataTemp[16] = SensorsGlobalManager.Instance.type50; rowDataTemp[17] = SensorsGlobalManager.Instance.position50;
-			rowDataTemp[18] = SensorsGlobalManager.Instance.id60; rowDataTemp[19] = SensorsGlobalManager.Instance.type60; rowDataTemp[20] = SensorsGlobalManager.Instance.position60;
-			rowDataTemp[21] = SensorsGlobalManager.Instance.id70; rowDataTemp[22] = SensorsGlobalManager.Instance.type70; rowDataTemp[23] = SensorsGlobalManager.Instance.position70;
-			rowDataTemp[24] = SensorsGlobalManager.Instance.id80; rowDataTemp[25] = SensorsGlobalManager.Instance.type80; rowDataTemp[26] = SensorsGlobalManager.Instance.position80;
-			rowDataTemp[27] = SensorsGlobalManager.Instance.id90; rowDataTemp[28] = SensorsGlobalManager.Instance.type90; rowDataTemp[29] = SensorsGlobalManager.Instance.position90;
-			rowDataTemp[30] = SensorsGlobalManager.Instance.id100; rowDataTemp[31] = SensorsGlobalManager.Instance.type100; rowDataTemp[32] = SensorsGlobalManager.Instance.position100;
-			rowDataTemp[33] = SensorsGlobalManager.Instance.id110; rowDataTemp[34] = SensorsGlobalManager.Instance.type110; rowDataTemp[35] = SensorsGlobalManager.Instance.position110;
-			rowDataTemp[36] = SensorsGlobalManager.Instance.id120; rowDataTemp[37] = SensorsGlobalManager.Instance.type120; rowDataTemp[38] = SensorsGlobalManager.Instance.position120;
-			rowDataTemp[39] = SensorsGlobalManager.Instance.id130; rowDataTemp[40] = SensorsGlobalManager.Instance.type130; rowDataTemp[41] = SensorsGlobalManager.Instance.position130;
-			rowDataTemp[42] = SensorsGlobalManager.Instance.id140; rowDataTemp[43] = SensorsGlobalManager.Instance.type140; rowDataTemp[44] = SensorsGlobalManager.Instance.position140;
-			rowDataTemp[45] = SensorsGlobalManager.Instance.id150; rowDataTemp[46] = SensorsGlobalManager.Instance.type150; rowDataTemp[47] = SensorsGlobalManager.Instance.position150;
-			rowDataTemp[48] = SensorsGlobalManager.Instance.id160; rowDataTemp[49] = SensorsGlobalManager.Instance.type160; rowDataTemp[50] = SensorsGlobalManager.Instance.position160;
-			rowDataTemp[51] = SensorsGlobalManager.Instance.id170; rowDataTemp[52] = SensorsGlobalManager.Instance.type170; rowDataTemp[53] = SensorsGlobalManager.Instance.position170;
-			rowDataTemp[54] = SensorsGlobalManager.Instance.id180; rowDataTemp[55] = SensorsGlobalManager.Instance.type180; rowDataTemp[56] = SensorsGlobalManager.Instance.position180;
-			rowDataTemp[57] = SensorsGlobalManager.Instance.id190; rowDataTemp[58] = SensorsGlobalManager.Instance.type190; rowDataTemp[59] = SensorsGlobalManager.Instance.position190;
-			rowDataTemp[60] = SensorsGlobalManager.Instance.id200; rowDataTemp[61] = SensorsGlobalManager.Instance.type200; rowDataTemp[62] = SensorsGlobalManager.Instance.position200;
-			rowDataTemp[63] = SensorsGlobalManager.Instance.id210; rowDataTemp[64] = SensorsGlobalManager.Instance.type210; rowDataTemp[65] = SensorsGlobalManager.Instance.position210;
-			rowDataTemp[66] = SensorsGlobalManager.Instance.id220; rowDataTemp[67] = SensorsGlobalManager.Instance.type220; rowDataTemp[68] = SensorsGlobalManager.Instance.position220;
-			rowDataTemp[69] = SensorsGlobalManager.Instance.id230; rowDataTemp[70] = SensorsGlobalManager.Instance.type230; rowDataTemp[71] = SensorsGlobalManager.Instance.position230;
-			rowDataTemp[72] = SensorsGlobalManager.Instance.id240; rowDataTemp[73] = SensorsGlobalManager.Instance.type240; rowDataTemp[74] = SensorsGlobalManager.Instance.position240;
-			rowDataTemp[75] = SensorsGlobalManager.Instance.id250; rowDataTemp[76] = SensorsGlobalManager.Instance.type250; rowDataTemp[77] = SensorsGlobalManager.Instance.position250;
-			rowDataTemp[78] = SensorsGlobalManager.Instance.id260; rowDataTemp[79] = SensorsGlobalManager.Instance.type260; rowDataTemp[80] = SensorsGlobalManager.Instance.position260;
-			rowDataTemp[81] = SensorsGlobalManager.Instance.id270; rowDataTemp[82] = SensorsGlobalManager.Instance.type270; rowDataTemp[83] = SensorsGlobalManager.Instance.position270;
-			rowDataTemp[84] = SensorsGlobalManager.Instance.id280; rowDataTemp[85] = SensorsGlobalManager.Instance.type280; rowDataTemp[86] = SensorsGlobalManager.Instance.position280;
-			rowDataTemp[87] = SensorsGlobalManager.Instance.id290; rowDataTemp[88] = SensorsGlobalManager.Instance.type290; rowDataTemp[89] = SensorsGlobalManager.Instance.position290;
-			rowDataTemp[90] = SensorsGlobalManager.Instance.id300; rowDataTemp[91] = SensorsGlobalManager.Instance.type300; rowDataTemp[92] = SensorsGlobalManager.Instance.position300;
-			rowDataTemp[93] = SensorsGlobalManager.Instance.id310; rowDataTemp[94] = SensorsGlobalManager.Instance.type310; rowDataTemp[95] = SensorsGlobalManager.Instance.position310;
-			rowDataTemp[96] = SensorsGlobalManager.Instance.id320; rowDataTemp[97] = SensorsGlobalManager.Instance.type320; rowDataTemp[98] = SensorsGlobalManager.Instance.position320;
-			rowDataTemp[99] = SensorsGlobalManager.Instance.id330; rowDataTemp[100] = SensorsGlobalManager.Instance.type330; rowDataTemp[101] = SensorsGlobalManager.Instance.position330;
-			rowDataTemp[102] = SensorsGlobalManager.Instance.id340; rowDataTemp[103] = SensorsGlobalManager.Instance.type340; rowDataTemp[104] = SensorsGlobalManager.Instance.position340;
-			rowDataTemp[105] = SensorsGlobalManager.Instance.id350; rowDataTemp[106] = SensorsGlobalManager.Instance.type350; rowDataTemp[107] = SensorsGlobalManager.Instance.position350;
-			rowDataTemp[108] = "id0";
-			rowDataTemp[109] = "id0";
-			rowDataTemp[110] = "id0";
-			rowDataTemp[111] = "id0";
-			rowData.Add(rowDataTemp);
+//			string[] rowDataTemp = new string[112];
+//			rowDataTemp[0] = SensorsGlobalManager.Instance.id0; rowDataTemp[1] = SensorsGlobalManager.Instance.type0; rowDataTemp [2] = SensorsGlobalManager.Instance.position0;
+//			rowDataTemp[3] = SensorsGlobalManager.Instance.id10; rowDataTemp[4] = SensorsGlobalManager.Instance.type10; rowDataTemp[5] = SensorsGlobalManager.Instance.position10;
+//			rowDataTemp[6] = SensorsGlobalManager.Instance.id20; rowDataTemp[7] = SensorsGlobalManager.Instance.type20; rowDataTemp[8] = SensorsGlobalManager.Instance.position20;
+//			rowDataTemp[9] = SensorsGlobalManager.Instance.id30; rowDataTemp[10] = SensorsGlobalManager.Instance.type30; rowDataTemp[11] = SensorsGlobalManager.Instance.position30;
+//			rowDataTemp[12] = SensorsGlobalManager.Instance.id40; rowDataTemp[13] = SensorsGlobalManager.Instance.type40; rowDataTemp[14] = SensorsGlobalManager.Instance.position40;
+//			rowDataTemp[15] = SensorsGlobalManager.Instance.id50; rowDataTemp[16] = SensorsGlobalManager.Instance.type50; rowDataTemp[17] = SensorsGlobalManager.Instance.position50;
+//			rowDataTemp[18] = SensorsGlobalManager.Instance.id60; rowDataTemp[19] = SensorsGlobalManager.Instance.type60; rowDataTemp[20] = SensorsGlobalManager.Instance.position60;
+//			rowDataTemp[21] = SensorsGlobalManager.Instance.id70; rowDataTemp[22] = SensorsGlobalManager.Instance.type70; rowDataTemp[23] = SensorsGlobalManager.Instance.position70;
+//			rowDataTemp[24] = SensorsGlobalManager.Instance.id80; rowDataTemp[25] = SensorsGlobalManager.Instance.type80; rowDataTemp[26] = SensorsGlobalManager.Instance.position80;
+//			rowDataTemp[27] = SensorsGlobalManager.Instance.id90; rowDataTemp[28] = SensorsGlobalManager.Instance.type90; rowDataTemp[29] = SensorsGlobalManager.Instance.position90;
+//			rowDataTemp[30] = SensorsGlobalManager.Instance.id100; rowDataTemp[31] = SensorsGlobalManager.Instance.type100; rowDataTemp[32] = SensorsGlobalManager.Instance.position100;
+//			rowDataTemp[33] = SensorsGlobalManager.Instance.id110; rowDataTemp[34] = SensorsGlobalManager.Instance.type110; rowDataTemp[35] = SensorsGlobalManager.Instance.position110;
+//			rowDataTemp[36] = SensorsGlobalManager.Instance.id120; rowDataTemp[37] = SensorsGlobalManager.Instance.type120; rowDataTemp[38] = SensorsGlobalManager.Instance.position120;
+//			rowDataTemp[39] = SensorsGlobalManager.Instance.id130; rowDataTemp[40] = SensorsGlobalManager.Instance.type130; rowDataTemp[41] = SensorsGlobalManager.Instance.position130;
+//			rowDataTemp[42] = SensorsGlobalManager.Instance.id140; rowDataTemp[43] = SensorsGlobalManager.Instance.type140; rowDataTemp[44] = SensorsGlobalManager.Instance.position140;
+//			rowDataTemp[45] = SensorsGlobalManager.Instance.id150; rowDataTemp[46] = SensorsGlobalManager.Instance.type150; rowDataTemp[47] = SensorsGlobalManager.Instance.position150;
+//			rowDataTemp[48] = SensorsGlobalManager.Instance.id160; rowDataTemp[49] = SensorsGlobalManager.Instance.type160; rowDataTemp[50] = SensorsGlobalManager.Instance.position160;
+//			rowDataTemp[51] = SensorsGlobalManager.Instance.id170; rowDataTemp[52] = SensorsGlobalManager.Instance.type170; rowDataTemp[53] = SensorsGlobalManager.Instance.position170;
+//			rowDataTemp[54] = SensorsGlobalManager.Instance.id180; rowDataTemp[55] = SensorsGlobalManager.Instance.type180; rowDataTemp[56] = SensorsGlobalManager.Instance.position180;
+//			rowDataTemp[57] = SensorsGlobalManager.Instance.id190; rowDataTemp[58] = SensorsGlobalManager.Instance.type190; rowDataTemp[59] = SensorsGlobalManager.Instance.position190;
+//			rowDataTemp[60] = SensorsGlobalManager.Instance.id200; rowDataTemp[61] = SensorsGlobalManager.Instance.type200; rowDataTemp[62] = SensorsGlobalManager.Instance.position200;
+//			rowDataTemp[63] = SensorsGlobalManager.Instance.id210; rowDataTemp[64] = SensorsGlobalManager.Instance.type210; rowDataTemp[65] = SensorsGlobalManager.Instance.position210;
+//			rowDataTemp[66] = SensorsGlobalManager.Instance.id220; rowDataTemp[67] = SensorsGlobalManager.Instance.type220; rowDataTemp[68] = SensorsGlobalManager.Instance.position220;
+//			rowDataTemp[69] = SensorsGlobalManager.Instance.id230; rowDataTemp[70] = SensorsGlobalManager.Instance.type230; rowDataTemp[71] = SensorsGlobalManager.Instance.position230;
+//			rowDataTemp[72] = SensorsGlobalManager.Instance.id240; rowDataTemp[73] = SensorsGlobalManager.Instance.type240; rowDataTemp[74] = SensorsGlobalManager.Instance.position240;
+//			rowDataTemp[75] = SensorsGlobalManager.Instance.id250; rowDataTemp[76] = SensorsGlobalManager.Instance.type250; rowDataTemp[77] = SensorsGlobalManager.Instance.position250;
+//			rowDataTemp[78] = SensorsGlobalManager.Instance.id260; rowDataTemp[79] = SensorsGlobalManager.Instance.type260; rowDataTemp[80] = SensorsGlobalManager.Instance.position260;
+//			rowDataTemp[81] = SensorsGlobalManager.Instance.id270; rowDataTemp[82] = SensorsGlobalManager.Instance.type270; rowDataTemp[83] = SensorsGlobalManager.Instance.position270;
+//			rowDataTemp[84] = SensorsGlobalManager.Instance.id280; rowDataTemp[85] = SensorsGlobalManager.Instance.type280; rowDataTemp[86] = SensorsGlobalManager.Instance.position280;
+//			rowDataTemp[87] = SensorsGlobalManager.Instance.id290; rowDataTemp[88] = SensorsGlobalManager.Instance.type290; rowDataTemp[89] = SensorsGlobalManager.Instance.position290;
+//			rowDataTemp[90] = SensorsGlobalManager.Instance.id300; rowDataTemp[91] = SensorsGlobalManager.Instance.type300; rowDataTemp[92] = SensorsGlobalManager.Instance.position300;
+//			rowDataTemp[93] = SensorsGlobalManager.Instance.id310; rowDataTemp[94] = SensorsGlobalManager.Instance.type310; rowDataTemp[95] = SensorsGlobalManager.Instance.position310;
+//			rowDataTemp[96] = SensorsGlobalManager.Instance.id320; rowDataTemp[97] = SensorsGlobalManager.Instance.type320; rowDataTemp[98] = SensorsGlobalManager.Instance.position320;
+//			rowDataTemp[99] = SensorsGlobalManager.Instance.id330; rowDataTemp[100] = SensorsGlobalManager.Instance.type330; rowDataTemp[101] = SensorsGlobalManager.Instance.position330;
+//			rowDataTemp[102] = SensorsGlobalManager.Instance.id340; rowDataTemp[103] = SensorsGlobalManager.Instance.type340; rowDataTemp[104] = SensorsGlobalManager.Instance.position340;
+//			rowDataTemp[105] = SensorsGlobalManager.Instance.id350; rowDataTemp[106] = SensorsGlobalManager.Instance.type350; rowDataTemp[107] = SensorsGlobalManager.Instance.position350;
+//			rowDataTemp[108] = "id0";
+//			rowDataTemp[109] = "id0";
+//			rowDataTemp[110] = "id0";
+//			rowDataTemp[111] = "id0";
+//			rowData.Add(rowDataTemp);
 		}
 
 		// Use this for initialization
@@ -598,52 +597,52 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		void getStateAction2(){
-			string[] rowDataTemp = new string[112];
-
-			rowDataTemp[0] = SensorsGlobalManager.Instance.id0; rowDataTemp[1] = SensorsGlobalManager.Instance.type0; rowDataTemp [2] = SensorsGlobalManager.Instance.position0;
-			rowDataTemp[3] = SensorsGlobalManager.Instance.id10; rowDataTemp[4] = SensorsGlobalManager.Instance.type10; rowDataTemp[5] = SensorsGlobalManager.Instance.position10;
-			rowDataTemp[6] = SensorsGlobalManager.Instance.id20; rowDataTemp[7] = SensorsGlobalManager.Instance.type20; rowDataTemp[8] = SensorsGlobalManager.Instance.position20;
-			rowDataTemp[9] = SensorsGlobalManager.Instance.id30; rowDataTemp[10] = SensorsGlobalManager.Instance.type30; rowDataTemp[11] = SensorsGlobalManager.Instance.position30;
-			rowDataTemp[12] = SensorsGlobalManager.Instance.id40; rowDataTemp[13] = SensorsGlobalManager.Instance.type40; rowDataTemp[14] = SensorsGlobalManager.Instance.position40;
-			rowDataTemp[15] = SensorsGlobalManager.Instance.id50; rowDataTemp[16] = SensorsGlobalManager.Instance.type50; rowDataTemp[17] = SensorsGlobalManager.Instance.position50;
-			rowDataTemp[18] = SensorsGlobalManager.Instance.id60; rowDataTemp[19] = SensorsGlobalManager.Instance.type60; rowDataTemp[20] = SensorsGlobalManager.Instance.position60;
-			rowDataTemp[21] = SensorsGlobalManager.Instance.id70; rowDataTemp[22] = SensorsGlobalManager.Instance.type70; rowDataTemp[23] = SensorsGlobalManager.Instance.position70;
-			rowDataTemp[24] = SensorsGlobalManager.Instance.id80; rowDataTemp[25] = SensorsGlobalManager.Instance.type80; rowDataTemp[26] = SensorsGlobalManager.Instance.position80;
-			rowDataTemp[27] = SensorsGlobalManager.Instance.id90; rowDataTemp[28] = SensorsGlobalManager.Instance.type90; rowDataTemp[29] = SensorsGlobalManager.Instance.position90;
-			rowDataTemp[30] = SensorsGlobalManager.Instance.id100; rowDataTemp[31] = SensorsGlobalManager.Instance.type100; rowDataTemp[32] = SensorsGlobalManager.Instance.position100;
-			rowDataTemp[33] = SensorsGlobalManager.Instance.id110; rowDataTemp[34] = SensorsGlobalManager.Instance.type110; rowDataTemp[35] = SensorsGlobalManager.Instance.position110;
-			rowDataTemp[36] = SensorsGlobalManager.Instance.id120; rowDataTemp[37] = SensorsGlobalManager.Instance.type120; rowDataTemp[38] = SensorsGlobalManager.Instance.position120;
-			rowDataTemp[39] = SensorsGlobalManager.Instance.id130; rowDataTemp[40] = SensorsGlobalManager.Instance.type130; rowDataTemp[41] = SensorsGlobalManager.Instance.position130;
-			rowDataTemp[42] = SensorsGlobalManager.Instance.id140; rowDataTemp[43] = SensorsGlobalManager.Instance.type140; rowDataTemp[44] = SensorsGlobalManager.Instance.position140;
-			rowDataTemp[45] = SensorsGlobalManager.Instance.id150; rowDataTemp[46] = SensorsGlobalManager.Instance.type150; rowDataTemp[47] = SensorsGlobalManager.Instance.position150;
-			rowDataTemp[48] = SensorsGlobalManager.Instance.id160; rowDataTemp[49] = SensorsGlobalManager.Instance.type160; rowDataTemp[50] = SensorsGlobalManager.Instance.position160;
-			rowDataTemp[51] = SensorsGlobalManager.Instance.id170; rowDataTemp[52] = SensorsGlobalManager.Instance.type170; rowDataTemp[53] = SensorsGlobalManager.Instance.position170;
-			rowDataTemp[54] = SensorsGlobalManager.Instance.id180; rowDataTemp[55] = SensorsGlobalManager.Instance.type180; rowDataTemp[56] = SensorsGlobalManager.Instance.position180;
-			rowDataTemp[57] = SensorsGlobalManager.Instance.id190; rowDataTemp[58] = SensorsGlobalManager.Instance.type190; rowDataTemp[59] = SensorsGlobalManager.Instance.position190;
-			rowDataTemp[60] = SensorsGlobalManager.Instance.id200; rowDataTemp[61] = SensorsGlobalManager.Instance.type200; rowDataTemp[62] = SensorsGlobalManager.Instance.position200;
-			rowDataTemp[63] = SensorsGlobalManager.Instance.id210; rowDataTemp[64] = SensorsGlobalManager.Instance.type210; rowDataTemp[65] = SensorsGlobalManager.Instance.position210;
-			rowDataTemp[66] = SensorsGlobalManager.Instance.id220; rowDataTemp[67] = SensorsGlobalManager.Instance.type220; rowDataTemp[68] = SensorsGlobalManager.Instance.position220;
-			rowDataTemp[69] = SensorsGlobalManager.Instance.id230; rowDataTemp[70] = SensorsGlobalManager.Instance.type230; rowDataTemp[71] = SensorsGlobalManager.Instance.position230;
-			rowDataTemp[72] = SensorsGlobalManager.Instance.id240; rowDataTemp[73] = SensorsGlobalManager.Instance.type240; rowDataTemp[74] = SensorsGlobalManager.Instance.position240;
-			rowDataTemp[75] = SensorsGlobalManager.Instance.id250; rowDataTemp[76] = SensorsGlobalManager.Instance.type250; rowDataTemp[77] = SensorsGlobalManager.Instance.position250;
-			rowDataTemp[78] = SensorsGlobalManager.Instance.id260; rowDataTemp[79] = SensorsGlobalManager.Instance.type260; rowDataTemp[80] = SensorsGlobalManager.Instance.position260;
-			rowDataTemp[81] = SensorsGlobalManager.Instance.id270; rowDataTemp[82] = SensorsGlobalManager.Instance.type270; rowDataTemp[83] = SensorsGlobalManager.Instance.position270;
-			rowDataTemp[84] = SensorsGlobalManager.Instance.id280; rowDataTemp[85] = SensorsGlobalManager.Instance.type280; rowDataTemp[86] = SensorsGlobalManager.Instance.position280;
-			rowDataTemp[87] = SensorsGlobalManager.Instance.id290; rowDataTemp[88] = SensorsGlobalManager.Instance.type290; rowDataTemp[89] = SensorsGlobalManager.Instance.position290;
-			rowDataTemp[90] = SensorsGlobalManager.Instance.id300; rowDataTemp[91] = SensorsGlobalManager.Instance.type300; rowDataTemp[92] = SensorsGlobalManager.Instance.position300;
-			rowDataTemp[93] = SensorsGlobalManager.Instance.id310; rowDataTemp[94] = SensorsGlobalManager.Instance.type310; rowDataTemp[95] = SensorsGlobalManager.Instance.position310;
-			rowDataTemp[96] = SensorsGlobalManager.Instance.id320; rowDataTemp[97] = SensorsGlobalManager.Instance.type320; rowDataTemp[98] = SensorsGlobalManager.Instance.position320;
-			rowDataTemp[99] = SensorsGlobalManager.Instance.id330; rowDataTemp[100] = SensorsGlobalManager.Instance.type330; rowDataTemp[101] = SensorsGlobalManager.Instance.position330;
-			rowDataTemp[102] = SensorsGlobalManager.Instance.id340; rowDataTemp[103] = SensorsGlobalManager.Instance.type340; rowDataTemp[104] = SensorsGlobalManager.Instance.position340;
-			rowDataTemp[105] = SensorsGlobalManager.Instance.id350; rowDataTemp[106] = SensorsGlobalManager.Instance.type350; rowDataTemp[107] = SensorsGlobalManager.Instance.position350;
-			rowDataTemp[108] = transform.GetComponent<Rigidbody>().velocity;
-			rowDataTemp[109] = transform.eulerAngles.y-current_roadblock.transform.eulerAngles.y;
-			rowDataTemp[110] = trafficLights();
-			rowDataTemp[111] = 0;
-
-			rowData.Add(rowDataTemp);
-		}
+//		void getStateAction2(){
+//			string[] rowDataTemp = new string[112];
+//
+//			rowDataTemp[0] = SensorsGlobalManager.Instance.id0; rowDataTemp[1] = SensorsGlobalManager.Instance.type0; rowDataTemp [2] = SensorsGlobalManager.Instance.position0;
+//			rowDataTemp[3] = SensorsGlobalManager.Instance.id10; rowDataTemp[4] = SensorsGlobalManager.Instance.type10; rowDataTemp[5] = SensorsGlobalManager.Instance.position10;
+//			rowDataTemp[6] = SensorsGlobalManager.Instance.id20; rowDataTemp[7] = SensorsGlobalManager.Instance.type20; rowDataTemp[8] = SensorsGlobalManager.Instance.position20;
+//			rowDataTemp[9] = SensorsGlobalManager.Instance.id30; rowDataTemp[10] = SensorsGlobalManager.Instance.type30; rowDataTemp[11] = SensorsGlobalManager.Instance.position30;
+//			rowDataTemp[12] = SensorsGlobalManager.Instance.id40; rowDataTemp[13] = SensorsGlobalManager.Instance.type40; rowDataTemp[14] = SensorsGlobalManager.Instance.position40;
+//			rowDataTemp[15] = SensorsGlobalManager.Instance.id50; rowDataTemp[16] = SensorsGlobalManager.Instance.type50; rowDataTemp[17] = SensorsGlobalManager.Instance.position50;
+//			rowDataTemp[18] = SensorsGlobalManager.Instance.id60; rowDataTemp[19] = SensorsGlobalManager.Instance.type60; rowDataTemp[20] = SensorsGlobalManager.Instance.position60;
+//			rowDataTemp[21] = SensorsGlobalManager.Instance.id70; rowDataTemp[22] = SensorsGlobalManager.Instance.type70; rowDataTemp[23] = SensorsGlobalManager.Instance.position70;
+//			rowDataTemp[24] = SensorsGlobalManager.Instance.id80; rowDataTemp[25] = SensorsGlobalManager.Instance.type80; rowDataTemp[26] = SensorsGlobalManager.Instance.position80;
+//			rowDataTemp[27] = SensorsGlobalManager.Instance.id90; rowDataTemp[28] = SensorsGlobalManager.Instance.type90; rowDataTemp[29] = SensorsGlobalManager.Instance.position90;
+//			rowDataTemp[30] = SensorsGlobalManager.Instance.id100; rowDataTemp[31] = SensorsGlobalManager.Instance.type100; rowDataTemp[32] = SensorsGlobalManager.Instance.position100;
+//			rowDataTemp[33] = SensorsGlobalManager.Instance.id110; rowDataTemp[34] = SensorsGlobalManager.Instance.type110; rowDataTemp[35] = SensorsGlobalManager.Instance.position110;
+//			rowDataTemp[36] = SensorsGlobalManager.Instance.id120; rowDataTemp[37] = SensorsGlobalManager.Instance.type120; rowDataTemp[38] = SensorsGlobalManager.Instance.position120;
+//			rowDataTemp[39] = SensorsGlobalManager.Instance.id130; rowDataTemp[40] = SensorsGlobalManager.Instance.type130; rowDataTemp[41] = SensorsGlobalManager.Instance.position130;
+//			rowDataTemp[42] = SensorsGlobalManager.Instance.id140; rowDataTemp[43] = SensorsGlobalManager.Instance.type140; rowDataTemp[44] = SensorsGlobalManager.Instance.position140;
+//			rowDataTemp[45] = SensorsGlobalManager.Instance.id150; rowDataTemp[46] = SensorsGlobalManager.Instance.type150; rowDataTemp[47] = SensorsGlobalManager.Instance.position150;
+//			rowDataTemp[48] = SensorsGlobalManager.Instance.id160; rowDataTemp[49] = SensorsGlobalManager.Instance.type160; rowDataTemp[50] = SensorsGlobalManager.Instance.position160;
+//			rowDataTemp[51] = SensorsGlobalManager.Instance.id170; rowDataTemp[52] = SensorsGlobalManager.Instance.type170; rowDataTemp[53] = SensorsGlobalManager.Instance.position170;
+//			rowDataTemp[54] = SensorsGlobalManager.Instance.id180; rowDataTemp[55] = SensorsGlobalManager.Instance.type180; rowDataTemp[56] = SensorsGlobalManager.Instance.position180;
+//			rowDataTemp[57] = SensorsGlobalManager.Instance.id190; rowDataTemp[58] = SensorsGlobalManager.Instance.type190; rowDataTemp[59] = SensorsGlobalManager.Instance.position190;
+//			rowDataTemp[60] = SensorsGlobalManager.Instance.id200; rowDataTemp[61] = SensorsGlobalManager.Instance.type200; rowDataTemp[62] = SensorsGlobalManager.Instance.position200;
+//			rowDataTemp[63] = SensorsGlobalManager.Instance.id210; rowDataTemp[64] = SensorsGlobalManager.Instance.type210; rowDataTemp[65] = SensorsGlobalManager.Instance.position210;
+//			rowDataTemp[66] = SensorsGlobalManager.Instance.id220; rowDataTemp[67] = SensorsGlobalManager.Instance.type220; rowDataTemp[68] = SensorsGlobalManager.Instance.position220;
+//			rowDataTemp[69] = SensorsGlobalManager.Instance.id230; rowDataTemp[70] = SensorsGlobalManager.Instance.type230; rowDataTemp[71] = SensorsGlobalManager.Instance.position230;
+//			rowDataTemp[72] = SensorsGlobalManager.Instance.id240; rowDataTemp[73] = SensorsGlobalManager.Instance.type240; rowDataTemp[74] = SensorsGlobalManager.Instance.position240;
+//			rowDataTemp[75] = SensorsGlobalManager.Instance.id250; rowDataTemp[76] = SensorsGlobalManager.Instance.type250; rowDataTemp[77] = SensorsGlobalManager.Instance.position250;
+//			rowDataTemp[78] = SensorsGlobalManager.Instance.id260; rowDataTemp[79] = SensorsGlobalManager.Instance.type260; rowDataTemp[80] = SensorsGlobalManager.Instance.position260;
+//			rowDataTemp[81] = SensorsGlobalManager.Instance.id270; rowDataTemp[82] = SensorsGlobalManager.Instance.type270; rowDataTemp[83] = SensorsGlobalManager.Instance.position270;
+//			rowDataTemp[84] = SensorsGlobalManager.Instance.id280; rowDataTemp[85] = SensorsGlobalManager.Instance.type280; rowDataTemp[86] = SensorsGlobalManager.Instance.position280;
+//			rowDataTemp[87] = SensorsGlobalManager.Instance.id290; rowDataTemp[88] = SensorsGlobalManager.Instance.type290; rowDataTemp[89] = SensorsGlobalManager.Instance.position290;
+//			rowDataTemp[90] = SensorsGlobalManager.Instance.id300; rowDataTemp[91] = SensorsGlobalManager.Instance.type300; rowDataTemp[92] = SensorsGlobalManager.Instance.position300;
+//			rowDataTemp[93] = SensorsGlobalManager.Instance.id310; rowDataTemp[94] = SensorsGlobalManager.Instance.type310; rowDataTemp[95] = SensorsGlobalManager.Instance.position310;
+//			rowDataTemp[96] = SensorsGlobalManager.Instance.id320; rowDataTemp[97] = SensorsGlobalManager.Instance.type320; rowDataTemp[98] = SensorsGlobalManager.Instance.position320;
+//			rowDataTemp[99] = SensorsGlobalManager.Instance.id330; rowDataTemp[100] = SensorsGlobalManager.Instance.type330; rowDataTemp[101] = SensorsGlobalManager.Instance.position330;
+//			rowDataTemp[102] = SensorsGlobalManager.Instance.id340; rowDataTemp[103] = SensorsGlobalManager.Instance.type340; rowDataTemp[104] = SensorsGlobalManager.Instance.position340;
+//			rowDataTemp[105] = SensorsGlobalManager.Instance.id350; rowDataTemp[106] = SensorsGlobalManager.Instance.type350; rowDataTemp[107] = SensorsGlobalManager.Instance.position350;
+//			rowDataTemp[108] = transform.GetComponent<Rigidbody>().velocity;
+//			rowDataTemp[109] = transform.eulerAngles.y-current_roadblock.transform.eulerAngles.y;
+//			rowDataTemp[110] = trafficLights();
+//			rowDataTemp[111] = 0;
+//
+//			rowData.Add(rowDataTemp);
+//		}
 
 		void getStateAction(){
 			State currentState = new State()
@@ -944,7 +943,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			public Line line350;
 
 			public bool rain;
-			public float car_velocity;
+			public Vector3 car_velocity;
 			public float car_angle;
 			public bool traffic_light; //{true:red, false:green}
 			public int num_collisions;
