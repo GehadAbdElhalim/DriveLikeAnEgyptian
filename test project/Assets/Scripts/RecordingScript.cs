@@ -28,7 +28,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
 			// USED FIRST TIME ONLY TO ADD CSV FILE HEADERS
 			/*
-			string[] rowDataTemp = new string[114];
+			string[] rowDataTemp = new string[117];
 			int i;
 			for (i=0;i<36;i++) {
 				rowDataTemp [i*3] = "id" + (i*10).ToString ();
@@ -41,6 +41,9 @@ namespace UnityStandardAssets.Vehicles.Car
 			rowDataTemp[111] = "car_angle";
 			rowDataTemp[112] = "traffic_light";
 			rowDataTemp[113] = "rain";
+			rowDataTemp[114] = "num_collisions";
+			rowDataTemp[115] = "acceleration";
+			rowDataTemp[116] = "steer_angle";
 			using (FileStream fs = new FileStream(logFilePath_csv,FileMode.Append, FileAccess.Write))
 			{
 				using (StreamWriter sw = new StreamWriter(fs))
@@ -512,7 +515,6 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.type350 = null;
 				SensorsGlobalManager.Instance.distance350 = 0.0f;
 			}
-//			print(tran
 		}
 
 		bool trafficLights(){
@@ -547,7 +549,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		}
 
 		void getStateAction_csv(){
-			string[] rowDataTemp = new string[184];
+			string[] rowDataTemp = new string[117];
 			//
 			int i = 0; //line0
 			rowDataTemp[i++] = SensorsGlobalManager.Instance.id0;
@@ -740,8 +742,8 @@ namespace UnityStandardAssets.Vehicles.Car
 
 			//ACTION
 
-			rowDataTemp [i++] = (GetComponent ("CarController") as CarController).AccelInput;
-			rowDataTemp [i++] = (GetComponent ("CarController") as CarController).CurrentSteerAngle;
+			rowDataTemp [i++] = ((GetComponent ("CarController") as CarController).AccelInput).ToString();
+			rowDataTemp [i++] = ((GetComponent ("CarController") as CarController).CurrentSteerAngle).ToString();
 
 			using (FileStream fs = new FileStream(logFilePath_csv,FileMode.Append, FileAccess.Write))
 			{
@@ -749,6 +751,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				{
 					sw.WriteLine(string.Join (",", rowDataTemp));
 				
+				}
 			}
 			collidedObjects.Clear();
 		}
