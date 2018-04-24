@@ -10,7 +10,6 @@ namespace UnityStandardAssets.Vehicles.Car
 	[RequireComponent(typeof(CarController))]
 	public class RecordingScript : MonoBehaviour {
 		
-		private List<string[]> rowData = new List<string[]>();
 		List<Collider> collidedObjects = new List<Collider>();	
 
 		public Line [] lines; 
@@ -58,14 +57,16 @@ namespace UnityStandardAssets.Vehicles.Car
 		void Start () {
 			lines = new Line[36];
 			current_roadblock = getRoadBlock ();
-			InvokeRepeating("logStateAction_json", 0.5f, 0.5f);	//logs to json file
+
+			//Only one line can be uncommented at once
+//			InvokeRepeating("logStateAction_json", 0.5f, 0.5f);	//logs to json file
 			InvokeRepeating("logStateAction_csv", 0.5f, 0.5f);	//logs to csv file
 		}
 
 		void OnCollisionEnter(Collision col) 
 		{
 			print (col.gameObject.layer.ToString ());
-			if (col.gameObject.layer!=11 && !collidedObjects.Contains(col.collider)) //ignoring normal obstcales' collisions (bumps and holes)
+			if (col.gameObject.layer==11 && !collidedObjects.Contains(col.collider)) //ignoring normal obstacles' collisions (bumps and holes)
 			{
 				collidedObjects.Add(col.collider); 
 			}
@@ -548,7 +549,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		void getStateAction_csv(){
+		void logStateAction_csv(){
 			string[] rowDataTemp = new string[117];
 			//
 			int i = 0; //line0
