@@ -114,7 +114,8 @@ namespace UnityStandardAssets.Vehicles.Car
 
 		void OnCollisionEnter(Collision col) 
 		{
-			if (col.gameObject.layer!=10 && !collidedObjects.Contains(col.collider)) //ignoring normal obstcales' collisions (bumps and holes)
+			print (col.gameObject.layer.ToString ());
+			if (col.gameObject.layer!=11 && !collidedObjects.Contains(col.collider)) //ignoring normal obstcales' collisions (bumps and holes)
 			{
 				collidedObjects.Add(col.collider); 
 			}
