@@ -16,100 +16,47 @@ namespace UnityStandardAssets.Vehicles.Car
 		public Line [] lines; 
 		GameObject current_roadblock;
 
-		string logFilePath;
+		string logFilePath_json;
+		string logFilePath_csv;
 
 		[Header("Sensors")]
 		public float sensorLength = 20.0f;
-//		public float angle0 = 0.0f;
-//		public float angle10 = 10;
-//		public float angle20 = 20;
-//		public float angle30 = 30;
-//		public float angle40 = 40;
-//		public float angle50 = 50;
-//		public float angle60 = 60;
-//		public float angle70 = 70;
-//		public float angle80 = 80;
-//		public float angle90 = 90;
-//		public float angle100 = 100;
-//		public float angle110 = 110;
-//		public float angle120 = 120;
-//		public float angle130 = 130;
-//		public float angle140 = 140;
-//		public float angle150 = 150;
-//		public float angle160 = 160;
-//		public float angle170 = 170;
-//		public float angle180 = 180;
-//		public float angle190 = 190;
-//		public float angle200 = 200;
-//		public float angle210 = 210;
-//		public float angle220 = 220;
-//		public float angle230 = 230;
-//		public float angle240 = 240;
-//		public float angle250 = 250;
-//		public float angle260 = 260;
-//		public float angle270 = 270;
-//		public float angle280 = 280;
-//		public float angle290 = 290;
-//		public float angle300 = 300;
-//		public float angle310 = 310;
-//		public float angle320 = 320;
-//		public float angle330 = 330;
-//		public float angle340 = 340;
-//		public float angle350 = 350;
 
 		void Awake (){
-			print (Application.dataPath);
-			logFilePath = Application.dataPath + "/LogFiles/state-action.json";
+			logFilePath_json = Application.dataPath + "/LogFiles/state-action.json";
+			logFilePath_csv = Application.dataPath + "/LogFiles/state-action.csv";
 
-//			string[] rowDataTemp = new string[112];
-//			rowDataTemp[0] = SensorsGlobalManager.Instance.id0; rowDataTemp[1] = SensorsGlobalManager.Instance.type0; rowDataTemp [2] = SensorsGlobalManager.Instance.position0;
-//			rowDataTemp[3] = SensorsGlobalManager.Instance.id10; rowDataTemp[4] = SensorsGlobalManager.Instance.type10; rowDataTemp[5] = SensorsGlobalManager.Instance.position10;
-//			rowDataTemp[6] = SensorsGlobalManager.Instance.id20; rowDataTemp[7] = SensorsGlobalManager.Instance.type20; rowDataTemp[8] = SensorsGlobalManager.Instance.position20;
-//			rowDataTemp[9] = SensorsGlobalManager.Instance.id30; rowDataTemp[10] = SensorsGlobalManager.Instance.type30; rowDataTemp[11] = SensorsGlobalManager.Instance.position30;
-//			rowDataTemp[12] = SensorsGlobalManager.Instance.id40; rowDataTemp[13] = SensorsGlobalManager.Instance.type40; rowDataTemp[14] = SensorsGlobalManager.Instance.position40;
-//			rowDataTemp[15] = SensorsGlobalManager.Instance.id50; rowDataTemp[16] = SensorsGlobalManager.Instance.type50; rowDataTemp[17] = SensorsGlobalManager.Instance.position50;
-//			rowDataTemp[18] = SensorsGlobalManager.Instance.id60; rowDataTemp[19] = SensorsGlobalManager.Instance.type60; rowDataTemp[20] = SensorsGlobalManager.Instance.position60;
-//			rowDataTemp[21] = SensorsGlobalManager.Instance.id70; rowDataTemp[22] = SensorsGlobalManager.Instance.type70; rowDataTemp[23] = SensorsGlobalManager.Instance.position70;
-//			rowDataTemp[24] = SensorsGlobalManager.Instance.id80; rowDataTemp[25] = SensorsGlobalManager.Instance.type80; rowDataTemp[26] = SensorsGlobalManager.Instance.position80;
-//			rowDataTemp[27] = SensorsGlobalManager.Instance.id90; rowDataTemp[28] = SensorsGlobalManager.Instance.type90; rowDataTemp[29] = SensorsGlobalManager.Instance.position90;
-//			rowDataTemp[30] = SensorsGlobalManager.Instance.id100; rowDataTemp[31] = SensorsGlobalManager.Instance.type100; rowDataTemp[32] = SensorsGlobalManager.Instance.position100;
-//			rowDataTemp[33] = SensorsGlobalManager.Instance.id110; rowDataTemp[34] = SensorsGlobalManager.Instance.type110; rowDataTemp[35] = SensorsGlobalManager.Instance.position110;
-//			rowDataTemp[36] = SensorsGlobalManager.Instance.id120; rowDataTemp[37] = SensorsGlobalManager.Instance.type120; rowDataTemp[38] = SensorsGlobalManager.Instance.position120;
-//			rowDataTemp[39] = SensorsGlobalManager.Instance.id130; rowDataTemp[40] = SensorsGlobalManager.Instance.type130; rowDataTemp[41] = SensorsGlobalManager.Instance.position130;
-//			rowDataTemp[42] = SensorsGlobalManager.Instance.id140; rowDataTemp[43] = SensorsGlobalManager.Instance.type140; rowDataTemp[44] = SensorsGlobalManager.Instance.position140;
-//			rowDataTemp[45] = SensorsGlobalManager.Instance.id150; rowDataTemp[46] = SensorsGlobalManager.Instance.type150; rowDataTemp[47] = SensorsGlobalManager.Instance.position150;
-//			rowDataTemp[48] = SensorsGlobalManager.Instance.id160; rowDataTemp[49] = SensorsGlobalManager.Instance.type160; rowDataTemp[50] = SensorsGlobalManager.Instance.position160;
-//			rowDataTemp[51] = SensorsGlobalManager.Instance.id170; rowDataTemp[52] = SensorsGlobalManager.Instance.type170; rowDataTemp[53] = SensorsGlobalManager.Instance.position170;
-//			rowDataTemp[54] = SensorsGlobalManager.Instance.id180; rowDataTemp[55] = SensorsGlobalManager.Instance.type180; rowDataTemp[56] = SensorsGlobalManager.Instance.position180;
-//			rowDataTemp[57] = SensorsGlobalManager.Instance.id190; rowDataTemp[58] = SensorsGlobalManager.Instance.type190; rowDataTemp[59] = SensorsGlobalManager.Instance.position190;
-//			rowDataTemp[60] = SensorsGlobalManager.Instance.id200; rowDataTemp[61] = SensorsGlobalManager.Instance.type200; rowDataTemp[62] = SensorsGlobalManager.Instance.position200;
-//			rowDataTemp[63] = SensorsGlobalManager.Instance.id210; rowDataTemp[64] = SensorsGlobalManager.Instance.type210; rowDataTemp[65] = SensorsGlobalManager.Instance.position210;
-//			rowDataTemp[66] = SensorsGlobalManager.Instance.id220; rowDataTemp[67] = SensorsGlobalManager.Instance.type220; rowDataTemp[68] = SensorsGlobalManager.Instance.position220;
-//			rowDataTemp[69] = SensorsGlobalManager.Instance.id230; rowDataTemp[70] = SensorsGlobalManager.Instance.type230; rowDataTemp[71] = SensorsGlobalManager.Instance.position230;
-//			rowDataTemp[72] = SensorsGlobalManager.Instance.id240; rowDataTemp[73] = SensorsGlobalManager.Instance.type240; rowDataTemp[74] = SensorsGlobalManager.Instance.position240;
-//			rowDataTemp[75] = SensorsGlobalManager.Instance.id250; rowDataTemp[76] = SensorsGlobalManager.Instance.type250; rowDataTemp[77] = SensorsGlobalManager.Instance.position250;
-//			rowDataTemp[78] = SensorsGlobalManager.Instance.id260; rowDataTemp[79] = SensorsGlobalManager.Instance.type260; rowDataTemp[80] = SensorsGlobalManager.Instance.position260;
-//			rowDataTemp[81] = SensorsGlobalManager.Instance.id270; rowDataTemp[82] = SensorsGlobalManager.Instance.type270; rowDataTemp[83] = SensorsGlobalManager.Instance.position270;
-//			rowDataTemp[84] = SensorsGlobalManager.Instance.id280; rowDataTemp[85] = SensorsGlobalManager.Instance.type280; rowDataTemp[86] = SensorsGlobalManager.Instance.position280;
-//			rowDataTemp[87] = SensorsGlobalManager.Instance.id290; rowDataTemp[88] = SensorsGlobalManager.Instance.type290; rowDataTemp[89] = SensorsGlobalManager.Instance.position290;
-//			rowDataTemp[90] = SensorsGlobalManager.Instance.id300; rowDataTemp[91] = SensorsGlobalManager.Instance.type300; rowDataTemp[92] = SensorsGlobalManager.Instance.position300;
-//			rowDataTemp[93] = SensorsGlobalManager.Instance.id310; rowDataTemp[94] = SensorsGlobalManager.Instance.type310; rowDataTemp[95] = SensorsGlobalManager.Instance.position310;
-//			rowDataTemp[96] = SensorsGlobalManager.Instance.id320; rowDataTemp[97] = SensorsGlobalManager.Instance.type320; rowDataTemp[98] = SensorsGlobalManager.Instance.position320;
-//			rowDataTemp[99] = SensorsGlobalManager.Instance.id330; rowDataTemp[100] = SensorsGlobalManager.Instance.type330; rowDataTemp[101] = SensorsGlobalManager.Instance.position330;
-//			rowDataTemp[102] = SensorsGlobalManager.Instance.id340; rowDataTemp[103] = SensorsGlobalManager.Instance.type340; rowDataTemp[104] = SensorsGlobalManager.Instance.position340;
-//			rowDataTemp[105] = SensorsGlobalManager.Instance.id350; rowDataTemp[106] = SensorsGlobalManager.Instance.type350; rowDataTemp[107] = SensorsGlobalManager.Instance.position350;
-//			rowDataTemp[108] = "id0";
-//			rowDataTemp[109] = "id0";
-//			rowDataTemp[110] = "id0";
-//			rowDataTemp[111] = "id0";
-//			rowData.Add(rowDataTemp);
+			// USED FIRST TIME ONLY TO ADD CSV FILE HEADERS
+			/*
+			string[] rowDataTemp = new string[114];
+			int i;
+			for (i=0;i<36;i++) {
+				rowDataTemp [i*3] = "id" + (i*10).ToString ();
+				rowDataTemp [i*3+1] = "type" + (i*10).ToString ();
+				rowDataTemp [i*3+2] = "distance" + (i*10).ToString ();
+			}
+			rowDataTemp[108] = "Vx";
+			rowDataTemp[109] = "Vy";
+			rowDataTemp[110] = "Vz";
+			rowDataTemp[111] = "car_angle";
+			rowDataTemp[112] = "traffic_light";
+			rowDataTemp[113] = "rain";
+			using (FileStream fs = new FileStream(logFilePath_csv,FileMode.Append, FileAccess.Write))
+			{
+				using (StreamWriter sw = new StreamWriter(fs))
+				{
+					sw.WriteLine(string.Join (",", rowDataTemp));
+				}
+			}*/
+
 		}
 
 		// Use this for initialization
 		void Start () {
 			lines = new Line[36];
 			current_roadblock = getRoadBlock ();
-			InvokeRepeating("getStateAction", 0.5f, 0.5f);
+			InvokeRepeating("logStateAction_json", 0.5f, 0.5f);	//logs to json file
+			InvokeRepeating("logStateAction_csv", 0.5f, 0.5f);	//logs to csv file
 		}
 
 		void OnCollisionEnter(Collision col) 
@@ -133,437 +80,437 @@ namespace UnityStandardAssets.Vehicles.Car
 			sensorHighStartPos.y = 0.5f;
 
 			if (Physics.Raycast (sensorLowStartPos, Quaternion.AngleAxis (0, transform.up) * transform.forward, out hit, sensorLength)) {
-				print (hit.collider.name);
+					print (Vector3.Distance(transform.position, hit.transform.position));
 
 				SensorsGlobalManager.Instance.id0 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type0 = hit.collider.name;
-				SensorsGlobalManager.Instance.position0 = hit.point;
+				SensorsGlobalManager.Instance.distance0 = Vector3.Distance(transform.position, hit.transform.position);
 
 				Debug.DrawLine (sensorLowStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id0 = null;
 				SensorsGlobalManager.Instance.type0 = null;
-				SensorsGlobalManager.Instance.position0 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance0 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (10, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id10 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type10 = hit.collider.name;
-				SensorsGlobalManager.Instance.position10 = hit.point;
+				SensorsGlobalManager.Instance.distance10 = Vector3.Distance(transform.position, hit.transform.position);
 
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id10 = null;
 				SensorsGlobalManager.Instance.type10 = null;
-				SensorsGlobalManager.Instance.position10 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance10 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorLowStartPos, Quaternion.AngleAxis (20, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id20 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type20 = hit.collider.name;
-				SensorsGlobalManager.Instance.position20 = hit.point;
+				SensorsGlobalManager.Instance.distance20 = Vector3.Distance(transform.position, hit.transform.position);
 
 				Debug.DrawLine (sensorLowStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id20 = null;
 				SensorsGlobalManager.Instance.type20 = null;
-				SensorsGlobalManager.Instance.position20 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance20 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (30, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id30 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type30 = hit.collider.name;
-				SensorsGlobalManager.Instance.position30 = hit.point;
+				SensorsGlobalManager.Instance.distance30 = Vector3.Distance(transform.position, hit.transform.position);
 
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id30 = null;
 				SensorsGlobalManager.Instance.type30 = null;
-				SensorsGlobalManager.Instance.position30 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance30 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (40, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id40 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type40 = hit.collider.name;
-				SensorsGlobalManager.Instance.position40 = hit.point;
+				SensorsGlobalManager.Instance.distance40 = Vector3.Distance(transform.position, hit.transform.position);
 
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id40 = null;
 				SensorsGlobalManager.Instance.type40 = null;
-				SensorsGlobalManager.Instance.position40 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance40 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (50, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id50 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type50 = hit.collider.name;
-				SensorsGlobalManager.Instance.position50 = hit.point;
+				SensorsGlobalManager.Instance.distance50 = Vector3.Distance(transform.position, hit.transform.position);
 
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id50 = null;
 				SensorsGlobalManager.Instance.type50 = null;
-				SensorsGlobalManager.Instance.position50 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance50 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (60, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id60 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type60 = hit.collider.name;
-				SensorsGlobalManager.Instance.position60 = hit.point;
+				SensorsGlobalManager.Instance.distance60 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id60 = null;
 				SensorsGlobalManager.Instance.type60 = null;
-				SensorsGlobalManager.Instance.position60 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance60 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (70, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id70 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type70 = hit.collider.name;
-				SensorsGlobalManager.Instance.position70 = hit.point;
+				SensorsGlobalManager.Instance.distance70 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id70 = null;
 				SensorsGlobalManager.Instance.type70 = null;
-				SensorsGlobalManager.Instance.position70 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance70 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (80, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id80 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type80 = hit.collider.name;
-				SensorsGlobalManager.Instance.position80 = hit.point;
+				SensorsGlobalManager.Instance.distance80 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id80 = null;
 				SensorsGlobalManager.Instance.type80 = null;
-				SensorsGlobalManager.Instance.position80 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance80 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id90 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type90 = hit.collider.name;
-				SensorsGlobalManager.Instance.position90 = hit.point;
+				SensorsGlobalManager.Instance.distance90 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id90 = null;
 				SensorsGlobalManager.Instance.type90 = null;
-				SensorsGlobalManager.Instance.position90 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance90 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (100, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id100 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type100 = hit.collider.name;
-				SensorsGlobalManager.Instance.position100 = hit.point;
+				SensorsGlobalManager.Instance.distance100 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id100 = null;
 				SensorsGlobalManager.Instance.type100 = null;
-				SensorsGlobalManager.Instance.position100 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance100 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (110, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id110 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type110 = hit.collider.name;
-				SensorsGlobalManager.Instance.position110 = hit.point;
+				SensorsGlobalManager.Instance.distance110 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id110 = null;
 				SensorsGlobalManager.Instance.type110 = null;
-				SensorsGlobalManager.Instance.position110 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance110 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (120, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id120 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type120 = hit.collider.name;
-				SensorsGlobalManager.Instance.position120 = hit.point;
+				SensorsGlobalManager.Instance.distance120 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id120 = null;
 				SensorsGlobalManager.Instance.type120 = null;
-				SensorsGlobalManager.Instance.position120 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance120 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (130, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id130 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type130 = hit.collider.name;
-				SensorsGlobalManager.Instance.position130 = hit.point;
+				SensorsGlobalManager.Instance.distance130 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id130 = null;
 				SensorsGlobalManager.Instance.type130 = null;
-				SensorsGlobalManager.Instance.position130 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance130 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (140, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id140 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type140 = hit.collider.name;
-				SensorsGlobalManager.Instance.position140 = hit.point;
+				SensorsGlobalManager.Instance.distance140 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id140 = null;
 				SensorsGlobalManager.Instance.type140 = null;
-				SensorsGlobalManager.Instance.position140 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance140 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (150, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id150 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type150 = hit.collider.name;
-				SensorsGlobalManager.Instance.position150 = hit.point;
+				SensorsGlobalManager.Instance.distance150 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id150 = null;
 				SensorsGlobalManager.Instance.type150 = null;
-				SensorsGlobalManager.Instance.position150 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance150 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (160, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id160 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type160 = hit.collider.name;
-				SensorsGlobalManager.Instance.position160 = hit.point;
+				SensorsGlobalManager.Instance.distance160 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id160 = null;
 				SensorsGlobalManager.Instance.type160 = null;
-				SensorsGlobalManager.Instance.position160 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance160 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (170, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id170 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type170 = hit.collider.name;
-				SensorsGlobalManager.Instance.position170 = hit.point;
+				SensorsGlobalManager.Instance.distance170 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id170 = null;
 				SensorsGlobalManager.Instance.type170 = null;
-				SensorsGlobalManager.Instance.position170 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance170 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (180, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id180 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type180 = hit.collider.name;
-				SensorsGlobalManager.Instance.position180 = hit.point;
+				SensorsGlobalManager.Instance.distance180 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id180 = null;
 				SensorsGlobalManager.Instance.type180 = null;
-				SensorsGlobalManager.Instance.position180 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance180 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (190, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id190 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type190 = hit.collider.name;
-				SensorsGlobalManager.Instance.position190 = hit.point;
+				SensorsGlobalManager.Instance.distance190 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id190 = null;
 				SensorsGlobalManager.Instance.type190 = null;
-				SensorsGlobalManager.Instance.position190 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance190 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (200, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id200 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type200 = hit.collider.name;
-				SensorsGlobalManager.Instance.position200 = hit.point;
+				SensorsGlobalManager.Instance.distance200 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id200 = null;
 				SensorsGlobalManager.Instance.type200 = null;
-				SensorsGlobalManager.Instance.position200 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance200 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (210, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id210 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type210 = hit.collider.name;
-				SensorsGlobalManager.Instance.position210 = hit.point;
+				SensorsGlobalManager.Instance.distance210 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id210 = null;
 				SensorsGlobalManager.Instance.type210 = null;
-				SensorsGlobalManager.Instance.position210 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance210 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (220, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id220 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type220 = hit.collider.name;
-				SensorsGlobalManager.Instance.position220 = hit.point;
+				SensorsGlobalManager.Instance.distance220 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id220 = null;
 				SensorsGlobalManager.Instance.type220 = null;
-				SensorsGlobalManager.Instance.position220 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance220 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (230, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id230 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type230 = hit.collider.name;
-				SensorsGlobalManager.Instance.position230 = hit.point;
+				SensorsGlobalManager.Instance.distance230 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id230 = null;
 				SensorsGlobalManager.Instance.type230 = null;
-				SensorsGlobalManager.Instance.position230 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance230 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (240, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id240 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type240 = hit.collider.name;
-				SensorsGlobalManager.Instance.position240 = hit.point;
+				SensorsGlobalManager.Instance.distance240 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id240 = null;
 				SensorsGlobalManager.Instance.type240 = null;
-				SensorsGlobalManager.Instance.position240 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance240 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (250, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id250 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type250 = hit.collider.name;
-				SensorsGlobalManager.Instance.position250 = hit.point;
+				SensorsGlobalManager.Instance.distance250 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id250 = null;
 				SensorsGlobalManager.Instance.type250 = null;
-				SensorsGlobalManager.Instance.position250 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance250 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (260, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id260 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type260 = hit.collider.name;
-				SensorsGlobalManager.Instance.position260 = hit.point;
+				SensorsGlobalManager.Instance.distance260 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id260 = null;
 				SensorsGlobalManager.Instance.type260 = null;
-				SensorsGlobalManager.Instance.position260 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance260 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id270 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type270 = hit.collider.name;
-				SensorsGlobalManager.Instance.position270 = hit.point;
+				SensorsGlobalManager.Instance.distance270 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id270 = null;
 				SensorsGlobalManager.Instance.type270 = null;
-				SensorsGlobalManager.Instance.position270 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance270 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (280, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id280 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type280 = hit.collider.name;
-				SensorsGlobalManager.Instance.position280 = hit.point;
+				SensorsGlobalManager.Instance.distance280 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id280 = null;
 				SensorsGlobalManager.Instance.type280 = null;
-				SensorsGlobalManager.Instance.position280 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance280 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (290, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id290 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type290 = hit.collider.name;
-				SensorsGlobalManager.Instance.position290 = hit.point;
+				SensorsGlobalManager.Instance.distance290 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id290 = null;
 				SensorsGlobalManager.Instance.type290 = null;
-				SensorsGlobalManager.Instance.position290 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance290 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (300, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id300 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type300 = hit.collider.name;
-				SensorsGlobalManager.Instance.position300 = hit.point;
+				SensorsGlobalManager.Instance.distance300 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id300 = null;
 				SensorsGlobalManager.Instance.type300 = null;
-				SensorsGlobalManager.Instance.position300 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance300 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (310, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id310 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type310 = hit.collider.name;
-				SensorsGlobalManager.Instance.position310 = hit.point;
+				SensorsGlobalManager.Instance.distance310 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id310 = null;
 				SensorsGlobalManager.Instance.type310 = null;
-				SensorsGlobalManager.Instance.position310 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance310 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (320, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id320 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type320 = hit.collider.name;
-				SensorsGlobalManager.Instance.position320 = hit.point;
+				SensorsGlobalManager.Instance.distance320 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id320 = null;
 				SensorsGlobalManager.Instance.type320 = null;
-				SensorsGlobalManager.Instance.position320 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance320 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (330, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id330 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type330 = hit.collider.name;
-				SensorsGlobalManager.Instance.position330 = hit.point;
+				SensorsGlobalManager.Instance.distance330 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id330 = null;
 				SensorsGlobalManager.Instance.type330 = null;
-				SensorsGlobalManager.Instance.position330 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance330 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorLowStartPos, Quaternion.AngleAxis (340, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id340 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type340 = hit.collider.name;
-				SensorsGlobalManager.Instance.position340 = hit.point;
+				SensorsGlobalManager.Instance.distance340 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorLowStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id340 = null;
 				SensorsGlobalManager.Instance.type340 = null;
-				SensorsGlobalManager.Instance.position340 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance340 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (350, transform.up) * transform.forward, out hit, sensorLength)) {
 				SensorsGlobalManager.Instance.id350 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type350 = hit.collider.name;
-				SensorsGlobalManager.Instance.position350 = hit.point;
+				SensorsGlobalManager.Instance.distance350 = Vector3.Distance(transform.position, hit.transform.position);
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
 				SensorsGlobalManager.Instance.id350 = null;
 				SensorsGlobalManager.Instance.type350 = null;
-				SensorsGlobalManager.Instance.position350 = Vector3.zero;
+				SensorsGlobalManager.Instance.distance350 = 0.0f;
 			}
 //			print(tran
 		}
@@ -586,7 +533,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
 		// Update is called once per frame
 		void Update () {
-//			Sensors(); 
+			Sensors(); 
 			current_roadblock = getRoadBlock ();
 		}
 
@@ -599,270 +546,430 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-//		void getStateAction2(){
-//			string[] rowDataTemp = new string[112];
-//
-//			rowDataTemp[0] = SensorsGlobalManager.Instance.id0; rowDataTemp[1] = SensorsGlobalManager.Instance.type0; rowDataTemp [2] = SensorsGlobalManager.Instance.position0;
-//			rowDataTemp[3] = SensorsGlobalManager.Instance.id10; rowDataTemp[4] = SensorsGlobalManager.Instance.type10; rowDataTemp[5] = SensorsGlobalManager.Instance.position10;
-//			rowDataTemp[6] = SensorsGlobalManager.Instance.id20; rowDataTemp[7] = SensorsGlobalManager.Instance.type20; rowDataTemp[8] = SensorsGlobalManager.Instance.position20;
-//			rowDataTemp[9] = SensorsGlobalManager.Instance.id30; rowDataTemp[10] = SensorsGlobalManager.Instance.type30; rowDataTemp[11] = SensorsGlobalManager.Instance.position30;
-//			rowDataTemp[12] = SensorsGlobalManager.Instance.id40; rowDataTemp[13] = SensorsGlobalManager.Instance.type40; rowDataTemp[14] = SensorsGlobalManager.Instance.position40;
-//			rowDataTemp[15] = SensorsGlobalManager.Instance.id50; rowDataTemp[16] = SensorsGlobalManager.Instance.type50; rowDataTemp[17] = SensorsGlobalManager.Instance.position50;
-//			rowDataTemp[18] = SensorsGlobalManager.Instance.id60; rowDataTemp[19] = SensorsGlobalManager.Instance.type60; rowDataTemp[20] = SensorsGlobalManager.Instance.position60;
-//			rowDataTemp[21] = SensorsGlobalManager.Instance.id70; rowDataTemp[22] = SensorsGlobalManager.Instance.type70; rowDataTemp[23] = SensorsGlobalManager.Instance.position70;
-//			rowDataTemp[24] = SensorsGlobalManager.Instance.id80; rowDataTemp[25] = SensorsGlobalManager.Instance.type80; rowDataTemp[26] = SensorsGlobalManager.Instance.position80;
-//			rowDataTemp[27] = SensorsGlobalManager.Instance.id90; rowDataTemp[28] = SensorsGlobalManager.Instance.type90; rowDataTemp[29] = SensorsGlobalManager.Instance.position90;
-//			rowDataTemp[30] = SensorsGlobalManager.Instance.id100; rowDataTemp[31] = SensorsGlobalManager.Instance.type100; rowDataTemp[32] = SensorsGlobalManager.Instance.position100;
-//			rowDataTemp[33] = SensorsGlobalManager.Instance.id110; rowDataTemp[34] = SensorsGlobalManager.Instance.type110; rowDataTemp[35] = SensorsGlobalManager.Instance.position110;
-//			rowDataTemp[36] = SensorsGlobalManager.Instance.id120; rowDataTemp[37] = SensorsGlobalManager.Instance.type120; rowDataTemp[38] = SensorsGlobalManager.Instance.position120;
-//			rowDataTemp[39] = SensorsGlobalManager.Instance.id130; rowDataTemp[40] = SensorsGlobalManager.Instance.type130; rowDataTemp[41] = SensorsGlobalManager.Instance.position130;
-//			rowDataTemp[42] = SensorsGlobalManager.Instance.id140; rowDataTemp[43] = SensorsGlobalManager.Instance.type140; rowDataTemp[44] = SensorsGlobalManager.Instance.position140;
-//			rowDataTemp[45] = SensorsGlobalManager.Instance.id150; rowDataTemp[46] = SensorsGlobalManager.Instance.type150; rowDataTemp[47] = SensorsGlobalManager.Instance.position150;
-//			rowDataTemp[48] = SensorsGlobalManager.Instance.id160; rowDataTemp[49] = SensorsGlobalManager.Instance.type160; rowDataTemp[50] = SensorsGlobalManager.Instance.position160;
-//			rowDataTemp[51] = SensorsGlobalManager.Instance.id170; rowDataTemp[52] = SensorsGlobalManager.Instance.type170; rowDataTemp[53] = SensorsGlobalManager.Instance.position170;
-//			rowDataTemp[54] = SensorsGlobalManager.Instance.id180; rowDataTemp[55] = SensorsGlobalManager.Instance.type180; rowDataTemp[56] = SensorsGlobalManager.Instance.position180;
-//			rowDataTemp[57] = SensorsGlobalManager.Instance.id190; rowDataTemp[58] = SensorsGlobalManager.Instance.type190; rowDataTemp[59] = SensorsGlobalManager.Instance.position190;
-//			rowDataTemp[60] = SensorsGlobalManager.Instance.id200; rowDataTemp[61] = SensorsGlobalManager.Instance.type200; rowDataTemp[62] = SensorsGlobalManager.Instance.position200;
-//			rowDataTemp[63] = SensorsGlobalManager.Instance.id210; rowDataTemp[64] = SensorsGlobalManager.Instance.type210; rowDataTemp[65] = SensorsGlobalManager.Instance.position210;
-//			rowDataTemp[66] = SensorsGlobalManager.Instance.id220; rowDataTemp[67] = SensorsGlobalManager.Instance.type220; rowDataTemp[68] = SensorsGlobalManager.Instance.position220;
-//			rowDataTemp[69] = SensorsGlobalManager.Instance.id230; rowDataTemp[70] = SensorsGlobalManager.Instance.type230; rowDataTemp[71] = SensorsGlobalManager.Instance.position230;
-//			rowDataTemp[72] = SensorsGlobalManager.Instance.id240; rowDataTemp[73] = SensorsGlobalManager.Instance.type240; rowDataTemp[74] = SensorsGlobalManager.Instance.position240;
-//			rowDataTemp[75] = SensorsGlobalManager.Instance.id250; rowDataTemp[76] = SensorsGlobalManager.Instance.type250; rowDataTemp[77] = SensorsGlobalManager.Instance.position250;
-//			rowDataTemp[78] = SensorsGlobalManager.Instance.id260; rowDataTemp[79] = SensorsGlobalManager.Instance.type260; rowDataTemp[80] = SensorsGlobalManager.Instance.position260;
-//			rowDataTemp[81] = SensorsGlobalManager.Instance.id270; rowDataTemp[82] = SensorsGlobalManager.Instance.type270; rowDataTemp[83] = SensorsGlobalManager.Instance.position270;
-//			rowDataTemp[84] = SensorsGlobalManager.Instance.id280; rowDataTemp[85] = SensorsGlobalManager.Instance.type280; rowDataTemp[86] = SensorsGlobalManager.Instance.position280;
-//			rowDataTemp[87] = SensorsGlobalManager.Instance.id290; rowDataTemp[88] = SensorsGlobalManager.Instance.type290; rowDataTemp[89] = SensorsGlobalManager.Instance.position290;
-//			rowDataTemp[90] = SensorsGlobalManager.Instance.id300; rowDataTemp[91] = SensorsGlobalManager.Instance.type300; rowDataTemp[92] = SensorsGlobalManager.Instance.position300;
-//			rowDataTemp[93] = SensorsGlobalManager.Instance.id310; rowDataTemp[94] = SensorsGlobalManager.Instance.type310; rowDataTemp[95] = SensorsGlobalManager.Instance.position310;
-//			rowDataTemp[96] = SensorsGlobalManager.Instance.id320; rowDataTemp[97] = SensorsGlobalManager.Instance.type320; rowDataTemp[98] = SensorsGlobalManager.Instance.position320;
-//			rowDataTemp[99] = SensorsGlobalManager.Instance.id330; rowDataTemp[100] = SensorsGlobalManager.Instance.type330; rowDataTemp[101] = SensorsGlobalManager.Instance.position330;
-//			rowDataTemp[102] = SensorsGlobalManager.Instance.id340; rowDataTemp[103] = SensorsGlobalManager.Instance.type340; rowDataTemp[104] = SensorsGlobalManager.Instance.position340;
-//			rowDataTemp[105] = SensorsGlobalManager.Instance.id350; rowDataTemp[106] = SensorsGlobalManager.Instance.type350; rowDataTemp[107] = SensorsGlobalManager.Instance.position350;
-//			rowDataTemp[108] = transform.GetComponent<Rigidbody>().velocity;
-//			rowDataTemp[109] = transform.eulerAngles.y-current_roadblock.transform.eulerAngles.y;
-//			rowDataTemp[110] = trafficLights();
-//			rowDataTemp[111] = 0;
-//
-//			rowData.Add(rowDataTemp);
-//		}
+		void getStateAction_csv(){
+			string[] rowDataTemp = new string[184];
+			//
+			int i = 0; //line0
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id0;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type0; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance0.ToString();
 
-		void getStateAction(){
+			//line10
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id10;
+			rowDataTemp[i++]  = SensorsGlobalManager.Instance.type10; 
+			rowDataTemp[i++]  = SensorsGlobalManager.Instance.distance10.ToString();
+
+			//line20
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id20;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type20; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance20.ToString();
+
+			//line30
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id30;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type30; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance30.ToString();
+
+			//line40
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id40;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type40; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance40.ToString();
+
+			//line50
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id50;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type50; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance50.ToString();
+
+			//line60
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id60;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type60; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance60.ToString();
+
+			//line70
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id70;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type70; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance70.ToString();
+
+			//line80
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id80;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type80; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance80.ToString();
+
+			//line90
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id90;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type90; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance90.ToString();
+
+			//line100
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id100;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type100; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance100.ToString();
+
+			//line110
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id110;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type110; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance110.ToString();
+
+			//line120
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id120;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type120; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance120.ToString();
+
+			//line130
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id130;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type130; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance130.ToString();
+
+			//line140
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id140;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type140; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance140.ToString();
+
+			//line150
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id150;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type150; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance150.ToString();
+
+			//line160
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id160;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type160; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance160.ToString();
+
+			//line170
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id170;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type170; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance170.ToString();
+
+			//line180
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id180;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type180; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance180.ToString();
+
+			//line190
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id190;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type190; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance190.ToString();
+
+			//line200
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id200;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type200; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance200.ToString();
+
+			//line210
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id210;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type210; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance210.ToString();
+
+			//line220
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id220;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type220; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance220.ToString();
+
+			//line230
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id230;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type230; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance230.ToString();
+
+			//line240
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id240;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type240; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance240.ToString();
+
+			//line250
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id250;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type250; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance250.ToString();
+
+			//line260
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id260;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type260; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance260.ToString();
+
+			//line270
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id270;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type270; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance270.ToString();
+
+			//line280
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id280;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type280; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance280.ToString();
+
+			//line290
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id290;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type290; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance290.ToString();
+
+			//line300
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id300;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type300; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance300.ToString();
+
+			//line310
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id310;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type310; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance310.ToString();
+
+			//line320
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id320;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type320; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance320.ToString();
+
+			//line330
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id330;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type330; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance330.ToString();
+
+			//line340
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id340;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type340; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance340.ToString();
+
+			//line350
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.id350;
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.type350; 
+			rowDataTemp[i++] = SensorsGlobalManager.Instance.distance350.ToString();
+
+
+			rowDataTemp[i++] = transform.GetComponent<Rigidbody>().velocity.x.ToString();
+			rowDataTemp[i++] = transform.GetComponent<Rigidbody>().velocity.y.ToString();
+			rowDataTemp[i++] = transform.GetComponent<Rigidbody>().velocity.z.ToString();
+			rowDataTemp[i++] = (transform.eulerAngles.y-current_roadblock.transform.eulerAngles.y).ToString();
+			rowDataTemp[i++] = trafficLights().ToString();
+			rowDataTemp[i++] = "";
+			rowDataTemp [i++] = collidedObjects.Count.ToString();
+
+			//ACTION
+
+			rowDataTemp [i++] = (GetComponent ("CarController") as CarController).AccelInput;
+			rowDataTemp [i++] = (GetComponent ("CarController") as CarController).CurrentSteerAngle;
+
+			using (FileStream fs = new FileStream(logFilePath_csv,FileMode.Append, FileAccess.Write))
+			{
+				using (StreamWriter sw = new StreamWriter(fs))
+				{
+					sw.WriteLine(string.Join (",", rowDataTemp));
+				
+			}
+			collidedObjects.Clear();
+		}
+
+		void logStateAction_json(){
 			State currentState = new State()
 			{
 				line0 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id0,
 					type = SensorsGlobalManager.Instance.type0,
-					position = SensorsGlobalManager.Instance.position0
+					distance = SensorsGlobalManager.Instance.distance0
 				},
 				line10 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id10,
 					type = SensorsGlobalManager.Instance.type10,
-					position = SensorsGlobalManager.Instance.position10
+					distance = SensorsGlobalManager.Instance.distance10
 				},
 				line20 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id20,
 					type = SensorsGlobalManager.Instance.type20,
-					position = SensorsGlobalManager.Instance.position20
+					distance = SensorsGlobalManager.Instance.distance20
 				},
 				line30 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id30,
 					type = SensorsGlobalManager.Instance.type30,
-					position = SensorsGlobalManager.Instance.position30
+					distance = SensorsGlobalManager.Instance.distance30
 				},
 				line40 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id40,
 					type = SensorsGlobalManager.Instance.type40,
-					position = SensorsGlobalManager.Instance.position40
+					distance = SensorsGlobalManager.Instance.distance40
 				},
 				line50 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id50,
 					type = SensorsGlobalManager.Instance.type50,
-					position = SensorsGlobalManager.Instance.position50
+					distance = SensorsGlobalManager.Instance.distance50
 				},
 				line60 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id60,
 					type = SensorsGlobalManager.Instance.type60,
-					position = SensorsGlobalManager.Instance.position60
+					distance = SensorsGlobalManager.Instance.distance60
 				},
 				line70 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id70,
 					type = SensorsGlobalManager.Instance.type70,
-					position = SensorsGlobalManager.Instance.position70
+					distance = SensorsGlobalManager.Instance.distance70
 				},
 				line80 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id80,
 					type = SensorsGlobalManager.Instance.type80,
-					position = SensorsGlobalManager.Instance.position80
+					distance = SensorsGlobalManager.Instance.distance80
 				},
 				line90 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id90,
 					type = SensorsGlobalManager.Instance.type90,
-					position = SensorsGlobalManager.Instance.position90
+					distance = SensorsGlobalManager.Instance.distance90
 				},
 				line100 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id100,
 					type = SensorsGlobalManager.Instance.type100,
-					position = SensorsGlobalManager.Instance.position100
+					distance = SensorsGlobalManager.Instance.distance100
 				},
 				line110 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id110,
 					type = SensorsGlobalManager.Instance.type110,
-					position = SensorsGlobalManager.Instance.position110
+					distance = SensorsGlobalManager.Instance.distance110
 				},
 				line120 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id120,
 					type = SensorsGlobalManager.Instance.type120,
-					position = SensorsGlobalManager.Instance.position120
+					distance = SensorsGlobalManager.Instance.distance120
 				},
 				line130 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id130,
 					type = SensorsGlobalManager.Instance.type130,
-					position = SensorsGlobalManager.Instance.position130
+					distance = SensorsGlobalManager.Instance.distance130
 				},
 				line140 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id140,
 					type = SensorsGlobalManager.Instance.type140,
-					position = SensorsGlobalManager.Instance.position140
+					distance = SensorsGlobalManager.Instance.distance140
 				},
 				line150 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id150,
 					type = SensorsGlobalManager.Instance.type150,
-					position = SensorsGlobalManager.Instance.position150
+					distance = SensorsGlobalManager.Instance.distance150
 				},
 				line160 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id160,
 					type = SensorsGlobalManager.Instance.type160,
-					position = SensorsGlobalManager.Instance.position160
+					distance = SensorsGlobalManager.Instance.distance160
 				},
 				line170 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id170,
 					type = SensorsGlobalManager.Instance.type170,
-					position = SensorsGlobalManager.Instance.position170
+					distance = SensorsGlobalManager.Instance.distance170
 				},line180 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id180,
 					type = SensorsGlobalManager.Instance.type180,
-					position = SensorsGlobalManager.Instance.position180
+					distance = SensorsGlobalManager.Instance.distance180
 				},
 				line190 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id190,
 					type = SensorsGlobalManager.Instance.type190,
-					position = SensorsGlobalManager.Instance.position190
+					distance = SensorsGlobalManager.Instance.distance190
 				},
 				line200 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id200,
 					type = SensorsGlobalManager.Instance.type200,
-					position = SensorsGlobalManager.Instance.position200
+					distance = SensorsGlobalManager.Instance.distance200
 				},
 				line210 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id210,
 					type = SensorsGlobalManager.Instance.type210,
-					position = SensorsGlobalManager.Instance.position210
+					distance = SensorsGlobalManager.Instance.distance210
 				},
 				line220 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id220,
 					type = SensorsGlobalManager.Instance.type220,
-					position = SensorsGlobalManager.Instance.position220
+					distance = SensorsGlobalManager.Instance.distance220
 				},
 				line230 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id230,
 					type = SensorsGlobalManager.Instance.type230,
-					position = SensorsGlobalManager.Instance.position230
+					distance = SensorsGlobalManager.Instance.distance230
 				},
 				line240 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id240,
 					type = SensorsGlobalManager.Instance.type240,
-					position = SensorsGlobalManager.Instance.position240
+					distance = SensorsGlobalManager.Instance.distance240
 				},
 				line250 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id250,
 					type = SensorsGlobalManager.Instance.type250,
-					position = SensorsGlobalManager.Instance.position250
+					distance = SensorsGlobalManager.Instance.distance250
 				},
 				line260 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id260,
 					type = SensorsGlobalManager.Instance.type260,
-					position = SensorsGlobalManager.Instance.position260
+					distance = SensorsGlobalManager.Instance.distance260
 				},
 				line270 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id270,
 					type = SensorsGlobalManager.Instance.type270,
-					position = SensorsGlobalManager.Instance.position270
+					distance = SensorsGlobalManager.Instance.distance270
 				},
 				line280 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id280,
 					type = SensorsGlobalManager.Instance.type280,
-					position = SensorsGlobalManager.Instance.position280
+					distance = SensorsGlobalManager.Instance.distance280
 				},
 				line290 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id290,
 					type = SensorsGlobalManager.Instance.type290,
-					position = SensorsGlobalManager.Instance.position290
+					distance = SensorsGlobalManager.Instance.distance290
 				},
 				line300 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id300,
 					type = SensorsGlobalManager.Instance.type300,
-					position = SensorsGlobalManager.Instance.position300
+					distance = SensorsGlobalManager.Instance.distance300
 				},
 				line310 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id310,
 					type = SensorsGlobalManager.Instance.type310,
-					position = SensorsGlobalManager.Instance.position310
+					distance = SensorsGlobalManager.Instance.distance310
 				},
 				line320 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id320,
 					type = SensorsGlobalManager.Instance.type320,
-					position = SensorsGlobalManager.Instance.position320
+					distance = SensorsGlobalManager.Instance.distance320
 				},
 				line330 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id330,
 					type = SensorsGlobalManager.Instance.type330,
-					position = SensorsGlobalManager.Instance.position330
+					distance = SensorsGlobalManager.Instance.distance330
 				},
 				line340 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id340,
 					type = SensorsGlobalManager.Instance.type340,
-					position = SensorsGlobalManager.Instance.position340
+					distance = SensorsGlobalManager.Instance.distance340
 				},
 				line350 = new Line()
 				{
 					id = SensorsGlobalManager.Instance.id350,
 					type = SensorsGlobalManager.Instance.type350,
-					position = SensorsGlobalManager.Instance.position350
+					distance = SensorsGlobalManager.Instance.distance350
 				},
 
 				car_velocity = transform.GetComponent<Rigidbody>().velocity,
@@ -884,24 +991,20 @@ namespace UnityStandardAssets.Vehicles.Car
 			};
 
 			string newPair_JSON = JsonUtility.ToJson(newPair,true);
-			logStateAction (newPair_JSON, logFilePath);	
-			collidedObjects.Clear();
 
-		}
-
-		void logStateAction(string objects,string path){
-			StreamWriter writer = new StreamWriter (path, true);
-			writer.WriteLine (objects);
+			StreamWriter writer = new StreamWriter (logFilePath_json, true);
+			writer.WriteLine (newPair_JSON);
 			writer.Close();
+	
+			collidedObjects.Clear();
 		}
-
 
 		[System.Serializable]
 		public class Line
 		{
 			public string id;
 			public string type;
-			public Vector3 position;
+			public float distance;
 		}
 
 		[System.Serializable]
