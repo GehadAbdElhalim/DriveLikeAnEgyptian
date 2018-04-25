@@ -248,7 +248,7 @@ public class CityDesgin1 : MonoBehaviour {
         {
             Instantiate(arr[i].roadType, arr[i].postion + arr[i].startPos, arr[i].Rotation);
             //Obstacle Spawning
-			if (arr[i].roadType == streetLane60mVertical) 
+			if ( (arr[i].roadType == streetLane60mVertical) || (arr[i].roadType == streetBump) || (arr[i].roadType == streetHole) ) 
 			{
 				SpawnObsatcle(arr[i]);
 			}
