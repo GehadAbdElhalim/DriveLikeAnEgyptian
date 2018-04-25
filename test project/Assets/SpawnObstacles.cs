@@ -20,53 +20,53 @@ public class SpawnObstacles : MonoBehaviour {
 
     // Update is called once per frame
     void Start () {
-        int randomNumber = Random.Range(0, 9);
+        int randomNumber = Random.Range(0, 5);
 
-        if (randomNumber == 0)
+//         if (randomNumber == 0)
+//         {
+//             Invoke("SpawnBump",1);
+//         }
+
+        if(randomNumber == 0)
         {
-            Invoke("SpawnBump",1);
+            Invoke("SpawnPeople", 1);
         }
 
         if(randomNumber == 1)
         {
-            Invoke("SpawnPeople", 1);
-        }
-
-        if(randomNumber == 2)
-        {
             Invoke("SpawnRoadBlockLeft", 1);
         }
+
+        if (randomNumber == 2)
+        {
+            Invoke("SpawnRoadBlockRight", 1);
+        }
+
+//         if (randomNumber == 4)
+//         {
+//             Invoke("SpawnBump", 1);
+//             Invoke("SpawnPeople", 1);
+//         }
+
+//         if (randomNumber == 5)
+//         {
+//             Invoke("SpawnBump", 1);
+//             Invoke("SpawnRoadBlockLeft", 1);
+//         }
+
+//         if (randomNumber == 6)
+//         {
+//             Invoke("SpawnBump", 1);
+//             Invoke("SpawnRoadBlockRight", 1);
+//         }
 
         if (randomNumber == 3)
         {
-            Invoke("SpawnRoadBlockRight", 1);
+            Invoke("SpawnPeople", 1);
+            Invoke("SpawnRoadBlockLeft", 1);
         }
 
         if (randomNumber == 4)
-        {
-            Invoke("SpawnBump", 1);
-            Invoke("SpawnPeople", 1);
-        }
-
-        if (randomNumber == 5)
-        {
-            Invoke("SpawnBump", 1);
-            Invoke("SpawnRoadBlockLeft", 1);
-        }
-
-        if (randomNumber == 6)
-        {
-            Invoke("SpawnBump", 1);
-            Invoke("SpawnRoadBlockRight", 1);
-        }
-
-        if (randomNumber == 7)
-        {
-            Invoke("SpawnPeople", 1);
-            Invoke("SpawnRoadBlockLeft", 1);
-        }
-
-        if (randomNumber == 8)
         {
             Invoke("SpawnPeople", 1);
             Invoke("SpawnRoadBlockRight", 1);
