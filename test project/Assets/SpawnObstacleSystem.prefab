@@ -56,8 +56,8 @@ MonoBehaviour:
   Obstacles:
   - {fileID: 1119967187290228, guid: 9bb64c6f494861c46910cd334ac71ee5, type: 2}
   - {fileID: 1254126295170828, guid: 72c9cf3770bc074418f3dfb4faf2591f, type: 2}
+  - {fileID: 1344004208467574, guid: 5768f795ee127db4db7b259e6191d231, type: 2}
   - {fileID: 1760070734031654, guid: f1479400af97c014d83c2ee24c613174, type: 2}
-  - {fileID: 1254126295170828, guid: 72c9cf3770bc074418f3dfb4faf2591f, type: 2}
   bumpPosition: {x: 0, y: 0, z: 0}
   PeoplePosition: {x: 0, y: 0, z: 0}
   RoadBlockLeftPosition: {x: 0, y: 0, z: 0}
