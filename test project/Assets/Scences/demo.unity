@@ -113,6 +113,48 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &513638143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 513638145}
+  - component: {fileID: 513638144}
+  m_Layer: 0
+  m_Name: NavMeshBuilder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &513638144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 513638143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c760d0ee5c47b4ef68e14d5fa82fef1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Tracked: {fileID: 0}
+  m_Size: {x: 2000, y: 2000, z: 2000}
+--- !u!4 &513638145
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 513638143}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0000019073486, y: -0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1071770488
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,13 +263,13 @@ Prefab:
         type: 2}
       propertyPath: streetBump
       value: 
-      objectReference: {fileID: 1814154072404432, guid: dce76b92e6ecd43bc9f0a611a4067b55,
+      objectReference: {fileID: 1361554420271148, guid: dce76b92e6ecd43bc9f0a611a4067b55,
         type: 2}
     - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
         type: 2}
       propertyPath: streetHole
       value: 
-      objectReference: {fileID: 1833020897958878, guid: 115418702953d4f1c89edf653d8273a3,
+      objectReference: {fileID: 1756362109579994, guid: 115418702953d4f1c89edf653d8273a3,
         type: 2}
     - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
         type: 2}
@@ -243,7 +285,43 @@ Prefab:
         type: 2}
       propertyPath: intersection
       value: 
-      objectReference: {fileID: 1775077648361798, guid: 132209f5334ae477fbf2b39254fc0c9f,
+      objectReference: {fileID: 1570111109406032, guid: 132209f5334ae477fbf2b39254fc0c9f,
+        type: 2}
+    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
+        type: 2}
+      propertyPath: CarAI
+      value: 
+      objectReference: {fileID: 1318548613186078, guid: de20d17a4cc53044c8af8ad8adddeb33,
+        type: 2}
+    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
+        type: 2}
+      propertyPath: Car
+      value: 
+      objectReference: {fileID: 1631615196890734, guid: f7b9d2a6c514b2f41befa270f33b63ad,
+        type: 2}
+    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
+        type: 2}
+      propertyPath: ObstacleGenerator
+      value: 
+      objectReference: {fileID: 1644025562524226, guid: da077fd5cb75ed0469068dd2c2cdd451,
+        type: 2}
+    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
+        type: 2}
+      propertyPath: streetCrossXRoads
+      value: 
+      objectReference: {fileID: 1225526059580550, guid: 7d2ed6da40927c0479fc2248317901cc,
+        type: 2}
+    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
+        type: 2}
+      propertyPath: streetTurn90DownLeft
+      value: 
+      objectReference: {fileID: 1122659521443458, guid: f18db509edf7fb84c89707b6ff23e0fe,
+        type: 2}
+    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
+        type: 2}
+      propertyPath: streetLane60mVertical
+      value: 
+      objectReference: {fileID: 1091713618878614, guid: bfc8cce989317df4cb2a85499446ffd7,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eec969a5d8fd4ca4f8f35b7ed961479e, type: 2}

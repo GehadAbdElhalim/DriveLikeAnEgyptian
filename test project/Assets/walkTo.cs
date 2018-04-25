@@ -14,7 +14,7 @@ public class walkTo : MonoBehaviour {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
         agent.destination = goal.position;
         anim = GetComponent<Animator>();
-        player = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
+//        player = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
         //CarAI = GameObject.FindGameObjectsWithTag("CARAI")[0].transform.position;
         agent.speed = Random.Range(3, 5);
         //anim.SetBool("IsRun", true);
