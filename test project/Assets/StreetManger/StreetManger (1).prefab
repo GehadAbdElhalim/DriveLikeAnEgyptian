@@ -51,19 +51,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d218de6c87be448a9258b4c012431e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  streetLane60mVertical: {fileID: 1988005603711568, guid: ff6306988907c0b4680dfe5d21089c10,
+  streetLane60mVertical: {fileID: 1091713618878614, guid: bfc8cce989317df4cb2a85499446ffd7,
     type: 2}
-  streetLane60mHorizontal: {fileID: 1988005603711568, guid: ff6306988907c0b4680dfe5d21089c10,
+  streetCrossXRoads: {fileID: 1225526059580550, guid: 7d2ed6da40927c0479fc2248317901cc,
     type: 2}
-  streetCrossXRoads: {fileID: 1393684782092686, guid: e0431dabb01b8ca45b3fbfe98f847593,
+  streetTurn90DownLeft: {fileID: 1122659521443458, guid: f18db509edf7fb84c89707b6ff23e0fe,
     type: 2}
-  streetTurn90DownLeft: {fileID: 1058622889863672, guid: 6f214c0401b98f34ab15e7507e48fbe4,
+  streetBump: {fileID: 1361554420271148, guid: dce76b92e6ecd43bc9f0a611a4067b55, type: 2}
+  streetHole: {fileID: 1756362109579994, guid: 115418702953d4f1c89edf653d8273a3, type: 2}
+  intersection: {fileID: 1570111109406032, guid: 132209f5334ae477fbf2b39254fc0c9f,
     type: 2}
-  streetTurn90TopLeft: {fileID: 1058622889863672, guid: 6f214c0401b98f34ab15e7507e48fbe4,
+  JSONFileWirttern: 
+  AutoGenerte: 1
+  JSONFile: 
+  NumberOfBlocks: 20
+  Waypoints: []
+  CarAI: {fileID: 1318548613186078, guid: de20d17a4cc53044c8af8ad8adddeb33, type: 2}
+  Car: {fileID: 1631615196890734, guid: f7b9d2a6c514b2f41befa270f33b63ad, type: 2}
+  ObstacleGenerator: {fileID: 1644025562524226, guid: da077fd5cb75ed0469068dd2c2cdd451,
     type: 2}
-  streetTurn90DownRight: {fileID: 1058622889863672, guid: 6f214c0401b98f34ab15e7507e48fbe4,
-    type: 2}
-  streetTurn90TopRight: {fileID: 1058622889863672, guid: 6f214c0401b98f34ab15e7507e48fbe4,
-    type: 2}
-  GridSize: 100
-  curRoadsNum: 0

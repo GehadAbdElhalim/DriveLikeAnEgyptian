@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityStandardAssets.Characters.ThirdPerson;
 
 public class Spawn : MonoBehaviour {
 
@@ -14,7 +15,7 @@ public class Spawn : MonoBehaviour {
     void SpawnAgent()
     {
         GameObject na = (GameObject)Instantiate(agent, this.transform.position, Quaternion.identity);
-        na.GetComponent<walkTo>().goal = goalObject.transform;
+		na.GetComponent<walkTo>().goal = goalObject.transform;
         Invoke("SpawnAgent", Random.Range(1, 5));
     }
 

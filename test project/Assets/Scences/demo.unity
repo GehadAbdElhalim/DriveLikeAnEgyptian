@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -259,70 +259,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: streetBump
-      value: 
-      objectReference: {fileID: 1361554420271148, guid: dce76b92e6ecd43bc9f0a611a4067b55,
-        type: 2}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: streetHole
-      value: 
-      objectReference: {fileID: 1756362109579994, guid: 115418702953d4f1c89edf653d8273a3,
-        type: 2}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: AutoGenerte
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: NumberOfBlocks
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: intersection
-      value: 
-      objectReference: {fileID: 1570111109406032, guid: 132209f5334ae477fbf2b39254fc0c9f,
-        type: 2}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: CarAI
-      value: 
-      objectReference: {fileID: 1318548613186078, guid: de20d17a4cc53044c8af8ad8adddeb33,
-        type: 2}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: Car
-      value: 
-      objectReference: {fileID: 1631615196890734, guid: f7b9d2a6c514b2f41befa270f33b63ad,
-        type: 2}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: ObstacleGenerator
-      value: 
-      objectReference: {fileID: 1644025562524226, guid: da077fd5cb75ed0469068dd2c2cdd451,
-        type: 2}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: streetCrossXRoads
-      value: 
-      objectReference: {fileID: 1225526059580550, guid: 7d2ed6da40927c0479fc2248317901cc,
-        type: 2}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: streetTurn90DownLeft
-      value: 
-      objectReference: {fileID: 1122659521443458, guid: f18db509edf7fb84c89707b6ff23e0fe,
-        type: 2}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: streetLane60mVertical
-      value: 
-      objectReference: {fileID: 1091713618878614, guid: bfc8cce989317df4cb2a85499446ffd7,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eec969a5d8fd4ca4f8f35b7ed961479e, type: 2}
   m_IsPrefabParent: 0
