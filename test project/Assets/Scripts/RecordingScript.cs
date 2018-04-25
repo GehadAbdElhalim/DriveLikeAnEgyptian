@@ -84,8 +84,6 @@ namespace UnityStandardAssets.Vehicles.Car
 			sensorHighStartPos.y = 0.5f;
 
 			if (Physics.Raycast (sensorLowStartPos, Quaternion.AngleAxis (0, transform.up) * transform.forward, out hit, sensorLength)) {
-					print (Vector3.Distance(transform.position, hit.transform.position));
-
 				SensorsGlobalManager.Instance.id0 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type0 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance0 = Vector3.Distance(transform.position, hit.transform.position);
@@ -743,8 +741,11 @@ namespace UnityStandardAssets.Vehicles.Car
 
 			//ACTION
 
-			rowDataTemp [i++] = ((GetComponent ("CarController") as CarController).AccelInput).ToString();
-			rowDataTemp [i++] = ((GetComponent ("CarController") as CarController).CurrentSteerAngle).ToString();
+//			rowDataTemp [i++] = ((GetComponent ("CarController") as CarController).AccelInput).ToString();
+//			rowDataTemp [i++] = ((GetComponent ("CarController") as CarController).CurrentSteerAngle).ToString();
+
+			rowDataTemp[i++] = Input.GetAxis("Vertical").ToString();
+			rowDataTemp[i++] = Input.GetAxis("Horizontal").ToString();
 
 			using (FileStream fs = new FileStream(logFilePath_csv,FileMode.Append, FileAccess.Write))
 			{
