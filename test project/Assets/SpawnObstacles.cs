@@ -99,14 +99,14 @@ public class SpawnObstacles : MonoBehaviour {
         float Z ;
         if (!Rotated)
         {
-			X = StartPoint.x + 5;
+			X = StartPoint.x + 4.5f;
 			Z = Random.Range(StartPoint.z, EndPoint.z);
             PeoplePosition = new Vector3(X, 0, Z);
             Instantiate(Obstacles[1], PeoplePosition, Quaternion.identity);
         }
         else
         {
-			Z = StartPoint.z + 5;
+			Z = StartPoint.z + 4.5f;
 			X = Random.Range(StartPoint.x, EndPoint.x);
             PeoplePosition = new Vector3(X, 0, Z);
             Instantiate(Obstacles[1], PeoplePosition, Quaternion.identity * Quaternion.Euler(0, -90, 0));

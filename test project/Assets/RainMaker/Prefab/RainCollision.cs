@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿//
+// Rain Maker (c) 2016 Digital Ruby, LLC
+// http://www.digitalruby.com
+//
+
+using UnityEngine;
 using System.Collections.Generic;
 
 namespace DigitalRuby.RainMaker

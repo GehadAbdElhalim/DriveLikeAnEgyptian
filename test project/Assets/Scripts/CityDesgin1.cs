@@ -21,6 +21,7 @@ public class CityDesgin1 : MonoBehaviour {
 	public GameObject streetHole;
 	public GameObject intersection;
 
+
 	/// <summary>
 	/// 	if auto generate is checked 
 	/// 		a rondam map with the number of road blocks is equal to NumberOfBlocks
@@ -39,7 +40,9 @@ public class CityDesgin1 : MonoBehaviour {
     public GameObject CarAI;
     public GameObject Car;
     public GameObject ObstacleGenerator;
-
+	public PhysicMaterial Rainy;
+	public PhysicMaterial Normal;
+	public bool isRainy;
 
     const int up = 0;
     const int right = 1;
@@ -90,6 +93,7 @@ public class CityDesgin1 : MonoBehaviour {
     {
         //Gehad things
         Waypoints = new Vector3[NumberOfBlocks];
+		Rainhandler (isRainy);
         //Gehad things
 
         Road upDown = new Road();
@@ -502,4 +506,30 @@ public class CityDesgin1 : MonoBehaviour {
 		}
 
     }
+
+	void Rainhandler(bool rain){
+		if (rain) {
+			streetLane60mVertical.GetComponentInChildren<MeshCollider> ().material = Rainy;
+			for (int i = 0; i < streetCrossXRoads.GetComponentsInChildren<MeshCollider> ().Length; i++) {
+				streetCrossXRoads.GetComponentsInChildren<MeshCollider> () [i].material = Rainy;
+			}
+			streetTurn90DownLeft.GetComponentInChildren<MeshCollider> ().material = Rainy;
+			streetBump.GetComponentInChildren<MeshCollider> ().material = Rainy;
+			streetHole.GetComponentInChildren<MeshCollider> ().material = Rainy;
+			for (int i = 0; i < intersection.GetComponentsInChildren<MeshCollider> ().Length; i++) {
+				intersection.GetComponentsInChildren<MeshCollider> () [i].material = Rainy;
+			}
+		} else {
+			streetLane60mVertical.GetComponentInChildren<MeshCollider> ().material = Normal;
+			for (int i = 0; i < streetCrossXRoads.GetComponentsInChildren<MeshCollider> ().Length; i++) {
+				streetCrossXRoads.GetComponentsInChildren<MeshCollider> () [i].material = Normal;
+			}
+			streetTurn90DownLeft.GetComponentInChildren<MeshCollider> ().material = Normal;
+			streetBump.GetComponentInChildren<MeshCollider> ().material = Normal;
+			streetHole.GetComponentInChildren<MeshCollider> ().material = Normal;
+			for (int i = 0; i < intersection.GetComponentsInChildren<MeshCollider> ().Length; i++) {
+				intersection.GetComponentsInChildren<MeshCollider> () [i].material = Normal;
+			}
+		}
+	}
 }

@@ -70,3 +70,6 @@ MonoBehaviour:
   Car: {fileID: 1631615196890734, guid: f7b9d2a6c514b2f41befa270f33b63ad, type: 2}
   ObstacleGenerator: {fileID: 1644025562524226, guid: da077fd5cb75ed0469068dd2c2cdd451,
     type: 2}
+  Rainy: {fileID: 13400000, guid: ef6d9bbac9c81cb4f9c03be76616c2db, type: 2}
+  Normal: {fileID: 13400000, guid: 6f9f9350dfc07aa43855f7571ea90334, type: 2}
+  isRainy: 0

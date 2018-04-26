@@ -1,4 +1,10 @@
-﻿using System;
+﻿//
+// Rain Maker (c) 2015 Digital Ruby, LLC
+// http://www.digitalruby.com
+//
+
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
