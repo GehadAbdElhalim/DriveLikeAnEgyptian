@@ -11,6 +11,7 @@ public class SpawnObstacles : MonoBehaviour {
     public Vector3 RoadBlockLeftPosition;
     public Vector3 RoadBlockRightPosition;
     public bool Rotated;
+	public bool conflict;
 
     // Use this for initialization
     /*void Start () {
@@ -21,6 +22,8 @@ public class SpawnObstacles : MonoBehaviour {
     // Update is called once per frame
     void Start () {
         int randomNumber = Random.Range(0, 5);
+
+		conflict = false;
 
 //         if (randomNumber == 0)
 //         {
@@ -64,12 +67,14 @@ public class SpawnObstacles : MonoBehaviour {
         {
             Invoke("SpawnPeople", 1);
             Invoke("SpawnRoadBlockLeft", 1);
+			conflict = true;
         }
-
+		 
         if (randomNumber == 4)
         {
             Invoke("SpawnPeople", 1);
             Invoke("SpawnRoadBlockRight", 1);
+			conflict = true;
         }
     }
 
@@ -120,14 +125,36 @@ public class SpawnObstacles : MonoBehaviour {
         if (!Rotated)
         {
 			X = StartPoint.x - 1;
-			Z = Random.Range(StartPoint.z + 5, EndPoint.z - 5);
+			if (conflict) {
+				if (Random.Range (0, 2) == 0)
+					Z = Random.Range (StartPoint.z + 5, PeoplePosition.z - 7);
+				else
+					Z = Random.Range (PeoplePosition.z + 7, EndPoint.z - 5);
+			} else {
+				Z = Random.Range(StartPoint.z + 5, EndPoint.z - 5);
+			}
+			//while ((Mathf.Abs (Z) - Mathf.Abs (PeoplePosition.z) < 5)){
+			//	Debug.Log ("conflict");
+			//	Z = Random.Range(StartPoint.z + 5, EndPoint.z - 5);
+			//} 
             RoadBlockLeftPosition = new Vector3(X, 3, Z);
             Instantiate(Obstacles[2], RoadBlockLeftPosition, Quaternion.identity);
         }
         else
         {
 			Z = StartPoint.z + 1;
-			X = Random.Range(StartPoint.x + 5, EndPoint.x - 5);
+			if (conflict) {
+				if (Random.Range (0, 2) == 0)
+					X = Random.Range (StartPoint.x + 5, PeoplePosition.x - 7);
+				else
+					X = Random.Range (PeoplePosition.x + 7, EndPoint.x - 5);
+			} else {
+				X = Random.Range(StartPoint.x + 5, EndPoint.x - 5);
+			}
+			//while ((Mathf.Abs (X) - Mathf.Abs (PeoplePosition.x) < 5)) {
+			//	Debug.Log ("conflict");
+			//	X = Random.Range(StartPoint.x + 5, EndPoint.x - 5);
+			//}
             RoadBlockLeftPosition = new Vector3(X, 3, Z);
             Instantiate(Obstacles[2], RoadBlockLeftPosition, Quaternion.identity * Quaternion.Euler(0, 90, 0));
         }
@@ -140,14 +167,36 @@ public class SpawnObstacles : MonoBehaviour {
         if (!Rotated)
         {
 			X = StartPoint.x - 3;
-			Z = Random.Range(StartPoint.z + 5 , EndPoint.z - 5);
+			if (conflict) {
+				if (Random.Range (0, 2) == 0)
+					Z = Random.Range (StartPoint.z + 5, PeoplePosition.z - 7);
+				else
+					Z = Random.Range (PeoplePosition.z + 7, EndPoint.z - 5);
+			} else {
+				Z = Random.Range(StartPoint.z + 5 , EndPoint.z - 5);
+			}
+			//while ((Mathf.Abs (Z) - Mathf.Abs (PeoplePosition.z) < 5)) {
+			//	Debug.Log ("conflict");
+			//	Z = Random.Range(StartPoint.z + 5, EndPoint.z - 5);
+			//}
             RoadBlockRightPosition = new Vector3(X, 4.05f, Z);
             Instantiate(Obstacles[3], RoadBlockRightPosition, Quaternion.identity);
         }
         else
         {
 			Z = StartPoint.z + 3;
-			X = Random.Range(StartPoint.x + 5, EndPoint.x - 5);
+			if (conflict) {
+				if (Random.Range (0, 2) == 0)
+					X = Random.Range (StartPoint.x + 5, PeoplePosition.x - 7);
+				else
+					X = Random.Range (PeoplePosition.x + 7, EndPoint.x - 5);
+			} else {
+				X = Random.Range(StartPoint.x + 5, EndPoint.x - 5);
+			}
+			//while ((Mathf.Abs (X) - Mathf.Abs (PeoplePosition.x) < 5)) {
+			//	Debug.Log ("conflict");
+			//	X = Random.Range(StartPoint.x + 5, EndPoint.x - 5);
+			//}
             RoadBlockRightPosition = new Vector3(X, 4.05f, Z);
             Instantiate(Obstacles[3], RoadBlockRightPosition, Quaternion.identity * Quaternion.Euler(0, 90, 0));
         }
