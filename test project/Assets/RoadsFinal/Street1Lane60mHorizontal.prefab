@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 65855917982949276}
   m_Layer: 8
   m_Name: Street1Lane60mHorizontal
-  m_TagString: Untagged
+  m_TagString: RoadBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,7 +241,7 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1611361078924210}
-  m_Material: {fileID: 13400000, guid: ef6d9bbac9c81cb4f9c03be76616c2db, type: 2}
+  m_Material: {fileID: 13400000, guid: 6f9f9350dfc07aa43855f7571ea90334, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3

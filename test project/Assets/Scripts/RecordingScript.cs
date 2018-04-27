@@ -18,12 +18,15 @@ namespace UnityStandardAssets.Vehicles.Car
 		string logFilePath_json;
 		string logFilePath_csv;
 
+
 		[Header("Sensors")]
 		public float sensorLength = 20.0f;
 
 		void Awake (){
 			logFilePath_json = Application.dataPath + "/LogFiles/state-action.json";
 			logFilePath_csv = Application.dataPath + "/LogFiles/state-action.csv";
+
+//			GameObject.Find ("Front Facing Camera").enabled = true;
 
 			// USED FIRST TIME ONLY TO ADD CSV FILE HEADERS
 			/*
