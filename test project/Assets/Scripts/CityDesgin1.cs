@@ -189,13 +189,13 @@ public class CityDesgin1 : MonoBehaviour {
 		rightLeft.set(streetHole, right, left, -60, 0, new Vector3(0, 0, 0), Quaternion.Euler(-90, -90, 0), "rightLeft", new Vector3(0, 0, 0));
 		roadKinds[23] = rightLeft;
 
-		Road intersectionRoadUpDown = new Road();
-		intersectionRoadUpDown.set(intersection, up, down, 0, -60, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), "intersectionRoadUpDown", new Vector3(0, 0, 0));
-		roadKinds[24] = intersectionRoadUpDown;
+//		Road intersectionRoadUpDown = new Road();
+//		intersectionRoadUpDown.set(intersection, up, down, 0, -60, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), "intersectionRoadUpDown", new Vector3(0, 0, 0));
+//		roadKinds[24] = intersectionRoadUpDown;
 
-//		Road intersectionRoadDownUp = new Road();
-//		intersectionRoadDownUp.set(intersection, down, up, 0, 60, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), "intersectionRoadDownUp", new Vector3(0, 0, 0));
-//		roadKinds[25] = intersectionRoadDownUp;
+		Road intersectionRoadDownUp = new Road();
+		intersectionRoadDownUp.set(intersection, down, up, 0, 60, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), "intersectionRoadDownUp", new Vector3(0, 0, 0));
+		roadKinds[24] = intersectionRoadDownUp;
 //
 //		Road intersectionRoadLeftRight = new Road();
 //		intersectionRoadLeftRight.set(intersection, left, right, 60, 0, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), "intersectionRoadLeftRight", new Vector3(0, 0, 0));

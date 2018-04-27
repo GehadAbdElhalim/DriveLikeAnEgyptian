@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 64449379524220606}
   m_Layer: 0
   m_Name: Street1Lane30m (1)
-  m_TagString: Untagged
+  m_TagString: RoadBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 64831465604981746}
   m_Layer: 0
   m_Name: CrossX
-  m_TagString: Untagged
+  m_TagString: RoadBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 64309655156826134}
   m_Layer: 0
   m_Name: Street1Lane30m (2)
-  m_TagString: Untagged
+  m_TagString: RoadBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 64030762525545332}
   m_Layer: 0
   m_Name: Street1Lane30m (3)
-  m_TagString: Untagged
+  m_TagString: RoadBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 64736739280829948}
   m_Layer: 0
   m_Name: Street1Lane30m
-  m_TagString: Untagged
+  m_TagString: RoadBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

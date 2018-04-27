@@ -35,6 +35,7 @@ public class TrafficLightsScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		remainingTime -= Time.deltaTime;
+		print(((activeLight == 0)?"red: ":"green: ")+remainingTime);
 		if(remainingTime < 0.0f)
 		{	
 			remainingTime = Random.Range (15.0f, 90.0f);
