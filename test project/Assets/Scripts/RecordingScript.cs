@@ -86,7 +86,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			sensorLowStartPos.y = 0.2f;
 			sensorHighStartPos.y = 0.5f;
 
-			if (Physics.Raycast (sensorLowStartPos, Quaternion.AngleAxis (0, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorLowStartPos, Quaternion.AngleAxis (0, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id0 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type0 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance0 = Vector3.Distance(transform.position, hit.transform.position);
@@ -98,7 +98,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance0 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (10, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (10, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id10 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type10 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance10 = Vector3.Distance(transform.position, hit.transform.position);
@@ -110,7 +110,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance10 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorLowStartPos, Quaternion.AngleAxis (20, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorLowStartPos, Quaternion.AngleAxis (20, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id20 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type20 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance20 = Vector3.Distance(transform.position, hit.transform.position);
@@ -122,7 +122,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance20 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (30, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (30, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id30 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type30 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance30 = Vector3.Distance(transform.position, hit.transform.position);
@@ -134,7 +134,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance30 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (40, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (40, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id40 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type40 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance40 = Vector3.Distance(transform.position, hit.transform.position);
@@ -146,7 +146,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance40 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (50, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (50, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id50 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type50 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance50 = Vector3.Distance(transform.position, hit.transform.position);
@@ -158,7 +158,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance50 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (60, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (60, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id60 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type60 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance60 = Vector3.Distance(transform.position, hit.transform.position);
@@ -170,7 +170,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance60 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (70, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (70, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id70 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type70 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance70 = Vector3.Distance(transform.position, hit.transform.position);
@@ -182,7 +182,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance70 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (80, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (80, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id80 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type80 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance80 = Vector3.Distance(transform.position, hit.transform.position);
@@ -194,7 +194,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance80 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id90 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type90 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance90 = Vector3.Distance(transform.position, hit.transform.position);
@@ -206,7 +206,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance90 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (100, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (100, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id100 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type100 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance100 = Vector3.Distance(transform.position, hit.transform.position);
@@ -218,7 +218,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance100 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (110, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (110, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id110 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type110 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance110 = Vector3.Distance(transform.position, hit.transform.position);
@@ -230,7 +230,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance110 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (120, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (120, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id120 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type120 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance120 = Vector3.Distance(transform.position, hit.transform.position);
@@ -242,7 +242,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance120 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (130, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (130, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id130 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type130 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance130 = Vector3.Distance(transform.position, hit.transform.position);
@@ -254,7 +254,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance130 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (140, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (140, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id140 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type140 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance140 = Vector3.Distance(transform.position, hit.transform.position);
@@ -266,7 +266,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance140 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (150, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (150, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id150 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type150 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance150 = Vector3.Distance(transform.position, hit.transform.position);
@@ -278,7 +278,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance150 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (160, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (160, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id160 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type160 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance160 = Vector3.Distance(transform.position, hit.transform.position);
@@ -290,7 +290,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance160 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (170, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (170, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id170 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type170 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance170 = Vector3.Distance(transform.position, hit.transform.position);
@@ -302,7 +302,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance170 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (180, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (180, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id180 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type180 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance180 = Vector3.Distance(transform.position, hit.transform.position);
@@ -314,7 +314,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance180 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (190, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (190, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id190 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type190 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance190 = Vector3.Distance(transform.position, hit.transform.position);
@@ -326,7 +326,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance190 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (200, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (200, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id200 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type200 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance200 = Vector3.Distance(transform.position, hit.transform.position);
@@ -338,7 +338,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance200 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (210, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (210, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id210 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type210 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance210 = Vector3.Distance(transform.position, hit.transform.position);
@@ -350,7 +350,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance210 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (220, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (220, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id220 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type220 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance220 = Vector3.Distance(transform.position, hit.transform.position);
@@ -362,7 +362,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance220 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (230, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (230, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id230 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type230 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance230 = Vector3.Distance(transform.position, hit.transform.position);
@@ -374,7 +374,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance230 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (240, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (240, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id240 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type240 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance240 = Vector3.Distance(transform.position, hit.transform.position);
@@ -386,7 +386,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance240 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (250, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (250, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id250 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type250 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance250 = Vector3.Distance(transform.position, hit.transform.position);
@@ -398,7 +398,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance250 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (260, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (260, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id260 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type260 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance260 = Vector3.Distance(transform.position, hit.transform.position);
@@ -410,7 +410,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance260 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id270 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type270 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance270 = Vector3.Distance(transform.position, hit.transform.position);
@@ -422,7 +422,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance270 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (280, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (280, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id280 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type280 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance280 = Vector3.Distance(transform.position, hit.transform.position);
@@ -434,7 +434,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance280 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (290, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (290, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id290 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type290 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance290 = Vector3.Distance(transform.position, hit.transform.position);
@@ -446,7 +446,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance290 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (300, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (300, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id300 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type300 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance300 = Vector3.Distance(transform.position, hit.transform.position);
@@ -458,7 +458,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance300 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (310, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (310, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id310 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type310 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance310 = Vector3.Distance(transform.position, hit.transform.position);
@@ -470,7 +470,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance310 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (320, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (320, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id320 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type320 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance320 = Vector3.Distance(transform.position, hit.transform.position);
@@ -482,7 +482,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance320 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (330, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (330, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id330 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type330 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance330 = Vector3.Distance(transform.position, hit.transform.position);
@@ -494,7 +494,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance330 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorLowStartPos, Quaternion.AngleAxis (340, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorLowStartPos, Quaternion.AngleAxis (340, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id340 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type340 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance340 = Vector3.Distance(transform.position, hit.transform.position);
@@ -506,7 +506,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance340 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (350, transform.up) * transform.forward, out hit, sensorLength)) {
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (350, transform.up) * transform.forward, out hit, sensorLength) && hit.collider.gameObject.layer!=10) {
 				SensorsGlobalManager.Instance.id350 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type350 = hit.collider.name;
 				SensorsGlobalManager.Instance.distance350 = Vector3.Distance(transform.position, hit.transform.position);

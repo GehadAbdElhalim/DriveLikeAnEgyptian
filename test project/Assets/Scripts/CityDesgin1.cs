@@ -259,8 +259,8 @@ public class CityDesgin1 : MonoBehaviour {
             //Obstacle Spawning
             Waypoints[i] = arr[i].postion + arr[i].startPos;
         }
-        SpawnAICar();
-        //SpawnCar();
+//        SpawnAICar();
+        SpawnCar();
         writeString(ToJSONFromArr(arr),JSONFileWirttern);
     }
 	/// <summary>
@@ -489,7 +489,7 @@ public class CityDesgin1 : MonoBehaviour {
 
     void SpawnCar()
     {
-        Instantiate(Car, new Vector3(0f, 1.5f, 0f), Quaternion.identity);
+		Instantiate(Car, new Vector3(0f, 1.5f, 0f), Quaternion.Euler(new Vector3(0.0f,180.0f,0.0f)));
     }
 
     void SpawnObsatcle(Road a)
