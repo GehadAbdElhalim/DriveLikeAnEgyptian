@@ -736,7 +736,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			rowDataTemp[i++] = transform.GetComponent<Rigidbody>().velocity.z.ToString();
 			rowDataTemp[i++] = (transform.eulerAngles.y-current_roadblock.transform.eulerAngles.y).ToString();
 			rowDataTemp[i++] = trafficLights().ToString();
-			rowDataTemp[i++] = "";
+			rowDataTemp[i++] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().isRainy.ToString();
 			rowDataTemp [i++] = collidedObjects.Count.ToString();
 
 			//ACTION
@@ -980,7 +980,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				car_velocity = transform.GetComponent<Rigidbody>().velocity,
 				car_angle = transform.eulerAngles.y-current_roadblock.transform.eulerAngles.y,
 				traffic_light =  trafficLights(), //get current roadblock?? -> cheat
-				rain = false, /////////*****************************************************************************************/////////*****************************************************************************************
+				rain = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().isRainy,
 				num_collisions = collidedObjects.Count
 			};
 
