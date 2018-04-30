@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114891660463288856}
   - component: {fileID: 114512906069016632}
   - component: {fileID: 114668311923269574}
+  - component: {fileID: 208619386128256032}
   m_Layer: 0
   m_Name: Car
   m_TagString: Player
@@ -890,7 +891,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1020663461324284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 180, z: -10}
+  m_LocalPosition: {x: 122.52272, y: -9.858669, z: -59.58062}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4732995226001586}
@@ -2217,7 +2218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474f617be97254288ae0c1d25381214d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collidedObjects: []
   lines: []
+  current_roadblock: {fileID: 0}
   sensorLength: 20
 --- !u!114 &114733720181074226
 MonoBehaviour:
@@ -5754,3 +5757,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!208 &208619386128256032
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1020663461324284}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 0.5, z: 2}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.7, z: 0}
+  m_TimeToStationary: 0.5
