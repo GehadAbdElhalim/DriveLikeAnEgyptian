@@ -112,7 +112,7 @@ public class networkSocket : MonoBehaviour
 
 	public float[] getCurrentState(){
 		float[] state_output = new float[43];
-		for (int i = 0; i < 35; i++) {
+		for (int i = 0; i <= 35; i++) {
 			state_output [i] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().lines [i].distance;
 		}
 
@@ -139,12 +139,61 @@ public class networkSocket : MonoBehaviour
 
 	public bool State_is_done() //COMPLETE THE CODE
 	{
-		return false;
+		float[] state = getCurrentState ();
+		for (int i = 0; i <= 35; i++) {
+			if (state[i] != 0f){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public void DoAction(int action_number) //COMPLETE THE CODE
 	{
-		
+		if (action_number == 0) {
+			CrossPlatformInputManager.SetAxis ("Horizontal", 0f);
+			CrossPlatformInputManager.SetAxis ("Vertical", 0f);
+		}
+
+		if (action_number == 1) {
+			CrossPlatformInputManager.SetAxis ("Horizontal", 0f);
+			CrossPlatformInputManager.SetAxis ("Vertical", 1f);
+		}
+
+		if (action_number == 2) {
+			CrossPlatformInputManager.SetAxis ("Horizontal", 0f);
+			CrossPlatformInputManager.SetAxis ("Vertical", -1f);
+		}
+
+		if (action_number == 3) {
+			CrossPlatformInputManager.SetAxis ("Horizontal", 1f);
+			CrossPlatformInputManager.SetAxis ("Vertical", 0f);
+		}
+
+		if (action_number == 4) {
+			CrossPlatformInputManager.SetAxis ("Horizontal", -1f);
+			CrossPlatformInputManager.SetAxis ("Vertical", 0f);
+		}
+
+		if (action_number == 5) {
+			CrossPlatformInputManager.SetAxis ("Horizontal", 1f);
+			CrossPlatformInputManager.SetAxis ("Vertical", 1f);
+		}
+
+		if (action_number == 6) {
+			CrossPlatformInputManager.SetAxis ("Horizontal", 1f);
+			CrossPlatformInputManager.SetAxis ("Vertical", -1f);
+		}
+
+		if (action_number == 7) {
+			CrossPlatformInputManager.SetAxis ("Horizontal", -1f);
+			CrossPlatformInputManager.SetAxis ("Vertical", 1f);
+		}
+
+		if (action_number == 8) {
+			CrossPlatformInputManager.SetAxis ("Horizontal", -1f);
+			CrossPlatformInputManager.SetAxis ("Vertical", -1f);
+		}
 	}
 
 }
