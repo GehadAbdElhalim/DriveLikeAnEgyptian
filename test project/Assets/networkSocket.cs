@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Net.Sockets;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityStandardAssets.Vehicles.Car;
 
  
 
@@ -109,8 +110,30 @@ public class networkSocket : MonoBehaviour
         socket_ready = false;
     }
 
-	public float[] getCurrentState(){ //COMPLETE THE CODE
-		float[] state_output = new float[43];      
+	public float[] getCurrentState(){
+		float[] state_output = new float[43];
+		for (int i = 0; i < 35; i++) {
+			state_output [i] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().lines [i].distance;
+		}
+
+		state_output [36] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.GetComponent<Rigidbody> ().velocity.x;
+		state_output [37] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.GetComponent<Rigidbody> ().velocity.y;
+		state_output [38] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.GetComponent<Rigidbody> ().velocity.z;
+		state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScript>().current_roadblock.transform.eulerAngles.y;
+		if (GameObject.Find ("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().trafficLights ()) {
+			state_output [40] = 1f;
+		} else {
+			state_output [40] = 0f;
+		}
+
+		if (GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().isRainy) {
+			state_output [41] = 1f;
+		} else {
+			state_output [41] = 0f;
+		}
+
+		state_output [42] = (float) GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().collidedObjects.Count;
+	
 		return state_output;
 	}
 

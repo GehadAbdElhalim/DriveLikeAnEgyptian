@@ -10,10 +10,10 @@ namespace UnityStandardAssets.Vehicles.Car
 	[RequireComponent(typeof(CarController))]
 	public class RecordingScript : MonoBehaviour {
 		
-		List<Collider> collidedObjects = new List<Collider>();	
+		public List<Collider> collidedObjects = new List<Collider>();	
 
 		public Line [] lines; 
-		GameObject current_roadblock;
+		public GameObject current_roadblock;
 
 		string logFilePath_json;
 		string logFilePath_csv;
@@ -528,7 +528,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		bool trafficLights(){
+		public bool trafficLights(){
 			
 			GameObject[] goWithTag = GameObject.FindGameObjectsWithTag("TrafficLight");
 			Renderer TrafficLights_renderer;
