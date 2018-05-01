@@ -13,7 +13,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		public List<Collider> collidedObjects = new List<Collider>();	
 
 		public Line [] lines; 
-		public GameObject current_roadblock;
+		GameObject current_roadblock;
 
 		string logFilePath_json;
 		string logFilePath_csv;
@@ -550,7 +550,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			current_roadblock = getRoadBlock ();
 		}
 
-		GameObject getRoadBlock(){
+		public GameObject getRoadBlock(){
 			RaycastHit hit;
 			if (Physics.Raycast(transform.position, Vector3.down, out hit, transform.position.y) && hit.collider.gameObject.tag == "RoadBlock") {
 				return hit.collider.gameObject;

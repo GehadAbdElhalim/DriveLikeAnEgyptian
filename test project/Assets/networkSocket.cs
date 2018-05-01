@@ -25,11 +25,14 @@ public class networkSocket : MonoBehaviour
 
     void Update()
     {
-		if ((readSocket() == "Send the starting State\n") || (readSocket() == "send next state\n")) 
+		//Debug.Log (readSocket());
+		if ((readSocket() == "Send the starting State") || (readSocket() == "send next state")) 
 		{
+			Debug.Log ("arrived");
 			if (State_is_done ()) {
 				writeSocket ("done");
 			} else {
+				Debug.Log ("else part");
 				writeSocket ("ok");
 				int i = 0;
 				float[] state = getCurrentState();
@@ -112,14 +115,54 @@ public class networkSocket : MonoBehaviour
 
 	public float[] getCurrentState(){
 		float[] state_output = new float[43];
-		for (int i = 0; i <= 35; i++) {
+		/*for (int i = 0; i <= 35; i++) {
+			Debug.Log (i);
 			state_output [i] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().lines [i].distance;
-		}
+		}*/
+		int i = 0;
+		state_output[i++] = SensorsGlobalManager.Instance.distance0;
+		state_output[i++] = SensorsGlobalManager.Instance.distance10;
+		state_output[i++] = SensorsGlobalManager.Instance.distance20;
+		state_output[i++] = SensorsGlobalManager.Instance.distance30;
+		state_output[i++] = SensorsGlobalManager.Instance.distance40;
+		state_output[i++] = SensorsGlobalManager.Instance.distance50;
+		state_output[i++] = SensorsGlobalManager.Instance.distance60;
+		state_output[i++] = SensorsGlobalManager.Instance.distance70;
+		state_output[i++] = SensorsGlobalManager.Instance.distance80; 
+		state_output[i++] = SensorsGlobalManager.Instance.distance90;
+		state_output[i++] = SensorsGlobalManager.Instance.distance100;
+		state_output[i++] = SensorsGlobalManager.Instance.distance110;
+		state_output[i++] = SensorsGlobalManager.Instance.distance120;
+		state_output[i++] = SensorsGlobalManager.Instance.distance130;
+		state_output[i++] = SensorsGlobalManager.Instance.distance140;
+		state_output[i++] = SensorsGlobalManager.Instance.distance150;
+		state_output[i++] = SensorsGlobalManager.Instance.distance160;
+		state_output[i++] = SensorsGlobalManager.Instance.distance170;
+		state_output[i++] = SensorsGlobalManager.Instance.distance180;
+		state_output[i++] = SensorsGlobalManager.Instance.distance190;
+		state_output[i++] = SensorsGlobalManager.Instance.distance200;
+		state_output[i++] = SensorsGlobalManager.Instance.distance210;
+		state_output[i++] = SensorsGlobalManager.Instance.distance220;
+		state_output[i++] = SensorsGlobalManager.Instance.distance230;
+		state_output[i++] = SensorsGlobalManager.Instance.distance240;
+		state_output[i++] = SensorsGlobalManager.Instance.distance250;
+		state_output[i++] = SensorsGlobalManager.Instance.distance260;
+		state_output[i++] = SensorsGlobalManager.Instance.distance270;
+		state_output[i++] = SensorsGlobalManager.Instance.distance280;
+		state_output[i++] = SensorsGlobalManager.Instance.distance290;
+		state_output[i++] = SensorsGlobalManager.Instance.distance300;
+		state_output[i++] = SensorsGlobalManager.Instance.distance310;
+		state_output[i++] = SensorsGlobalManager.Instance.distance320;
+		state_output[i++] = SensorsGlobalManager.Instance.distance330;
+		state_output[i++] = SensorsGlobalManager.Instance.distance340;
+		state_output[i++] = SensorsGlobalManager.Instance.distance350;
+
+
 
 		state_output [36] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.GetComponent<Rigidbody> ().velocity.x;
 		state_output [37] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.GetComponent<Rigidbody> ().velocity.y;
 		state_output [38] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.GetComponent<Rigidbody> ().velocity.z;
-		state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScript>().current_roadblock.transform.eulerAngles.y;
+		state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScript>().getRoadBlock().transform.eulerAngles.y;
 		if (GameObject.Find ("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().trafficLights ()) {
 			state_output [40] = 1f;
 		} else {
@@ -150,6 +193,7 @@ public class networkSocket : MonoBehaviour
 
 	public void DoAction(int action_number) //COMPLETE THE CODE
 	{
+		Debug.Log ("hi action");
 		if (action_number == 0) {
 			CrossPlatformInputManager.SetAxis ("Horizontal", 0f);
 			CrossPlatformInputManager.SetAxis ("Vertical", 0f);
