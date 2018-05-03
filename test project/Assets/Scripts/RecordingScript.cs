@@ -13,6 +13,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		public List<Collider> collidedObjects = new List<Collider>();	
 
 		public Line [] lines; 
+		public float CarAngle;
 		GameObject current_roadblock;
 
 		string logFilePath_json;
@@ -747,6 +748,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			rowDataTemp[i++] = transform.GetComponent<Rigidbody>().velocity.y.ToString();
 			rowDataTemp[i++] = transform.GetComponent<Rigidbody>().velocity.z.ToString();
 			rowDataTemp[i++] = (transform.eulerAngles.y-current_roadblock.transform.eulerAngles.y).ToString();
+			CarAngle = transform.eulerAngles.y - current_roadblock.transform.eulerAngles.y;
 			rowDataTemp[i++] = trafficLights().ToString();
 			rowDataTemp[i++] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().isRainy.ToString();
 			rowDataTemp [i++] = collidedObjects.Count.ToString();

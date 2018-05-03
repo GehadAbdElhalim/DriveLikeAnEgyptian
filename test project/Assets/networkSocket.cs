@@ -12,6 +12,7 @@ public class networkSocket : MonoBehaviour
 {
     public String host = "localhost";
     public Int32 port = 50000;
+	int a;
 
     internal Boolean socket_ready = false;
     internal String input_buffer = "";
@@ -23,38 +24,70 @@ public class networkSocket : MonoBehaviour
 
 
 
-    void Update()
+    void UpdateMe()
     {
+		String message = readSocket ();
 		//Debug.Log (readSocket());
-		if ((readSocket() == "Send the starting State") || (readSocket() == "send next state")) 
-		{
+		if (message == "Send the starting State") {
 			Debug.Log ("arrived");
 			if (State_is_done ()) {
 				writeSocket ("done");
 			} else {
 				Debug.Log ("else part");
-				writeSocket ("ok");
-				int i = 0;
+				writeSocket (getCurrentState ());
+				/*writeSocket ("ok");
+				Debug.Log(readSocket());
+				//int i = 0;
 				float[] state = getCurrentState();
-				while (readSocket() == "send next element \n") {
+                while(readSocket() != "send next element");
+                Debug.Log(readSocket());
+                String response = readSocket();
+                Debug.Log(response);
+                for (int i = 0 ; i < state.Length ; i++){
+                    if (response == "send next element")
+                    {
+                        Debug.Log("sending........");
+                        writeSocket(Convert.ToString(state[i]));
+                        response = readSocket();
+                    }
+                    //Debug.Log("not sending........");
+                }*/
+				///////////////////////////////////////////////////////////////////
+				/*while (readSocket() == "send next element") {
+					Debug.Log ("sending........");
 					writeSocket (Convert.ToString (state [i]));
 					i++;
-				}
+				}*/
 			}
-		}
-
-		if (readSocket() == "take this action\n") 
-		{
-			writeSocket ("ok");
-			DoAction(Int32.Parse(readSocket()));
+		} else {
+			Debug.Log (message);
+			a = Int32.Parse(message.Substring (10,1));
+			Debug.Log (a);
+			DoAction (a);
 			writeSocket ("action done");
 		}
+
+	/*if (message == "take this action") 
+		{
+			Debug.Log ("actioooooooooooooon");
+			writeSocket ("ok");
+			String response = readSocket ();
+			Debug.Log(Int32.Parse(response));
+			DoAction(Int32.Parse(response));
+			writeSocket ("action done");
+		}*/
     }
+
+	void Update(){
+		DoAction (a);
+	}
 
 
     void Awake()
     {
         setupSocket();
+		a = 0;
+        InvokeRepeating("UpdateMe", 3f, 1f);
     }
 
     void OnApplicationQuit()
@@ -94,7 +127,10 @@ public class networkSocket : MonoBehaviour
     public String readSocket()
     {
         if (!socket_ready)
+        {
+            Debug.Log("socket not ready");
             return "";
+        }
 
         if (net_stream.DataAvailable)
             return socket_reader.ReadLine();
@@ -113,7 +149,7 @@ public class networkSocket : MonoBehaviour
         socket_ready = false;
     }
 
-	public float[] getCurrentState(){
+	public String getCurrentState(){
 		float[] state_output = new float[43];
 		/*for (int i = 0; i <= 35; i++) {
 			Debug.Log (i);
@@ -162,7 +198,9 @@ public class networkSocket : MonoBehaviour
 		state_output [36] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.GetComponent<Rigidbody> ().velocity.x;
 		state_output [37] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.GetComponent<Rigidbody> ().velocity.y;
 		state_output [38] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.GetComponent<Rigidbody> ().velocity.z;
-		state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScript>().getRoadBlock().transform.eulerAngles.y;
+		//state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScript>().getRoadBlock().transform.eulerAngles.y;
+		state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScript>().CarAngle;
+
 		if (GameObject.Find ("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().trafficLights ()) {
 			state_output [40] = 1f;
 		} else {
@@ -176,67 +214,92 @@ public class networkSocket : MonoBehaviour
 		}
 
 		state_output [42] = (float) GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().collidedObjects.Count;
-	
-		return state_output;
+
+		String output = "";
+		for (int j = 0 ; j < 43 ; j++){
+			output = output + Convert.ToString (state_output [j]) + ",";
+		}
+
+		return output;
 	}
 
 	public bool State_is_done() //COMPLETE THE CODE
 	{
-		float[] state = getCurrentState ();
+		/*float[] state = getCurrentState ();
 		for (int i = 0; i <= 35; i++) {
 			if (state[i] != 0f){
 				return false;
 			}
 		}
-		return true;
+		return true;*/
+		return false;
 	}
 
 	public void DoAction(int action_number) //COMPLETE THE CODE
 	{
 		Debug.Log ("hi action");
+		//GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().Acceleration = 1f;
 		if (action_number == 0) {
-			CrossPlatformInputManager.SetAxis ("Horizontal", 0f);
-			CrossPlatformInputManager.SetAxis ("Vertical", 0f);
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().SteeringAngle = 0f;
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().Acceleration = 0f;
+			//CrossPlatformInputManager.SetAxis ("Horizontal", 0f);
+			//CrossPlatformInputManager.SetAxis ("Vertical", 0f);
 		}
 
 		if (action_number == 1) {
-			CrossPlatformInputManager.SetAxis ("Horizontal", 0f);
-			CrossPlatformInputManager.SetAxis ("Vertical", 1f);
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().SteeringAngle = 0f;
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().Acceleration = 1f;
+			//CrossPlatformInputManager.SetAxis ("Horizontal", 0f);
+			//CrossPlatformInputManager.SetAxis ("Vertical", 1f);
 		}
 
 		if (action_number == 2) {
-			CrossPlatformInputManager.SetAxis ("Horizontal", 0f);
-			CrossPlatformInputManager.SetAxis ("Vertical", -1f);
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().SteeringAngle = 0f;
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().Acceleration = -1f;
+			//CrossPlatformInputManager.SetAxis ("Horizontal", 0f);
+			//CrossPlatformInputManager.SetAxis ("Vertical", -1f);
 		}
 
 		if (action_number == 3) {
-			CrossPlatformInputManager.SetAxis ("Horizontal", 1f);
-			CrossPlatformInputManager.SetAxis ("Vertical", 0f);
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().SteeringAngle = 1f;
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().Acceleration = 0f;
+			//CrossPlatformInputManager.SetAxis ("Horizontal", 1f);
+			//CrossPlatformInputManager.SetAxis ("Vertical", 0f);
 		}
 
 		if (action_number == 4) {
-			CrossPlatformInputManager.SetAxis ("Horizontal", -1f);
-			CrossPlatformInputManager.SetAxis ("Vertical", 0f);
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().SteeringAngle = -1f;
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().Acceleration = 0f;
+			//CrossPlatformInputManager.SetAxis ("Horizontal", -1f);
+			//CrossPlatformInputManager.SetAxis ("Vertical", 0f);
 		}
 
 		if (action_number == 5) {
-			CrossPlatformInputManager.SetAxis ("Horizontal", 1f);
-			CrossPlatformInputManager.SetAxis ("Vertical", 1f);
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().SteeringAngle = 1f;
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().Acceleration = 1f;
+			//CrossPlatformInputManager.SetAxis ("Horizontal", 1f);
+			//CrossPlatformInputManager.SetAxis ("Vertical", 1f);
 		}
 
 		if (action_number == 6) {
-			CrossPlatformInputManager.SetAxis ("Horizontal", 1f);
-			CrossPlatformInputManager.SetAxis ("Vertical", -1f);
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().SteeringAngle = 1f;
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().Acceleration = -1f;
+			//CrossPlatformInputManager.SetAxis ("Horizontal", 1f);
+			//CrossPlatformInputManager.SetAxis ("Vertical", -1f);
 		}
 
 		if (action_number == 7) {
-			CrossPlatformInputManager.SetAxis ("Horizontal", -1f);
-			CrossPlatformInputManager.SetAxis ("Vertical", 1f);
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().SteeringAngle = -1f;
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().Acceleration = 1f;
+			//CrossPlatformInputManager.SetAxis ("Horizontal", -1f);
+			//CrossPlatformInputManager.SetAxis ("Vertical", 1f);
 		}
 
 		if (action_number == 8) {
-			CrossPlatformInputManager.SetAxis ("Horizontal", -1f);
-			CrossPlatformInputManager.SetAxis ("Vertical", -1f);
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().SteeringAngle = -1f;
+			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().Acceleration = -1f;
+			//CrossPlatformInputManager.SetAxis ("Horizontal", -1f);
+			//CrossPlatformInputManager.SetAxis ("Vertical", -1f);
 		}
 	}
 
