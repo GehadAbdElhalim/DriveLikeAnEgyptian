@@ -9,6 +9,7 @@ TagManager:
   - Sensors
   - TrafficLight
   - RoadBlock
+  - Network
   layers:
   - Default
   - TransparentFX

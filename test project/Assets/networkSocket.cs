@@ -5,7 +5,7 @@ using System.IO;
 using System.Net.Sockets;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Vehicles.Car;
-
+using UnityEditor.SceneManagement;
  
 
 public class networkSocket : MonoBehaviour
@@ -13,6 +13,8 @@ public class networkSocket : MonoBehaviour
     public String host = "localhost";
     public Int32 port = 50000;
 	int a;
+	int stuck_counter;
+	float last_velocity;
 
     internal Boolean socket_ready = false;
     internal String input_buffer = "";
@@ -25,7 +27,7 @@ public class networkSocket : MonoBehaviour
 
 
     void UpdateMe()
-    {
+    {		
 		String message = readSocket ();
 		//Debug.Log (readSocket());
 		if (message == "Send the starting State") {
@@ -35,30 +37,10 @@ public class networkSocket : MonoBehaviour
 			} else {
 				Debug.Log ("else part");
 				writeSocket (getCurrentState ());
-				/*writeSocket ("ok");
-				Debug.Log(readSocket());
-				//int i = 0;
-				float[] state = getCurrentState();
-                while(readSocket() != "send next element");
-                Debug.Log(readSocket());
-                String response = readSocket();
-                Debug.Log(response);
-                for (int i = 0 ; i < state.Length ; i++){
-                    if (response == "send next element")
-                    {
-                        Debug.Log("sending........");
-                        writeSocket(Convert.ToString(state[i]));
-                        response = readSocket();
-                    }
-                    //Debug.Log("not sending........");
-                }*/
-				///////////////////////////////////////////////////////////////////
-				/*while (readSocket() == "send next element") {
-					Debug.Log ("sending........");
-					writeSocket (Convert.ToString (state [i]));
-					i++;
-				}*/
 			}
+		} else if(message == "restart"){
+			writeSocket ("oksh");
+			EditorSceneManager.LoadScene ("demo");
 		} else {
 			Debug.Log (message);
 			a = Int32.Parse(message.Substring (10,1));
@@ -67,15 +49,12 @@ public class networkSocket : MonoBehaviour
 			writeSocket ("action done");
 		}
 
-	/*if (message == "take this action") 
+		if((float)(Math.Round((double)GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.z, 2)) == (float)(Math.Round((double)last_velocity, 2)))
 		{
-			Debug.Log ("actioooooooooooooon");
-			writeSocket ("ok");
-			String response = readSocket ();
-			Debug.Log(Int32.Parse(response));
-			DoAction(Int32.Parse(response));
-			writeSocket ("action done");
-		}*/
+			stuck_counter++;
+		}
+
+		
     }
 
 	void Update(){
@@ -85,9 +64,15 @@ public class networkSocket : MonoBehaviour
 
     void Awake()
     {
+		GameObject[] objs = GameObject.FindGameObjectsWithTag ("Network");
+		if (objs.Length > 1) {
+			Destroy (this.gameObject);
+		}
+		DontDestroyOnLoad (this.gameObject);
         setupSocket();
 		a = 0;
-        InvokeRepeating("UpdateMe", 3f, 1f);
+		stuck_counter = 0;
+        InvokeRepeating("UpdateMe", 3f, 0.5f);
     }
 
     void OnApplicationQuit()
@@ -195,13 +180,14 @@ public class networkSocket : MonoBehaviour
 
 
 
-		state_output [36] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.GetComponent<Rigidbody> ().velocity.x;
-		state_output [37] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.GetComponent<Rigidbody> ().velocity.y;
-		state_output [38] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.GetComponent<Rigidbody> ().velocity.z;
+		state_output [36] = GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.x;
+		state_output [37] = GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.y;
+		state_output [38] = GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.z;
+		last_velocity = state_output [38];
 		//state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScript>().getRoadBlock().transform.eulerAngles.y;
-		state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScript>().CarAngle;
+		state_output [39] = GameObject.Find("Car(Clone)").GetComponent<RecordingScript>().CarAngle;
 
-		if (GameObject.Find ("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().trafficLights ()) {
+		if (GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().trafficLights ()) {
 			state_output [40] = 1f;
 		} else {
 			state_output [40] = 0f;
@@ -213,7 +199,7 @@ public class networkSocket : MonoBehaviour
 			state_output [41] = 0f;
 		}
 
-		state_output [42] = (float) GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().collidedObjects.Count;
+		state_output [42] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedObjects.Count;
 
 		String output = "";
 		for (int j = 0 ; j < 43 ; j++){
@@ -225,20 +211,20 @@ public class networkSocket : MonoBehaviour
 
 	public bool State_is_done() //COMPLETE THE CODE
 	{
-		/*float[] state = getCurrentState ();
-		for (int i = 0; i <= 35; i++) {
-			if (state[i] != 0f){
-				return false;
-			}
+		if (GameObject.Find ("Car(Clone)").transform.position.y < -3) {
+			return true;
+		} else if (stuck_counter >= 30) {
+			stuck_counter = 0;
+			return true;
+		} else {
+			return false;
 		}
-		return true;*/
-		return false;
 	}
 
-	public void DoAction(int action_number) //COMPLETE THE CODE
+	public void DoAction(int action_number) 
 	{
 		Debug.Log ("hi action");
-		//GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().Acceleration = 1f;
+
 		if (action_number == 0) {
 			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().SteeringAngle = 0f;
 			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().Acceleration = 0f;
