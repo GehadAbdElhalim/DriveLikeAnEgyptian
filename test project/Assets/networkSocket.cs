@@ -49,9 +49,12 @@ public class networkSocket : MonoBehaviour
 			writeSocket ("action done");
 		}
 
-		if((float)(Math.Round((double)GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.z, 2)) == (float)(Math.Round((double)last_velocity, 2)))
-		{
-			stuck_counter++;
+		if ((float)(Math.Round ((double)GameObject.Find ("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.z, 3)) == (float)(Math.Round ((double)last_velocity, 3))) {
+			if ((float)(Math.Round ((double)last_velocity, 2)) == 0f) {
+				stuck_counter++;
+			}
+		} else {
+			stuck_counter = 0;
 		}
 
 		
@@ -72,7 +75,7 @@ public class networkSocket : MonoBehaviour
         setupSocket();
 		a = 0;
 		stuck_counter = 0;
-        InvokeRepeating("UpdateMe", 3f, 0.5f);
+        InvokeRepeating("UpdateMe", 3f, 0.2f);
     }
 
     void OnApplicationQuit()
