@@ -21,6 +21,8 @@ public class CityDesgin1 : MonoBehaviour {
 	public GameObject streetHole;
 	public GameObject intersection;
 
+	public GameObject finish_line;
+
 
 	/// <summary>
 	/// 	if auto generate is checked 
@@ -90,7 +92,10 @@ public class CityDesgin1 : MonoBehaviour {
 	/// 		or we generate the map in the files 
 	/// </summary>
     void Start()
-    {
+	{
+
+		NumberOfBlocks += 1;
+
         //Gehad things
         Waypoints = new Vector3[NumberOfBlocks];
 		Rainhandler (isRainy);
@@ -258,7 +263,11 @@ public class CityDesgin1 : MonoBehaviour {
 			}
             //Obstacle Spawning
             Waypoints[i] = arr[i].postion + arr[i].startPos;
-        }
+		}
+		print (arr [arr.Length - 1].Rotation);
+		Instantiate (finish_line, arr [arr.Length - 1].postion + arr [arr.Length - 1].startPos, Quaternion.Euler (new Vector3 (0.0f, 0.0f, 0.0f)));//arr [arr.Length - 1].Rotation);//Quaternion.Euler(new Vector3(0.0f,arr[arr.Length-1].Rotation.y, 0.0f)));
+
+
 //        SpawnAICar();
         SpawnCar();
         writeString(ToJSONFromArr(arr),JSONFileWirttern);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine; 
 using UnityEngine.UI;
+using UnityEditor.SceneManagement;
 
 [RequireComponent(typeof(Button))]
 public class RestartScene : MonoBehaviour {
@@ -21,6 +22,6 @@ public class RestartScene : MonoBehaviour {
 	}
 
 	void TaskOnClick() {
-		Application.LoadLevel(Application.loadedLevel);
+		EditorSceneManager.LoadScene ("demo");
 	}
 }

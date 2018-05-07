@@ -27,6 +27,7 @@ public class networkSocket : MonoBehaviour
     StreamReader socket_reader;
 
 	Text [] actions_UI = new Text[9];
+	bool finished = false;
 
     void UpdateMe()
     {		
@@ -34,6 +35,10 @@ public class networkSocket : MonoBehaviour
 		//Debug.Log (readSocket());
 		if (message == "Send the starting State") {
 			Debug.Log ("arrived");
+			// if (finished) {
+			// 	finished = false;
+			// 	writeSocket ("finished");
+			// }
 			if (State_is_done ()) {
 				writeSocket ("done");
 			} else {
@@ -66,7 +71,6 @@ public class networkSocket : MonoBehaviour
 		DoAction (a);
 	}
 
-
     void Awake()
     {
 		actions_UI[0] = GameObject.Find ("Canvas/None").GetComponent<Text> ();
@@ -83,6 +87,7 @@ public class networkSocket : MonoBehaviour
 		if (objs.Length > 1) {
 			Destroy (this.gameObject);
 		}
+
 		DontDestroyOnLoad (this.gameObject);
         setupSocket();
 		a = 0;
@@ -147,7 +152,12 @@ public class networkSocket : MonoBehaviour
         socket_reader.Close();
         tcp_socket.Close();
         socket_ready = false;
-    }
+	}
+
+	public void set_finished(){
+		finished = true;
+	}
+
 
 	public String getCurrentState(){
 		float[] state_output = new float[43];

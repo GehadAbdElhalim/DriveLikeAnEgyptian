@@ -78,10 +78,14 @@ namespace UnityStandardAssets.Vehicles.Car
 		void OnCollisionEnter(Collision col) 
 		{
 			print (col.gameObject.layer.ToString ());
-			if (col.gameObject.layer==11 && !collidedObjects.Contains(col.collider)) //ignoring normal obstacles' collisions (bumps and holes)
-			{
-				collidedObjects.Add(col.collider); 
-			}
+			// if (col.gameObject.name == "Finish") {
+			// 	GameObject.Find ("NetworkManager").GetComponent<networkSocket> ().set_finished ();
+			// } else {
+				if (col.gameObject.layer==11 && !collidedObjects.Contains(col.collider)) //ignoring normal obstacles' collisions (bumps and holes)
+				{
+					collidedObjects.Add(col.collider); 
+				}
+			// }
 		}
 
 		void OnCollisionStay(Collision col) {
