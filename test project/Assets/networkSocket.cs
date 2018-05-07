@@ -183,9 +183,10 @@ public class networkSocket : MonoBehaviour
 
 
 
-		state_output [36] = GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.x;
-		state_output [37] = GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.y;
-		state_output [38] = GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.z;
+		state_output [36] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).x;
+		state_output [37] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).y;
+		state_output [38] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).z;
+		Debug.Log(state_output [38]);
 		last_velocity = state_output [38];
 		//state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScript>().getRoadBlock().transform.eulerAngles.y;
 		state_output [39] = GameObject.Find("Car(Clone)").GetComponent<RecordingScript>().CarAngle;

@@ -70,7 +70,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
 			//Only one line can be uncommented at once
 //			InvokeRepeating("logStateAction_json", 0.5f, 0.5f);	//logs to json file
-			InvokeRepeating("logStateAction_csv", 0.5f, 0.5f);	//logs to csv file
+//			InvokeRepeating("logStateAction_csv", 0.5f, 0.5f);	//logs to csv file
 		}
 
 		void OnCollisionEnter(Collision col) 
@@ -548,7 +548,9 @@ namespace UnityStandardAssets.Vehicles.Car
 		// Update is called once per frame
 		void Update () {
 			Sensors(); 
-			current_roadblock = getRoadBlock ();
+						current_roadblock = getRoadBlock ();
+			print(transform.GetComponent<Rigidbody>().velocity);
+			print(transform.InverseTransformDirection(transform.GetComponent<Rigidbody>().velocity));
 		}
 
 		public GameObject getRoadBlock(){
