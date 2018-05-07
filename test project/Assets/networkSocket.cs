@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 using System.IO;
@@ -12,6 +13,7 @@ public class networkSocket : MonoBehaviour
 {
     public String host = "localhost";
     public Int32 port = 50000;
+
 	int a;
 	int stuck_counter;
 	float last_velocity;
@@ -24,7 +26,7 @@ public class networkSocket : MonoBehaviour
     StreamWriter socket_writer;
     StreamReader socket_reader;
 
-
+	Text [] actions_UI = new Text[9];
 
     void UpdateMe()
     {		
@@ -67,6 +69,16 @@ public class networkSocket : MonoBehaviour
 
     void Awake()
     {
+		actions_UI[0] = GameObject.Find ("Canvas/None").GetComponent<Text> ();
+		actions_UI[1] = GameObject.Find ("Canvas/Forward").GetComponent<Text> ();
+		actions_UI[2] = GameObject.Find ("Canvas/Backward").GetComponent<Text> ();
+		actions_UI[3] = GameObject.Find ("Canvas/Right").GetComponent<Text> ();
+		actions_UI[4] = GameObject.Find ("Canvas/Left").GetComponent<Text> ();
+		actions_UI[5] = GameObject.Find ("Canvas/Forward_Right").GetComponent<Text> ();
+		actions_UI[6] = GameObject.Find ("Canvas/Forward_Left").GetComponent<Text> ();
+		actions_UI[7] = GameObject.Find ("Canvas/Backward_Right").GetComponent<Text> ();
+		actions_UI[8] = GameObject.Find ("Canvas/Backward_Left").GetComponent<Text> ();
+
 		GameObject[] objs = GameObject.FindGameObjectsWithTag ("Network");
 		if (objs.Length > 1) {
 			Destroy (this.gameObject);
@@ -228,6 +240,15 @@ public class networkSocket : MonoBehaviour
 	public void DoAction(int action_number) 
 	{
 		Debug.Log ("hi action");
+		for (int i = 0; i < actions_UI.Length; i++) {
+			actions_UI[i].fontSize = 16;
+			actions_UI[i].fontStyle = FontStyle.Normal;
+			actions_UI[i].color = Color.white;
+		}
+
+		actions_UI[action_number].fontSize = 18; 
+		actions_UI[action_number].fontStyle = FontStyle.Bold;
+		actions_UI[action_number].color = Color.red;
 
 		if (action_number == 0) {
 			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().SteeringAngle = 0f;

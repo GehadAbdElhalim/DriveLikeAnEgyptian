@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 using System.Text;
 using System;
@@ -67,6 +68,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		void Start () {
 			lines = new Line[36];
 			current_roadblock = getRoadBlock ();
+
 
 			//Only one line can be uncommented at once
 //			InvokeRepeating("logStateAction_json", 0.5f, 0.5f);	//logs to json file
