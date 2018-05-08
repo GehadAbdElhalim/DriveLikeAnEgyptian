@@ -18,10 +18,9 @@ public class RestartScene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
 	void TaskOnClick() {
-		EditorSceneManager.LoadScene ("demo");
+		GameObject.Find("NetworkManager").GetComponent<networkSocket>().done = true;
 	}
 }

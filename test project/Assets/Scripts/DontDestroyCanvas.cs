@@ -6,6 +6,11 @@ public class DontDestroyCanvas : MonoBehaviour {
 	
 	void Awake ()
 	{
+
+		GameObject[] objs = GameObject.FindGameObjectsWithTag ("Canvas");
+		if (objs.Length > 1) {
+			Destroy (this.gameObject);
+		}
 		DontDestroyOnLoad(this.gameObject);
 	}
 	// Use this for initialization
