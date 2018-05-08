@@ -18,6 +18,8 @@ public class networkSocket : MonoBehaviour
 	int stuck_counter;
 	float last_velocity;
 
+	public bool done;
+
     internal Boolean socket_ready = false;
     internal String input_buffer = "";
     TcpClient tcp_socket;
@@ -35,11 +37,12 @@ public class networkSocket : MonoBehaviour
 		//Debug.Log (readSocket());
 		if (message == "Send the starting State") {
 			Debug.Log ("arrived");
-			// if (finished) {
-			// 	finished = false;
-			// 	writeSocket ("finished");
-			// }
-			if (State_is_done ()) {
+			if (finished) {
+				finished = false;
+				writeSocket ("finished");
+			}
+			if (State_is_done () || done) {
+				done = false;
 				writeSocket ("done");
 			} else {
 				Debug.Log ("else part");
@@ -79,8 +82,8 @@ public class networkSocket : MonoBehaviour
 		actions_UI[3] = GameObject.Find ("Canvas/Right").GetComponent<Text> ();
 		actions_UI[4] = GameObject.Find ("Canvas/Left").GetComponent<Text> ();
 		actions_UI[5] = GameObject.Find ("Canvas/Forward_Right").GetComponent<Text> ();
-		actions_UI[6] = GameObject.Find ("Canvas/Forward_Left").GetComponent<Text> ();
-		actions_UI[7] = GameObject.Find ("Canvas/Backward_Right").GetComponent<Text> ();
+		actions_UI[6] = GameObject.Find ("Canvas/Backward_Right").GetComponent<Text> ();
+		actions_UI[7] = GameObject.Find ("Canvas/Forward_Left").GetComponent<Text> ();
 		actions_UI[8] = GameObject.Find ("Canvas/Backward_Left").GetComponent<Text> ();
 
 		GameObject[] objs = GameObject.FindGameObjectsWithTag ("Network");
