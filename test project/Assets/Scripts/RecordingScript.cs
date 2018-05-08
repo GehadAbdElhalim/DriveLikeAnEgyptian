@@ -88,11 +88,10 @@ namespace UnityStandardAssets.Vehicles.Car
 		}
 
 		void OnCollisionStay(Collision col) {
-			print (col.collider.name);
 			OnCollisionEnter(col); //same as enter
 		}
 
-		void OnCollisionExit(Collision col) {
+		public void OnCollisionExit(Collision col) {
 			if (collidedObjects.Contains(col.collider)) //ignoring normal obstacles' collisions (bumps and holes)
 			{
 				collidedObjects.Remove (col.collider); 
@@ -561,6 +560,11 @@ namespace UnityStandardAssets.Vehicles.Car
 		// Update is called once per frame
 		void Update () {
 			Sensors(); 
+			try{
+				print ((collidedObjects.Count));
+			} catch (Exception e)
+			{
+			}
 			current_roadblock = getRoadBlock ();
 		}
 
