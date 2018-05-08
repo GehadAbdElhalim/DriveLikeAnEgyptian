@@ -36,7 +36,7 @@ public class networkSocket : MonoBehaviour
 		String message = readSocket ();
 		//Debug.Log (readSocket());
 		if (message == "Send the starting State") {
-			Debug.Log ("arrived");
+			// Debug.Log ("arrived");
 			if (finished) {
 				finished = false;
 				writeSocket ("finished");
@@ -45,16 +45,16 @@ public class networkSocket : MonoBehaviour
 				done = false;
 				writeSocket ("done");
 			} else {
-				Debug.Log ("else part");
+				// Debug.Log ("else part");
 				writeSocket (getCurrentState ());
 			}
 		} else if(message == "restart"){
 			writeSocket ("oksh");
 			EditorSceneManager.LoadScene ("demo");
 		} else {
-			Debug.Log (message);
+			// Debug.Log (message);
 			a = Int32.Parse(message.Substring (10,1));
-			Debug.Log (a);
+			// Debug.Log (a);
 			DoAction (a);
 			writeSocket ("action done");
 		}
@@ -211,7 +211,7 @@ public class networkSocket : MonoBehaviour
 		state_output [36] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).x;
 		state_output [37] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).y;
 		state_output [38] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).z;
-		Debug.Log(state_output [38]);
+		// Debug.Log(state_output [38]);
 		last_velocity = state_output [38];
 		//state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScript>().getRoadBlock().transform.eulerAngles.y;
 		state_output [39] = GameObject.Find("Car(Clone)").GetComponent<RecordingScript>().CarAngle;
@@ -252,7 +252,7 @@ public class networkSocket : MonoBehaviour
 
 	public void DoAction(int action_number) 
 	{
-		Debug.Log ("hi action");
+		// Debug.Log ("hi action");
 		for (int i = 0; i < actions_UI.Length; i++) {
 			actions_UI[i].fontSize = 16;
 			actions_UI[i].fontStyle = FontStyle.Normal;

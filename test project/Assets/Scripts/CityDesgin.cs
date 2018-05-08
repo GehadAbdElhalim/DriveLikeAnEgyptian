@@ -188,7 +188,7 @@ public class CityDesgin : MonoBehaviour {
                  z += htbZoffest[arr[i]];
 
 
-             print(arr[i] + " x:" + x+" z:"+ z );
+            //  print(arr[i] + " x:" + x+" z:"+ z );
               Instantiate(htbStreets[arr[i]], new Vector3(x, 0, z), new Quaternion(0, 0, 0, 0));
                x += 60;
                z += 60;

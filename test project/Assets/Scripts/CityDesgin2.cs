@@ -163,7 +163,7 @@ public class CityDesgin2 : MonoBehaviour
                      x += roadKinds[i].offestX;
                      z += roadKinds[i].offestZ;
                      Instantiate(roadKinds[j].RoadName, roadKinds[j].postion + new Vector3(x + p, 0, z), roadKinds[j].Rotation); 
-                     p += 500; print(i+"==========="+j+"//"+ agnist(roadKinds[i].end)+"//"+ roadKinds[j].start);
+                    //  p += 500; print(i+"==========="+j+"//"+ agnist(roadKinds[i].end)+"//"+ roadKinds[j].start);
 
                  }
              }

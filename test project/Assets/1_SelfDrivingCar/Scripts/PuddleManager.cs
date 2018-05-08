@@ -35,7 +35,6 @@ public class PuddleManager : MonoBehaviour {
 		}
 
 		for (int count = Random.Range (1, 11); count>0; count = count - 1) {
-			print (count);
 			GameObject obj = (GameObject)Instantiate(puddle,new Vector3(Random.Range(-6.5f,8.5f),0.51f,Random.Range(-16.8f,-1.8f)), Quaternion.identity);
 			obj.SetActive(true);
 		}

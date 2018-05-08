@@ -430,9 +430,9 @@ public class CityDesgin1 : MonoBehaviour {
 	/// </summary>
 	void ReadJSON(){	
 		string JSONObjects = readTextFile (JSONFile);
-		print (JSONObjects);
+		// print (JSONObjects);
 		string [] RoadsJson  = JSONObjects.Split(new char[]{'*'} );
-		print (RoadsJson[0]);
+		// print (RoadsJson[0]);
 		Road[] roads = ConvertToRoads (RoadsJson);
 		for (int i = 0; i < roads.Length; i++) {
 			
