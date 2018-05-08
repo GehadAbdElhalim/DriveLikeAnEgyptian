@@ -10,6 +10,7 @@ TagManager:
   - TrafficLight
   - RoadBlock
   - Network
+  - Canvas
   layers:
   - Default
   - TransparentFX

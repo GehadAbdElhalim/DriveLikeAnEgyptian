@@ -2220,8 +2220,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collidedObjects: []
   lines: []
-  current_roadblock: {fileID: 0}
-  sensorLength: 20
+  CarAngle: 0
+  sensorLength: 10
 --- !u!114 &114733720181074226
 MonoBehaviour:
   m_ObjectHideFlags: 1
