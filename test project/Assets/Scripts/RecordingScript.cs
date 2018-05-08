@@ -22,7 +22,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
 
 		[Header("Sensors")]
-		public float sensorLength = 20.0f;
+		public float sensorLength = 10.0f;
 
 		void Awake (){
 			logFilePath_json = Application.dataPath + "/LogFiles/state-action.json";
@@ -77,19 +77,26 @@ namespace UnityStandardAssets.Vehicles.Car
 
 		void OnCollisionEnter(Collision col) 
 		{
-			print (col.gameObject.layer.ToString ());
-			// if (col.gameObject.name == "Finish") {
-			// 	GameObject.Find ("NetworkManager").GetComponent<networkSocket> ().set_finished ();
-			// } else {
+			if (col.gameObject.name == "Finish") {
+				GameObject.Find ("NetworkManager").GetComponent<networkSocket> ().set_finished ();
+			} else {
 				if (col.gameObject.layer==11 && !collidedObjects.Contains(col.collider)) //ignoring normal obstacles' collisions (bumps and holes)
 				{
 					collidedObjects.Add(col.collider); 
 				}
-			// }
+			}
 		}
 
 		void OnCollisionStay(Collision col) {
+			print (col.collider.name);
 			OnCollisionEnter(col); //same as enter
+		}
+
+		void OnCollisionExit(Collision col) {
+			if (collidedObjects.Contains(col.collider)) //ignoring normal obstacles' collisions (bumps and holes)
+			{
+				collidedObjects.Remove (col.collider); 
+			}
 		}
 
 		void Sensors(){
@@ -97,7 +104,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			Vector3 sensorLowStartPos = transform.position;
 			Vector3 sensorHighStartPos = transform.position;
 			sensorLowStartPos.y = 0.2f;
-			sensorHighStartPos.y = 0.5f;
+			sensorHighStartPos.y = 0.6f;
 
 			var layerMask = 1 << 12;//carbody2 layer
 			layerMask = ~layerMask;
@@ -554,9 +561,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		// Update is called once per frame
 		void Update () {
 			Sensors(); 
-						current_roadblock = getRoadBlock ();
-			print(transform.GetComponent<Rigidbody>().velocity);
-			print(transform.InverseTransformDirection(transform.GetComponent<Rigidbody>().velocity));
+			current_roadblock = getRoadBlock ();
 		}
 
 		public GameObject getRoadBlock(){
@@ -1006,7 +1011,6 @@ namespace UnityStandardAssets.Vehicles.Car
 				num_collisions = collidedObjects.Count
 			};
 
-			//			print (currentState_JSON+ "\t\n"	);
 			Action newAction = new Action (){
 				acceleration = (GetComponent("CarController") as CarController).AccelInput,
 				steer_angle = (GetComponent("CarController") as CarController).CurrentSteerAngle
