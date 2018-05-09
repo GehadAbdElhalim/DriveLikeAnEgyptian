@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23451076998374258}
   m_Layer: 11
   m_Name: Plane (1)
-  m_TagString: Untagged
+  m_TagString: RoadBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 23012172183624862}
   m_Layer: 11
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: RoadBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
