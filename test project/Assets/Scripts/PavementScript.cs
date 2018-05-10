@@ -7,7 +7,7 @@ namespace UnityStandardAssets.Vehicles.Car{
 
 		void OnTriggerEnter(Collider other){
 			if(other.gameObject.tag == "Player")
-				GameObject.Find ("Car(Clone)").GetComponent<RecordingScript> ().pavement = true;
+				GameObject.Find ("Car(Clone)").GetComponent<RecordingScript> ().collidedPavement = true;
 		}
 
 		void OnTriggerStay(Collider other){
@@ -16,7 +16,7 @@ namespace UnityStandardAssets.Vehicles.Car{
 
 		void OnTriggerExit(Collider other){
 			if(other.gameObject.tag == "Player")
-				GameObject.Find ("Car(Clone)").GetComponent<RecordingScript> ().pavement = false;
+				GameObject.Find ("Car(Clone)").GetComponent<RecordingScript> ().collidedPavement = false;
 		}
 	}
 

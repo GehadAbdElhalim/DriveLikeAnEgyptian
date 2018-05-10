@@ -10,13 +10,14 @@ namespace UnityStandardAssets.Vehicles.Car
 {
 	[RequireComponent(typeof(CarController))]
 	public class RecordingScript : MonoBehaviour {
-		
-		public List<Collider> collidedObjects = new List<Collider>();	
+
+		public List<Collider> collidedObstacles = new List<Collider>();	
+		public List<Collider> collidedPedestrians = new List<Collider>();	
 
 		public Line [] lines; 
 
 		public float CarAngle;
-		public bool pavement; //boolean for hitting a pavement
+		public bool collidedPavement; //boolean for hitting a pavement
 		GameObject current_roadblock;
 
 		string logFilePath_json;
@@ -80,9 +81,13 @@ namespace UnityStandardAssets.Vehicles.Car
 			if (col.gameObject.name == "Finish") {
 				GameObject.Find ("NetworkManager").GetComponent<networkSocket> ().set_finished ();
 			} else {
-				if (col.gameObject.layer==11 && !collidedObjects.Contains(col.collider)) //ignoring normal obstacles' collisions (bumps and holes)
+				if (col.gameObject.layer==11 && !collidedObstacles.Contains(col.collider)) 
 				{
-					collidedObjects.Add(col.collider); 
+					collidedObstacles.Add(col.collider); 
+				}
+				if (col.gameObject.layer==14 && !collidedPedestrians.Contains(col.collider)) 
+				{
+					collidedPedestrians.Add(col.collider); 
 				}
 			}
 		}
@@ -92,9 +97,13 @@ namespace UnityStandardAssets.Vehicles.Car
 		}
 
 		public void OnCollisionExit(Collision col) {
-			if (collidedObjects.Contains(col.collider)) //ignoring normal obstacles' collisions (bumps and holes)
+			if (collidedObstacles.Contains(col.collider)) //ignoring normal obstacles' collisions (bumps and holes)
 			{
-				collidedObjects.Remove (col.collider); 
+				collidedObstacles.Remove (col.collider); 
+			}
+			if (collidedPedestrians.Contains(col.collider)) //ignoring normal obstacles' collisions (bumps and holes)
+			{
+				collidedPedestrians.Remove (col.collider); 
 			}
 		}
 
@@ -531,7 +540,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (350, transform.up) * transform.forward, out hit, sensorLength, layerMask) && hit.collider.gameObject.tag!="Player") {
 				SensorsGlobalManager.Instance.id350 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type350 = (hit.collider.gameObject.tag == "RoadBlock")?"RoadBlock":(hit.collider.gameObject.tag == "passanger")?"Pedestrian":hit.collider.name;
-				SensorsGlobalManager.Instance.distance350 = Vector3.Distance(transform.position, hit.transform.position);
+				SensorsGlobalManager.Instance.distance350 = Vector3.Distance(transform.position, hit.transform.position);	
 			
 				Debug.DrawLine (sensorHighStartPos, hit.point);
 			} else {
@@ -543,41 +552,34 @@ namespace UnityStandardAssets.Vehicles.Car
 			Vector3 sensorPos = transform.position;
 			Ray r = new Ray(sensorPos, transform.right);
 			sensorPos.y = 0.3f;
-			if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, 20.0f) && hit.collider.gameObject.tag == "RoadBlock") {
-	
-				Debug.DrawLine (sensorPos, hit.point, Color.green);
-				float cosine = Vector3.Dot (r.direction, hit.normal);
-				float cosineDegrees = Mathf.Acos (cosine);
-//				if (r.direction.z > hit.normal.z) {
-//					CarAngle = cosineDegrees - 180;
-//				} else {
-				CarAngle = (float)Math.PI-cosineDegrees;
-//				}
-		
-			}
-			else {
-				if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, 20.0f) && hit.collider.gameObject.tag == "RoadBlock") {
-
+			current_roadblock = getRoadBlock ();
+//			print (current_roadblock.name);
+			if (current_roadblock != null && current_roadblock.name != "CrossX" && current_roadblock.name != "intersection") {
+				if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, 20.0f) && hit.collider.gameObject.layer == 13) {				
 					Debug.DrawLine (sensorPos, hit.point, Color.green);
 					float cosine = Vector3.Dot (r.direction, hit.normal);
-					float cosineDegrees = Mathf.Acos (cosine);	
-//					if (r.direction.z > hit.normal.z) {
-//						CarAngle = -cosineDegrees;
-//					} else {
-						CarAngle = cosineDegrees;
-//					}
+					cosine = (cosine > 1.0f)?1.0f:(cosine<-1)?-1.0f:cosine;
+					float cosineDegrees = Mathf.Acos (cosine);
+
+					CarAngle = (float)Math.PI - cosineDegrees;
 				} else {
-//					print (CarAngle);
-//					if (CarAngle < 0.0f && CarAngle >= -90.0f) {
-//						CarAngle = -90.0f;
-//					} else
-					CarAngle = (float)Math.PI/2;
-//					CarAngle = 90.0f;
+					if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, 20.0f) && hit.collider.gameObject.layer == 13) {
+
+						Debug.DrawLine (sensorPos, hit.point, Color.green);
+						float cosine = Vector3.Dot (r.direction, hit.normal);
+						cosine = (cosine > 1.0f)?1.0f:(cosine<-1)?-1.0f:cosine;
+
+						CarAngle = Mathf.Acos (cosine);	
+					} else {
+						CarAngle = (float)Math.PI / 2;
+					}
 				}
-			} 
+			} else {
+//				print ("else");
+			}
 //			print (CarAngle);
 //				print (Math.Abs (this.transform.InverseTransformDirection (GameObject.Find ("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity).z)*Math.Sin(CarAngle));
-//			* math.sin(math.radians(State_[39])))
+			//			* math.sin(math.radians(State_[39])))
 		}
 
 		public bool trafficLights(){
@@ -599,15 +601,6 @@ namespace UnityStandardAssets.Vehicles.Car
 		// Update is called once per frame
 		void Update () {
 			Sensors(); 
-			current_roadblock = getRoadBlock ();
-			print (pavement);
-
-//			print((this.transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity)));
-//			print(transform.eulerAngles.y);
-//			print(current_roadblock.transform.eulerAngles.y);
-//			print(transform.eulerAngles.y-current_roadblock.transform.eulerAngles.y);
-//			print(" "	);
-
 		}
 
 		public GameObject getRoadBlock(){
@@ -810,7 +803,7 @@ namespace UnityStandardAssets.Vehicles.Car
 //			CarAngle = transform.eulerAngles.y - current_roadblock.transform.eulerAngles.y;
 			rowDataTemp[i++] = trafficLights().ToString();
 			rowDataTemp[i++] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().isRainy.ToString();
-			rowDataTemp [i++] = collidedObjects.Count.ToString();
+//			rowDataTemp [i++] = collidedObjects.Count.ToString();
 
 			//ACTION
 
@@ -828,7 +821,8 @@ namespace UnityStandardAssets.Vehicles.Car
 				
 				}
 			}
-			collidedObjects.Clear();
+			collidedObstacles.Clear ();
+			collidedPedestrians.Clear();
 		}
 
 		void logStateAction_json(){
@@ -1054,7 +1048,8 @@ namespace UnityStandardAssets.Vehicles.Car
 				car_angle = CarAngle,
 				traffic_light =  trafficLights(), //get current roadblock?? -> cheat
 				rain = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().isRainy,
-				num_collisions = collidedObjects.Count
+				num_collidedObstacles = collidedObstacles.Count,
+				num_collidedPedestrians = collidedObstacles.Count
 			};
 
 			Action newAction = new Action (){
@@ -1128,7 +1123,8 @@ namespace UnityStandardAssets.Vehicles.Car
 			public Vector3 car_velocity;
 			public float car_angle;
 			public bool traffic_light; //{true:red, false:green}
-			public int num_collisions;
+			public int num_collidedObstacles;
+			public int num_collidedPedestrians;
 		}
 
 		[System.Serializable]

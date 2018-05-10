@@ -163,11 +163,13 @@ public class networkSocket : MonoBehaviour
 
 
 	public String getCurrentState(){
-		float[] state_output = new float[43];
+		float[] state_output = new float[44];
 		/*for (int i = 0; i <= 35; i++) {
 			Debug.Log (i);
 			state_output [i] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().lines [i].distance;
 		}*/
+
+		//Sensor obstacle distance
 		int i = 0;
 		state_output[i++] = SensorsGlobalManager.Instance.distance0;
 		state_output[i++] = SensorsGlobalManager.Instance.distance10;
@@ -206,14 +208,15 @@ public class networkSocket : MonoBehaviour
 		state_output[i++] = SensorsGlobalManager.Instance.distance340;
 		state_output[i++] = SensorsGlobalManager.Instance.distance350;
 
-
-
+		//Car velocity
 		state_output [36] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).x;
 		state_output [37] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).y;
 		state_output [38] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).z;
 		// Debug.Log(state_output [38]);
 		last_velocity = state_output [38];
 		//state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScript>().getRoadBlock().transform.eulerAngles.y;
+
+		//Car Angle
 		state_output [39] = GameObject.Find("Car(Clone)").GetComponent<RecordingScript>().CarAngle;
 
 		if (GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().trafficLights ()) {
@@ -228,10 +231,18 @@ public class networkSocket : MonoBehaviour
 			state_output [41] = 0f;
 		}
 
-		state_output [42] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedObjects.Count;
+		state_output [42] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedObstacles.Count;
+		state_output [43] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedPedestrians.Count;
+
+		//Pavement-hit
+		if (GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedPavement) {
+			state_output [44] = 1f;
+		} else {
+			state_output [44] = 0f;
+		}
 
 		String output = "";
-		for (int j = 0 ; j < 43 ; j++){
+		for (int j = 0 ; j < 45 ; j++){
 			output = output + Convert.ToString (state_output [j]) + ",";
 		}
 

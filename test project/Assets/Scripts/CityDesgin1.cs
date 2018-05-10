@@ -264,9 +264,6 @@ public class CityDesgin1 : MonoBehaviour {
             //Obstacle Spawning
             Waypoints[i] = arr[i].postion + arr[i].startPos;
 		}
-		Instantiate (finish_line, arr [arr.Length - 1].postion + arr [arr.Length - 1].startPos, Quaternion.Euler (new Vector3 (0.0f, 0.0f, 0.0f)));//arr [arr.Length - 1].Rotation);//Quaternion.Euler(new Vector3(0.0f,arr[arr.Length-1].Rotation.y, 0.0f)));
-
-
 //        SpawnAICar();
         SpawnCar();
         writeString(ToJSONFromArr(arr),JSONFileWirttern);
