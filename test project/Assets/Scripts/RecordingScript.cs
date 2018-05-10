@@ -14,7 +14,9 @@ namespace UnityStandardAssets.Vehicles.Car
 		public List<Collider> collidedObjects = new List<Collider>();	
 
 		public Line [] lines; 
+
 		public float CarAngle;
+		public bool pavement; //boolean for hitting a pavement
 		GameObject current_roadblock;
 
 		string logFilePath_json;
@@ -573,8 +575,8 @@ namespace UnityStandardAssets.Vehicles.Car
 //					CarAngle = 90.0f;
 				}
 			} 
-			print (CarAngle);
-			print (Math.Abs (this.transform.InverseTransformDirection (GameObject.Find ("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity).z)*Math.Sin(CarAngle));
+//			print (CarAngle);
+//				print (Math.Abs (this.transform.InverseTransformDirection (GameObject.Find ("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity).z)*Math.Sin(CarAngle));
 //			* math.sin(math.radians(State_[39])))
 		}
 
@@ -598,6 +600,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		void Update () {
 			Sensors(); 
 			current_roadblock = getRoadBlock ();
+			print (pavement);
 
 //			print((this.transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity)));
 //			print(transform.eulerAngles.y);
