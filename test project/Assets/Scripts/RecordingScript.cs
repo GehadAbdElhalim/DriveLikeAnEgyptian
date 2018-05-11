@@ -560,9 +560,9 @@ namespace UnityStandardAssets.Vehicles.Car
 					Debug.DrawLine (sensorPos, hit.point, Color.green);
 					float cosine = Vector3.Dot (r.direction, hit.normal);
 					cosine = (cosine > 1.0f)?1.0f:(cosine<-1)?-1.0f:cosine;
-					float cosineDegrees = Mathf.Acos (cosine);
 
-					CarAngle = (float)Math.PI - cosineDegrees;
+					CarAngle = (r.direction.z > hit.normal.z)? Mathf.Acos (cosine)- Mathf.PI : Mathf.PI - Mathf.Acos (cosine);
+
 				} else {
 					if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, 20.0f, layerMask) && hit.collider.gameObject.tag == "RoadBlock") {
 
@@ -570,9 +570,9 @@ namespace UnityStandardAssets.Vehicles.Car
 						float cosine = Vector3.Dot (r.direction, hit.normal);
 						cosine = (cosine > 1.0f)?1.0f:(cosine<-1)?-1.0f:cosine;
 
-						CarAngle = Mathf.Acos (cosine);	
+						CarAngle = (r.direction.z > hit.normal.z) ? -Mathf.Acos(cosine) : Mathf.Acos(cosine);
 					} else {
-						CarAngle = (float)Math.PI / 2;
+						CarAngle =(CarAngle < 0.0f && CarAngle >= -Mathf.PI/2)? -Mathf.PI/2:Mathf.PI/2;
 					}
 				}
 			} else {
@@ -602,8 +602,6 @@ namespace UnityStandardAssets.Vehicles.Car
 		// Update is called once per frame
 		void Update () {
 			Sensors(); 
-			print (collidedPavement);
-			print (collidedObstacles.Count);
 		}
 
 		public GameObject getRoadBlock(){
