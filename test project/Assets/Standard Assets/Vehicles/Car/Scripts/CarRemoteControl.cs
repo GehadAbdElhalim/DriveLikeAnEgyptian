@@ -26,17 +26,17 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void Awake()
 		{
-//			InvokeRepeating("ActionTaken", 0.5f, 0.5f);
+			InvokeRepeating("ActionTaken", 0.5f, 0.5f);
 
-//			None = GameObject.Find ("Canvas/None").GetComponent<Text> ();
-//			F = GameObject.Find ("Canvas/Forward").GetComponent<Text> ();
-//			B = GameObject.Find ("Canvas/Backward").GetComponent<Text> ();
-//			R = GameObject.Find ("Canvas/Right").GetComponent<Text> ();
-//			L = GameObject.Find ("Canvas/Left").GetComponent<Text> ();
-//			FR = GameObject.Find ("Canvas/Forward_Right").GetComponent<Text> ();
-//			BR = GameObject.Find ("Canvas/Backward_Right").GetComponent<Text> ();
-//			FL = GameObject.Find ("Canvas/Forward_Left").GetComponent<Text> ();
-//			BL = GameObject.Find ("Canvas/Backward_Left").GetComponent<Text> ();
+			None = GameObject.Find ("Canvas/None").GetComponent<Text> ();
+			F = GameObject.Find ("Canvas/Forward").GetComponent<Text> ();
+			B = GameObject.Find ("Canvas/Backward").GetComponent<Text> ();
+			R = GameObject.Find ("Canvas/Right").GetComponent<Text> ();
+			L = GameObject.Find ("Canvas/Left").GetComponent<Text> ();
+			FR = GameObject.Find ("Canvas/Forward_Right").GetComponent<Text> ();
+			BR = GameObject.Find ("Canvas/Backward_Right").GetComponent<Text> ();
+			FL = GameObject.Find ("Canvas/Forward_Left").GetComponent<Text> ();
+			BL = GameObject.Find ("Canvas/Backward_Left").GetComponent<Text> ();
 
 
             // get the car controller
