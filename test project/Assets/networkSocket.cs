@@ -163,7 +163,7 @@ public class networkSocket : MonoBehaviour
 
 
 	public String getCurrentState(){
-		float[] state_output = new float[44];
+		float[] state_output = new float[45];
 		/*for (int i = 0; i <= 35; i++) {
 			Debug.Log (i);
 			state_output [i] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().lines [i].distance;

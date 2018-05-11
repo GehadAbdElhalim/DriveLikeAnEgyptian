@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 114039599798402364}
   - component: {fileID: 95099026037039152}
   - component: {fileID: 64613542991888352}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Street1Lane60mHorizontal (1)
   m_TagString: RoadBlock
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 1874763769504360}
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: -0.5}
-  m_LocalScale: {x: 60, y: 1, z: 18}
+  m_LocalScale: {x: 60, y: 1, z: 20}
   m_Children: []
   m_Father: {fileID: 4310893559696942}
   m_RootOrder: 1

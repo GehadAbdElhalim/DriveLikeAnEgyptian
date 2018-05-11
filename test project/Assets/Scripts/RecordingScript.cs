@@ -551,11 +551,12 @@ namespace UnityStandardAssets.Vehicles.Car
 
 			Vector3 sensorPos = transform.position;
 			Ray r = new Ray(sensorPos, transform.right);
-			sensorPos.y = 0.3f;
+			sensorPos.y = 0.02f;
 			current_roadblock = getRoadBlock ();
+			layerMask = 1 << 8;//carbody2 layer
 //			print (current_roadblock.name);
 			if (current_roadblock != null && current_roadblock.name != "CrossX" && current_roadblock.name != "intersection") {
-				if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, 20.0f) && hit.collider.gameObject.layer == 13) {				
+				if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, 20.0f,layerMask) && hit.collider.gameObject.tag == "RoadBlock") {
 					Debug.DrawLine (sensorPos, hit.point, Color.green);
 					float cosine = Vector3.Dot (r.direction, hit.normal);
 					cosine = (cosine > 1.0f)?1.0f:(cosine<-1)?-1.0f:cosine;
@@ -563,7 +564,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
 					CarAngle = (float)Math.PI - cosineDegrees;
 				} else {
-					if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, 20.0f) && hit.collider.gameObject.layer == 13) {
+					if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, 20.0f, layerMask) && hit.collider.gameObject.tag == "RoadBlock") {
 
 						Debug.DrawLine (sensorPos, hit.point, Color.green);
 						float cosine = Vector3.Dot (r.direction, hit.normal);
@@ -577,7 +578,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			} else {
 //				print ("else");
 			}
-//			print (CarAngle);
+			print (CarAngle);
 //				print (Math.Abs (this.transform.InverseTransformDirection (GameObject.Find ("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity).z)*Math.Sin(CarAngle));
 			//			* math.sin(math.radians(State_[39])))
 		}
@@ -601,6 +602,8 @@ namespace UnityStandardAssets.Vehicles.Car
 		// Update is called once per frame
 		void Update () {
 			Sensors(); 
+			print (collidedPavement);
+			print (collidedObstacles.Count);
 		}
 
 		public GameObject getRoadBlock(){
@@ -1068,7 +1071,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			writer.WriteLine (newPair_JSON);
 			writer.Close();
 	
-			collidedObjects.Clear();
+//			collidedObjects.Clear();
 		}
 
 		[System.Serializable]
