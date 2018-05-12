@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Vehicles.Car;
 using UnityEditor.SceneManagement;
+using UnityEditor;
  
 
 public class networkSocket : MonoBehaviour
@@ -19,6 +20,7 @@ public class networkSocket : MonoBehaviour
 	float last_velocity;
 
 	public bool done;
+	public bool quit;
 
     internal Boolean socket_ready = false;
     internal String input_buffer = "";
@@ -35,11 +37,16 @@ public class networkSocket : MonoBehaviour
     {		
 		String message = readSocket ();
 		//Debug.Log (readSocket());
+		print(message);
 		if (message == "Send the starting State") {
 			// Debug.Log ("arrived");
 			if (finished) {
 				finished = false;
 				writeSocket ("finished");
+			}
+			if (quit) {
+				quit = false;
+				writeSocket ("quit");
 			}
 			if (State_is_done () || done) {
 				done = false;
@@ -51,7 +58,10 @@ public class networkSocket : MonoBehaviour
 		} else if(message == "restart"){
 			writeSocket ("oksh");
 			EditorSceneManager.LoadScene ("demo");
-		} else {
+		} else if(message == "Bye!"){
+//			Application.Quit();
+			UnityEditor.EditorApplication.isPlaying = false;
+		}else{
 			// Debug.Log (message);
 			a = Int32.Parse(message.Substring (10,1));
 			// Debug.Log (a);

@@ -117,6 +117,32 @@ namespace UnityStandardAssets.Vehicles.Car
 			var layerMask = 1 << 12;//carbody2 layer
 			layerMask = ~layerMask;
 
+//			bool calculated_angle = false;
+
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, sensorLength, layerMask) && hit.collider.gameObject.tag!="Player") {
+				SensorsGlobalManager.Instance.id90 = hit.collider.GetInstanceID ().ToString();
+				SensorsGlobalManager.Instance.type90 = (hit.collider.gameObject.tag == "RoadBlock")?"RoadBlock":(hit.collider.gameObject.tag == "passanger")?"Pedestrian":hit.collider.name;
+				SensorsGlobalManager.Instance.distance90 = Vector3.Distance(transform.position, hit.transform.position);
+
+				Debug.DrawLine (sensorHighStartPos, hit.point);
+			} else {
+				SensorsGlobalManager.Instance.id90 = null;
+				SensorsGlobalManager.Instance.type90 = null;
+				SensorsGlobalManager.Instance.distance90 = 0.0f;
+			}
+
+			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, sensorLength, layerMask) && hit.collider.gameObject.tag!="Player") {
+				SensorsGlobalManager.Instance.id270 = hit.collider.GetInstanceID ().ToString();
+				SensorsGlobalManager.Instance.type270 = (hit.collider.gameObject.tag == "RoadBlock")?"RoadBlock":(hit.collider.gameObject.tag == "passanger")?"Pedestrian":hit.collider.name;
+				SensorsGlobalManager.Instance.distance270 = Vector3.Distance(transform.position, hit.transform.position);
+
+				Debug.DrawLine (sensorHighStartPos, hit.point);
+			} else {
+				SensorsGlobalManager.Instance.id270 = null;
+				SensorsGlobalManager.Instance.type270 = null;
+				SensorsGlobalManager.Instance.distance270 = 0.0f;
+			}
+				
 			if (Physics.Raycast (sensorLowStartPos, Quaternion.AngleAxis (0, transform.up) * transform.forward, out hit, sensorLength, layerMask) && hit.collider.gameObject.tag!="Player") {
 				SensorsGlobalManager.Instance.id0 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type0 = (hit.collider.gameObject.tag == "RoadBlock")?"RoadBlock":(hit.collider.gameObject.tag == "passanger")?"Pedestrian":hit.collider.name;
@@ -223,18 +249,6 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.id80 = null;
 				SensorsGlobalManager.Instance.type80 = null;
 				SensorsGlobalManager.Instance.distance80 = 0.0f;
-			}
-
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, sensorLength, layerMask) && hit.collider.gameObject.tag!="Player") {
-				SensorsGlobalManager.Instance.id90 = hit.collider.GetInstanceID ().ToString();
-				SensorsGlobalManager.Instance.type90 = (hit.collider.gameObject.tag == "RoadBlock")?"RoadBlock":(hit.collider.gameObject.tag == "passanger")?"Pedestrian":hit.collider.name;
-				SensorsGlobalManager.Instance.distance90 = Vector3.Distance(transform.position, hit.transform.position);
-			
-				Debug.DrawLine (sensorHighStartPos, hit.point);
-			} else {
-				SensorsGlobalManager.Instance.id90 = null;
-				SensorsGlobalManager.Instance.type90 = null;
-				SensorsGlobalManager.Instance.distance90 = 0.0f;
 			}
 
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (100, transform.up) * transform.forward, out hit, sensorLength ,layerMask) && hit.collider.gameObject.tag!="Player") {
@@ -441,18 +455,6 @@ namespace UnityStandardAssets.Vehicles.Car
 				SensorsGlobalManager.Instance.distance260 = 0.0f;
 			}
 
-			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, sensorLength, layerMask) && hit.collider.gameObject.tag!="Player") {
-				SensorsGlobalManager.Instance.id270 = hit.collider.GetInstanceID ().ToString();
-				SensorsGlobalManager.Instance.type270 = (hit.collider.gameObject.tag == "RoadBlock")?"RoadBlock":(hit.collider.gameObject.tag == "passanger")?"Pedestrian":hit.collider.name;
-				SensorsGlobalManager.Instance.distance270 = Vector3.Distance(transform.position, hit.transform.position);
-			
-				Debug.DrawLine (sensorHighStartPos, hit.point);
-			} else {
-				SensorsGlobalManager.Instance.id270 = null;
-				SensorsGlobalManager.Instance.type270 = null;
-				SensorsGlobalManager.Instance.distance270 = 0.0f;
-			}
-
 			if (Physics.Raycast (sensorHighStartPos, Quaternion.AngleAxis (280, transform.up) * transform.forward, out hit, sensorLength, layerMask) && hit.collider.gameObject.tag!="Player") {
 				SensorsGlobalManager.Instance.id280 = hit.collider.GetInstanceID ().ToString();
 				SensorsGlobalManager.Instance.type280 = (hit.collider.gameObject.tag == "RoadBlock")?"RoadBlock":(hit.collider.gameObject.tag == "passanger")?"Pedestrian":hit.collider.name;
@@ -552,32 +554,28 @@ namespace UnityStandardAssets.Vehicles.Car
 			Vector3 sensorPos = transform.position;
 			Ray r = new Ray(sensorPos, transform.right);
 			sensorPos.y = 0.02f;
-			current_roadblock = getRoadBlock ();
 			layerMask = 1 << 8;//carbody2 layer
 //			print (current_roadblock.name);
 			if (current_roadblock != null && current_roadblock.name != "CrossX" && current_roadblock.name != "intersection") {
-				if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, 20.0f,layerMask) && hit.collider.gameObject.tag == "RoadBlock") {
+				if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, 20.0f, layerMask) && hit.collider.gameObject.tag == "RoadBlock") {
 					Debug.DrawLine (sensorPos, hit.point, Color.green);
 					float cosine = Vector3.Dot (r.direction, hit.normal);
-					cosine = (cosine > 1.0f)?1.0f:(cosine<-1)?-1.0f:cosine;
+					cosine = (cosine > 1.0f) ? 1.0f : (cosine < -1) ? -1.0f : cosine;
 
-					CarAngle = (r.direction.z > hit.normal.z)? Mathf.Acos (cosine)- Mathf.PI : Mathf.PI - Mathf.Acos (cosine);
+					CarAngle = (r.direction.z > hit.normal.z) ? Mathf.Acos (cosine) - Mathf.PI : Mathf.PI - Mathf.Acos (cosine);
 
-				} else {
-					if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, 20.0f, layerMask) && hit.collider.gameObject.tag == "RoadBlock") {
+				} else if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, 20.0f, layerMask) && hit.collider.gameObject.tag == "RoadBlock") {
 
-						Debug.DrawLine (sensorPos, hit.point, Color.green);
-						float cosine = Vector3.Dot (r.direction, hit.normal);
-						cosine = (cosine > 1.0f)?1.0f:(cosine<-1)?-1.0f:cosine;
+					Debug.DrawLine (sensorPos, hit.point, Color.green);
+					float cosine = Vector3.Dot (r.direction, hit.normal);
+					cosine = (cosine > 1.0f) ? 1.0f : (cosine < -1) ? -1.0f : cosine;
 
-						CarAngle = (r.direction.z > hit.normal.z) ? -Mathf.Acos(cosine) : Mathf.Acos(cosine);
-					} else {
-						CarAngle =(CarAngle < 0.0f && CarAngle >= -Mathf.PI/2)? -Mathf.PI/2:Mathf.PI/2;
-					}
+					CarAngle = (r.direction.z > hit.normal.z) ? -Mathf.Acos (cosine) : Mathf.Acos (cosine);
+				}  else {
+					CarAngle = (CarAngle < 0.0f && CarAngle >= -Mathf.PI / 2) ? -Mathf.PI / 2 : Mathf.PI / 2;
 				}
-			} else {
-//				print ("else");
 			}
+//				print ("else");
 			print (CarAngle);
 //				print (Math.Abs (this.transform.InverseTransformDirection (GameObject.Find ("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity).z)*Math.Sin(CarAngle));
 			//			* math.sin(math.radians(State_[39])))
