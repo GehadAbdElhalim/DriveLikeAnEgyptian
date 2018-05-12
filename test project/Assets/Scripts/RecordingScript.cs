@@ -556,7 +556,9 @@ namespace UnityStandardAssets.Vehicles.Car
 			sensorPos.y = 0.02f;
 			layerMask = 1 << 8;//carbody2 layer
 //			print (current_roadblock.name);
+			current_roadblock = getRoadBlock();
 			if (current_roadblock != null && current_roadblock.name != "CrossX" && current_roadblock.name != "intersection") {
+				print ("h");
 				if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, 20.0f, layerMask) && hit.collider.gameObject.tag == "RoadBlock") {
 					Debug.DrawLine (sensorPos, hit.point, Color.green);
 					float cosine = Vector3.Dot (r.direction, hit.normal);
@@ -566,19 +568,17 @@ namespace UnityStandardAssets.Vehicles.Car
 
 				} else if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (270, transform.up) * transform.forward, out hit, 20.0f, layerMask) && hit.collider.gameObject.tag == "RoadBlock") {
 
-					Debug.DrawLine (sensorPos, hit.point, Color.green);
-					float cosine = Vector3.Dot (r.direction, hit.normal);
-					cosine = (cosine > 1.0f) ? 1.0f : (cosine < -1) ? -1.0f : cosine;
+						Debug.DrawLine (sensorPos, hit.point, Color.green);
+						float cosine = Vector3.Dot (r.direction, hit.normal);
+						cosine = (cosine > 1.0f) ? 1.0f : (cosine < -1) ? -1.0f : cosine;
 
-					CarAngle = (r.direction.z > hit.normal.z) ? -Mathf.Acos (cosine) : Mathf.Acos (cosine);
-				}  else {
-					CarAngle = (CarAngle < 0.0f && CarAngle >= -Mathf.PI / 2) ? -Mathf.PI / 2 : Mathf.PI / 2;
+						CarAngle = (r.direction.z > hit.normal.z) ? -Mathf.Acos (cosine) : Mathf.Acos (cosine);
 				}
+				else {
+					CarAngle = (CarAngle < 0.0f && CarAngle >= -Mathf.PI / 2) ? -Mathf.PI / 2 : Mathf.PI / 2;
+
+				} 
 			}
-//				print ("else");
-			print (CarAngle);
-//				print (Math.Abs (this.transform.InverseTransformDirection (GameObject.Find ("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity).z)*Math.Sin(CarAngle));
-			//			* math.sin(math.radians(State_[39])))
 		}
 
 		public bool trafficLights(){
