@@ -558,7 +558,6 @@ namespace UnityStandardAssets.Vehicles.Car
 //			print (current_roadblock.name);
 			current_roadblock = getRoadBlock();
 			if (current_roadblock != null && current_roadblock.name != "CrossX" && current_roadblock.name != "intersection") {
-				print ("h");
 				if (Physics.Raycast (sensorPos, Quaternion.AngleAxis (90, transform.up) * transform.forward, out hit, 20.0f, layerMask) && hit.collider.gameObject.tag == "RoadBlock") {
 					Debug.DrawLine (sensorPos, hit.point, Color.green);
 					float cosine = Vector3.Dot (r.direction, hit.normal);
@@ -576,7 +575,6 @@ namespace UnityStandardAssets.Vehicles.Car
 				}
 				else {
 					CarAngle = (CarAngle < 0.0f && CarAngle >= -Mathf.PI / 2) ? -Mathf.PI / 2 : Mathf.PI / 2;
-
 				} 
 			}
 		}
@@ -599,7 +597,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
 		// Update is called once per frame
 		void Update () {
-			Sensors(); 
+			Sensors();  
 		}
 
 		public GameObject getRoadBlock(){

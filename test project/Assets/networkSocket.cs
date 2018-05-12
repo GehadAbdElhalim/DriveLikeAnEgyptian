@@ -37,7 +37,6 @@ public class networkSocket : MonoBehaviour
     {		
 		String message = readSocket ();
 		//Debug.Log (readSocket());
-		print(message);
 		if (message == "Send the starting State") {
 			// Debug.Log ("arrived");
 			if (finished) {
@@ -62,7 +61,7 @@ public class networkSocket : MonoBehaviour
 //			Application.Quit();
 			UnityEditor.EditorApplication.isPlaying = false;
 		}else{
-			// Debug.Log (message);
+			 Debug.Log (message);
 			a = Int32.Parse(message.Substring (10,1));
 			// Debug.Log (a);
 			DoAction (a);
