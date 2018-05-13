@@ -214,6 +214,13 @@ public class CityDesgin1 : MonoBehaviour {
 			creatMap ();
 		else
 			ReadJSON ();
+
+		makeWay ();
+		SpawnCar();
+		Spawntraffic ();
+
+
+
         
     }
 
@@ -265,7 +272,7 @@ public class CityDesgin1 : MonoBehaviour {
             Waypoints[i] = arr[i].postion + arr[i].startPos;
 		}
 //        SpawnAICar();
-        SpawnCar();
+        
         writeString(ToJSONFromArr(arr),JSONFileWirttern);
     }
 	/// <summary>
@@ -431,8 +438,9 @@ public class CityDesgin1 : MonoBehaviour {
 		string [] RoadsJson  = JSONObjects.Split(new char[]{'*'} );
 		// print (RoadsJson[0]);
 		Road[] roads = ConvertToRoads (RoadsJson);
+		arr= new Road[NumberOfBlocks];;
 		for (int i = 0; i < roads.Length; i++) {
-			
+			arr [i] = roads [i];
 			Instantiate (stringToRoad(roads[i].name),roads[i].postion+roads[i].startPos,roads[i].Rotation);
 		}
 	}
@@ -537,4 +545,328 @@ public class CityDesgin1 : MonoBehaviour {
 			}
 		}
 	}
+
+
+
+	[Header("Traffic")]
+	public GameObject strategicCar;
+	public int TrafficSeparation ;
+
+	const float straightSeparation = .5f;
+	const float lerpSepration = .1f;
+	const float turnSeparation = .05f; 
+	const float separationJump = .1f;
+
+	List<Vector3> MiddleNodes = new List<Vector3>();
+	List<Vector3> LeftNodes = new List<Vector3>();
+	List<Vector3> RightNodes = new List<Vector3>();
+
+	void SpawnStrategicCar()
+	{
+		GameObject car = Instantiate(strategicCar, new Vector3(0, 1.5f, 0), Quaternion.Euler(0,180,0)) as GameObject;
+		car.GetComponent<CarEngine> ().midPoints = MiddleNodes; 
+		car.GetComponent<CarEngine> ().leftPoints = LeftNodes;
+		car.GetComponent<CarEngine> ().rightPoints = RightNodes;
+		car.GetComponent<CarEngine> ().separations = separationJump;
+		car.GetComponent<CarEngine> ().traffic = false;
+		car.GetComponent<CarEngine> ().rev = false;
+		car.GetComponent<CarEngine> ().currectNode = 0;
+
+	}
+
+
+	void SpawntrafficCars(int place)
+	{	Vector3 spawnPlace = Vector3.Lerp (MiddleNodes [place], RightNodes [place], Random.Range (0, 1)) + new Vector3 (0, 1.5f, 0);
+		GameObject car = Instantiate(strategicCar,spawnPlace, Quaternion.Euler(0,180,0)) as GameObject;
+		car.GetComponent<CarEngine> ().midPoints = MiddleNodes; 
+		car.GetComponent<CarEngine> ().leftPoints = LeftNodes;
+		car.GetComponent<CarEngine> ().rightPoints = RightNodes;
+		car.GetComponent<CarEngine> ().separations = separationJump;
+		car.GetComponent<CarEngine> ().traffic = true;
+		car.GetComponent<CarEngine> ().rev = false;
+		car.GetComponent<CarEngine> ().currectNode = place;
+
+	}
+	void SpawntrafficRevCars(int place)
+	{	Vector3 spawnPlace = Vector3.Lerp (MiddleNodes [place], RightNodes [place], Random.Range (0, 1)) + new Vector3 (0, 1.5f, 0);
+		GameObject car = Instantiate(strategicCar,spawnPlace, Quaternion.Euler(0,0,0)) as GameObject;
+		car.GetComponent<CarEngine> ().midPoints = MiddleNodes; 
+		car.GetComponent<CarEngine> ().leftPoints = LeftNodes;
+		car.GetComponent<CarEngine> ().rightPoints = RightNodes;
+		car.GetComponent<CarEngine> ().separations = separationJump;
+		car.GetComponent<CarEngine> ().traffic = true;
+		car.GetComponent<CarEngine> ().rev = true;
+		car.GetComponent<CarEngine> ().currectNode = place;
+	}
+	void makeWayPoint (int i){
+		if (i == 0) {
+			RightNodes.Add (new Vector3 (-5, 0, 0));
+
+			/*MiddleNodes.Add (new Vector3 (0, 0, 0));
+			MiddleNodes.Add (new Vector3 (0, 0, -30));*/
+			MiddleNodes.Add (new Vector3 (0, 0, 0));
+			StraightPoints (new Vector3 (0, 0, 0) ,  new Vector3 (0, 0, -25) );
+
+			LeftNodes.Add (new Vector3 (5, 0, 0));
+
+		} else { 
+			Vector3 lastPoint = MiddleNodes [MiddleNodes.Count - 1]; 
+			if (arr [i].start == oppsite (arr [i].end)) { // well this means straight 
+				if (arr [i].start == up) {
+					StraightPoints (lastPoint , arr [i].startPos + new Vector3 (0, 0, 0) );
+					StraightPoints (arr [i].startPos + new Vector3 (0, 0, 0)  , arr [i].startPos + new Vector3 (0, 0, -25) );
+
+				} else if (arr [i].start == down) {
+					StraightPoints (lastPoint , arr [i].startPos + new Vector3 (0, 0, 0) );
+					StraightPoints (arr [i].startPos + new Vector3 (0, 0, 0)  , arr [i].startPos + new Vector3 (0, 0, +25) );
+
+				} else if (arr [i].start == left) {
+					StraightPoints (lastPoint , arr [i].startPos + new Vector3 (0, 0, 0) );
+					StraightPoints (arr [i].startPos + new Vector3 (0, 0, 0)  , arr [i].startPos + new Vector3 (+25, 0, 0) );
+
+				} else if (arr [i].start == right) {
+					StraightPoints (lastPoint , arr [i].startPos + new Vector3 (0, 0, 0) );
+					StraightPoints (arr [i].startPos + new Vector3 (0, 0, 0)  , arr [i].startPos + new Vector3 (-25, 0, 0) );
+				} 
+
+			} else {
+				//MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (0, 0, 0));
+				if (arr [i].start == left && arr [i].end == up) {
+					//MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (-30, 0, -30));
+					//MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (-25, 0, -25));
+					/*MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (-20, 0, -12));
+					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (-15, 0, -10));
+					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (-10, 0, -8));
+					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (-5, 0, -5));
+
+					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (0, 0, 0));
+
+					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (5f , 0, 5));
+					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (8, 0, 10));
+					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (10, 0, 15));
+					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (12, 0, 20));*/
+					Vector3 p0 = arr [i].startPos + arr [i].postion + new Vector3 (-26, 0, -14);
+					Vector3 p1 = arr [i].startPos + arr [i].postion + new Vector3 (0, 0, -10);
+					Vector3 p2 = arr [i].startPos + arr[i].postion + new Vector3 (14, 0, 26);
+					Vector3 [] Points = BezierArc (p0, p1, p2).ToArray();
+					for(int z=0;z<Points.Length;z++){
+						MiddleNodes.Add (Points[z]);
+					}
+
+
+				}
+				if (arr [i].start == up && arr [i].end == right) {
+					Vector3 p0 = arr [i].startPos + arr[i].postion + new Vector3 (-14, 0, 26);
+					Vector3 p1 = arr [i].startPos + arr [i].postion + new Vector3 (0, 0, -10);
+					Vector3 p2 = arr [i].startPos + arr[i].postion + new Vector3 (26, 0, -14);
+					Vector3 [] Points = BezierArc (p0, p1, p2).ToArray();
+					for(int z=0;z<Points.Length;z++){
+						MiddleNodes.Add (Points[z]);
+					}
+				}
+				if (arr [i].start == right && arr [i].end == down) {
+					Vector3 p0 = arr [i].startPos + arr[i].postion + new Vector3 (26, 0, 14);
+					Vector3 p1 = arr [i].startPos + arr [i].postion + new Vector3 (0, 0, 10);
+					Vector3 p2 = arr [i].startPos + arr[i].postion + new Vector3 (-14, 0, -26);
+					Vector3 [] Points = BezierArc (p0, p1, p2).ToArray();
+					for(int z=0;z<Points.Length;z++){
+						MiddleNodes.Add (Points[z]);
+					}
+				}
+				if (arr [i].start == down && arr [i].end == left) {
+					Vector3 p0 = arr [i].startPos + arr[i].postion + new Vector3 (14, 0, -26);
+					Vector3 p1 = arr [i].startPos + arr [i].postion + new Vector3 (0, 0, 10);
+					Vector3 p2 = arr [i].startPos + arr[i].postion + new Vector3 (-26, 0, 14);
+					Vector3 [] Points = BezierArc (p0, p1, p2).ToArray();
+					for(int z=0;z<Points.Length;z++){
+						MiddleNodes.Add (Points[z]);
+					}
+
+				}
+
+
+				if (arr [i].start == up && arr [i].end == left) {
+					Vector3 p0 = arr [i].startPos + arr[i].postion + new Vector3 (14, 0, 26);
+					Vector3 p1 = arr [i].startPos + arr [i].postion + new Vector3 (10, 0, 0);
+					Vector3 p2 = arr [i].startPos + arr[i].postion + new Vector3 (-26, 0, -14);
+					Vector3 [] Points = BezierArc (p0, p1, p2).ToArray();
+					for(int z=0;z<Points.Length;z++){
+						MiddleNodes.Add (Points[z]);
+					}
+				}
+
+				if (arr [i].start == left && arr [i].end == down) {
+					Vector3 p0 = arr [i].startPos + arr[i].postion + new Vector3 (-26, 0, 14);
+					Vector3 p1 = arr [i].startPos + arr [i].postion + new Vector3 (0, 0, 10);
+					Vector3 p2 = arr [i].startPos + arr[i].postion + new Vector3 (14, 0, -26);
+					Vector3 [] Points = BezierArc (p0, p1, p2).ToArray();
+					for(int z=0;z<Points.Length;z++){
+						MiddleNodes.Add (Points[z]);
+					}
+				}
+
+
+				if (arr [i].start == down && arr [i].end == right) {
+					Vector3 p0 = arr [i].startPos + arr[i].postion + new Vector3 (-14, 0, -26);
+					Vector3 p1 = arr [i].startPos + arr [i].postion + new Vector3 (0, 0, 10);
+					Vector3 p2 = arr [i].startPos + arr[i].postion + new Vector3 (26, 0, 14);
+					Vector3 [] Points = BezierArc (p0, p1, p2).ToArray();
+					for(int z=0;z<Points.Length;z++){
+						MiddleNodes.Add (Points[z]);
+					}
+				}
+				if (arr [i].start == right && arr [i].end == up) {
+					Vector3 p0 = arr [i].startPos + arr[i].postion + new Vector3 (26, 0, -14);
+					Vector3 p1 = arr [i].startPos + arr [i].postion + new Vector3 (0, 0, -10);
+					Vector3 p2 = arr [i].startPos + arr[i].postion + new Vector3 (-14, 0, 26);
+					Vector3[] Points = BezierArc (p0, p1, p2).ToArray ();
+					for(int z=0;z<Points.Length;z++){
+						MiddleNodes.Add (Points[z]);
+					}
+				}
+			}
+		}
+	}
+
+	void StraightPoints(Vector3 start , Vector3 end ){	
+		Vector3 t = straightSeparation*(end - start);
+		float c = 1;
+		Vector3 currentPoint = start+t;
+		while (c > 0) {
+			MiddleNodes.Add (currentPoint);
+			currentPoint += t;
+			c -= straightSeparation;
+		}
+	}
+	void leftNodes(){
+		Vector3 [] arrNodes  = MiddleNodes.ToArray();
+		for (int i = 1; i < arrNodes.Length; i++) {
+			Vector3 v = shiftRotate (arrNodes [i - 1], arrNodes [i], 90);
+			LeftNodes.Add (v);
+		}
+
+	}
+	void rightNodes(){
+		Vector3 [] arrNodes  = MiddleNodes.ToArray();
+		for (int i = 1; i < arrNodes.Length; i++) {
+			Vector3 v = shiftRotate (arrNodes [i - 1], arrNodes [i], -90);
+			RightNodes.Add (v);
+		}
+
+	}
+	int oppsite(int end){
+
+		if(end == up)
+		{
+			return down;
+		} 
+		else if(end == down)
+		{
+			return up;
+		}
+		else if(end == left)
+		{
+			return right;
+		}
+		return left;
+	}
+	List <Vector3> BezierArc(Vector3 p0,Vector3 p1,Vector3 p2){
+		List <Vector3> output = new List<Vector3> ();
+		float i=0.0f;
+		while (i<=1){
+			output.Add (BezierPoint (p0, p1, p2, i));
+			i += turnSeparation;
+		}
+		return output;
+	}
+
+	Vector3 BezierPoint(Vector3 p0,Vector3 p1,Vector3 p2, float t){
+		Vector3 output = Vector3.zero;
+		output.x = (1 - t) * (1 - t) * p0.x + 2 * (1 - t) * t * p1.x + t * t * p2.x;
+		output.z = (1 - t) * (1 - t) * p0.z + 2 * (1 - t) * t * p1.z + t * t * p2.z;
+		return output;
+	}
+	Vector3 shiftRotate (Vector3 p0,Vector3 p1 , float theta){
+		Vector3 p = rotate (p1-p0, theta);
+		p = p.normalized*3.7f;
+		return p+p0;
+	}
+
+	Vector3 rotate (Vector3 p , float theta) {
+		float rad = DEG_TO_RAD (theta);
+		return new Vector3 (p.x * Mathf.Cos (rad) - p.z * Mathf.Sin (rad), p.y, p.x * Mathf.Sin (rad) - p.z * Mathf.Cos (rad));
+	}
+
+	float DEG_TO_RAD (float theta){
+		return theta / 180 * 22 / 7; 
+	}
+	Vector3 uniteVector (Vector3 p){
+		return p.normalized;
+	}
+	void Spawntraffic(){
+		for (int i = TrafficSeparation; i < MiddleNodes.Count - TrafficSeparation; i+=TrafficSeparation) {
+			SpawntrafficCars (Random.Range(i-TrafficSeparation/2,i+TrafficSeparation/2));
+			SpawntrafficRevCars (Random.Range(i-TrafficSeparation/2,i+TrafficSeparation/2));
+		}
+	}
+	void makeWay(){
+		for (int i = 0; i < arr.Length; i++) {
+			makeWayPoint (i);
+		}
+		leftNodes ();
+		rightNodes ();
+	}
+	void OnDrawGizmosSelected() {
+		Gizmos.color = Color.yellow;
+		for(int i = 0; i < MiddleNodes.Count; i++) {
+			Vector3 currentNode = RightNodes[i]+new  Vector3(0,1.5f,0); 
+			Vector3 previousNode = LeftNodes[i]+new  Vector3(0,1.5f,0);
+
+			Gizmos.DrawLine(previousNode, currentNode);
+
+			float x =lerpSepration;
+			while (x < 1) {
+
+				Gizmos.DrawWireSphere(Vector3.Lerp(previousNode, currentNode,x), 0.3f);
+				x += lerpSepration;
+			}
+		}
+		Gizmos.color = Color.red;
+		for(int i = 0; i < MiddleNodes.Count; i++) {
+			Vector3 currentNode = MiddleNodes [i]+new  Vector3(0,1.5f,0); 
+			Vector3 previousNode = Vector3.zero+new  Vector3(0,1.5f,0);
+
+			if (i > 0) {
+				previousNode = MiddleNodes[i - 1]+new  Vector3(0,1.5f,0);
+			} 
+			Gizmos.DrawLine(previousNode, currentNode);
+			Gizmos.DrawWireSphere(currentNode, 0.3f);
+		}
+		Gizmos.color = Color.green;
+		for(int i = 0; i < LeftNodes.Count; i++) {
+			Vector3 currentNode = LeftNodes [i]+new  Vector3(0,1.5f,0); 
+			Vector3 previousNode = Vector3.zero+new  Vector3(0,1.5f,0);
+
+			if (i > 0) {
+				previousNode = LeftNodes[i - 1]+new  Vector3(0,1.5f,0);
+			} 
+			Gizmos.DrawLine(previousNode, currentNode);
+			Gizmos.DrawWireSphere(currentNode, 0.3f);
+		}
+
+		Gizmos.color = Color.blue;
+		for(int i = 0; i < RightNodes.Count; i++) {
+			Vector3 currentNode = RightNodes [i]+new  Vector3(0,1.5f,0); 
+			Vector3 previousNode = Vector3.zero+new  Vector3(0,1.5f,0);
+
+			if (i > 0) {
+				previousNode = RightNodes[i - 1]+new  Vector3(0,1.5f,0);
+			} 
+			Gizmos.DrawLine(previousNode, currentNode);
+			Gizmos.DrawWireSphere(currentNode, 0.3f);
+
+		}
+			
+	}
+
 }
