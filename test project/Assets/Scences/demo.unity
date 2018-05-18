@@ -1115,7 +1115,7 @@ Prefab:
     - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
         type: 2}
       propertyPath: TrafficSeparation
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
         type: 2}
@@ -1123,6 +1123,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1734925800059468, guid: 86669b61e897a6e4babcf8d7cd767112,
         type: 2}
+    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
+        type: 2}
+      propertyPath: NumberOfBlocks
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eec969a5d8fd4ca4f8f35b7ed961479e, type: 2}
   m_IsPrefabParent: 0
