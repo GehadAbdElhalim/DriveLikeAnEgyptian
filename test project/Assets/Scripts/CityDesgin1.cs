@@ -164,36 +164,36 @@ public class CityDesgin1 : MonoBehaviour {
 		roadKinds[15] = DownRight;
 
 		Road upDownBump = new Road();
-		upDown.set(streetBump, up, down, 0, -60, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0), "upDown", new Vector3(0, 0, 0));
-		roadKinds[16] = upDown;
+		upDownBump.set(streetBump, up, down, 0, -60, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0), "upDownBump", new Vector3(0, 0, 0));
+		roadKinds[16] = upDownBump;
 
 		Road downUpBump = new Road();
-		downUp.set(streetBump, down, up, 0, 60, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0), "downUp", new Vector3(0, 0, 0));
-		roadKinds[17] = downUp;
+		downUpBump.set(streetBump, down, up, 0, 60, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0), "downUpBump", new Vector3(0, 0, 0));
+		roadKinds[17] = downUpBump;
 
 		Road leftRightBump = new Road();
-		leftRight.set(streetBump, left, right, 60, 0, new Vector3(0, 0, 0), Quaternion.Euler(-90, -90, 0), "leftRight", new Vector3(0, 0, 0));
-		roadKinds[18] = leftRight;
+		leftRightBump.set(streetBump, left, right, 60, 0, new Vector3(0, 0, 0), Quaternion.Euler(-90, -90, 0), "leftRightBump", new Vector3(0, 0, 0));
+		roadKinds[18] = leftRightBump;
 
 		Road rightLeftBump = new Road();
-		rightLeft.set(streetBump, right, left, -60, 0, new Vector3(0, 0, 0), Quaternion.Euler(-90, -90, 0), "rightLeft", new Vector3(0, 0, 0));
-		roadKinds[19] = rightLeft;
+		rightLeft.set(streetBump, right, left, -60, 0, new Vector3(0, 0, 0), Quaternion.Euler(-90, -90, 0), "rightLeftBump", new Vector3(0, 0, 0));
+		roadKinds[19] = rightLeftBump;
 
 		Road upDownHole = new Road();
-		upDown.set(streetHole, up, down, 0, -60, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0), "upDown", new Vector3(0, 0, 0));
-		roadKinds[20] = upDown;
+		upDownHole.set(streetHole, up, down, 0, -60, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0), "upDownHole", new Vector3(0, 0, 0));
+		roadKinds[20] = upDownHole;
 
 		Road downUpHole = new Road();
-		downUp.set(streetHole, down, up, 0, 60, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0), "downUp", new Vector3(0, 0, 0));
-		roadKinds[21] = downUp;
+		downUpHole.set(streetHole, down, up, 0, 60, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0), "downUpHole", new Vector3(0, 0, 0));
+		roadKinds[21] = downUpHole;
 
 		Road leftRightHole = new Road();
-		leftRight.set(streetHole, left, right, 60, 0, new Vector3(0, 0, 0), Quaternion.Euler(-90, -90, 0), "leftRight", new Vector3(0, 0, 0));
-		roadKinds[22] = leftRight;
+		leftRightHole.set(streetHole, left, right, 60, 0, new Vector3(0, 0, 0), Quaternion.Euler(-90, -90, 0), "leftRightHole", new Vector3(0, 0, 0));
+		roadKinds[22] = leftRightHole;
 
 		Road rightLeftHole = new Road();
-		rightLeft.set(streetHole, right, left, -60, 0, new Vector3(0, 0, 0), Quaternion.Euler(-90, -90, 0), "rightLeft", new Vector3(0, 0, 0));
-		roadKinds[23] = rightLeft;
+		rightLeftHole.set(streetHole, right, left, -60, 0, new Vector3(0, 0, 0), Quaternion.Euler(-90, -90, 0), "rightLeftHole", new Vector3(0, 0, 0));
+		roadKinds[23] = rightLeftHole;
 
 		//		Road intersectionRoadUpDown = new Road();
 		//		intersectionRoadUpDown.set(intersection, up, down, 0, -60, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), "intersectionRoadUpDown", new Vector3(0, 0, 0));

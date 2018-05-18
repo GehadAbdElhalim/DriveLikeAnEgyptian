@@ -26,7 +26,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void Awake()
 		{
-			InvokeRepeating("ActionTaken", 0.5f, 0.5f);
+			InvokeRepeating("ActionTaken", 2.0f, 0.2f);
 
 			None = GameObject.Find ("Canvas/None").GetComponent<Text> ();
 			F = GameObject.Find ("Canvas/Forward").GetComponent<Text> ();
