@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23131945899301286}
   m_Layer: 11
   m_Name: Plane (1)
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 23225327976637404}
   m_Layer: 11
   m_Name: Plane (11)
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 23274924197058298}
   m_Layer: 11
   m_Name: Plane (10)
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 23855424642268718}
   m_Layer: 11
   m_Name: Plane (5)
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 23117478748146266}
   m_Layer: 11
   m_Name: Plane (12)
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 23534543164628654}
   m_Layer: 11
   m_Name: Plane (6)
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 23330400832686134}
   m_Layer: 11
   m_Name: Plane (14)
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 23806179934758238}
   m_Layer: 11
   m_Name: Plane
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 23250204520023342}
   m_Layer: 11
   m_Name: Plane (8)
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 23366688178657254}
   m_Layer: 11
   m_Name: Plane (4)
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -577,7 +577,7 @@ GameObject:
   - component: {fileID: 23284327134483648}
   m_Layer: 11
   m_Name: Plane (7)
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 23944778308797818}
   m_Layer: 11
   m_Name: Plane (2)
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -670,7 +670,7 @@ GameObject:
   - component: {fileID: 23120183989477508}
   m_Layer: 11
   m_Name: Plane (13)
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -688,7 +688,7 @@ GameObject:
   - component: {fileID: 23786886335710106}
   m_Layer: 11
   m_Name: Plane (3)
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -744,7 +744,7 @@ GameObject:
   - component: {fileID: 23189489310951426}
   m_Layer: 11
   m_Name: Plane (9)
-  m_TagString: RoadBlock
+  m_TagString: Side
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

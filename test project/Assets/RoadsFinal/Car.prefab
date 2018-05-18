@@ -2218,10 +2218,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474f617be97254288ae0c1d25381214d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collidedObjects: []
+  collidedObstacles: []
+  collidedPedestrians: []
   lines: []
   CarAngle: 0
-  sensorLength: 10
+  collidedPavement: 0
+  sensorLength: 15
 --- !u!114 &114733720181074226
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,13 +6,14 @@ namespace UnityStandardAssets.Water
 {
     [ExecuteInEditMode] // Make water live-update even when not in play mode
     public class Water : MonoBehaviour
-	{
-		public enum WaterMode
-		{
-			Simple = 0,
-			Reflective = 1,
-			Refractive = 2,
-		};
+    {
+        public enum WaterMode
+        {
+            Simple = 0,
+            Reflective = 1,
+            Refractive = 2,
+        };
+
 
         public WaterMode waterMode = WaterMode.Refractive;
         public bool disablePixelLights = true;
@@ -37,8 +38,7 @@ namespace UnityStandardAssets.Water
         // Because the script executes in edit mode, reflections for the scene view
         // camera will just work!
         public void OnWillRenderObject()
-		{
-
+        {
             if (!enabled || !GetComponent<Renderer>() || !GetComponent<Renderer>().sharedMaterial ||
                 !GetComponent<Renderer>().enabled)
             {
