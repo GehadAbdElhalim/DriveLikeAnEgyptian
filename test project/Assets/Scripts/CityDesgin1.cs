@@ -210,18 +210,17 @@ public class CityDesgin1 : MonoBehaviour {
 //		intersectionRoadRightLeft.set(intersection, right, left, -60, 0, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), "intersectionRoadRightLeft", new Vector3(0, 0, 0));
 //		roadKinds[27] = intersectionRoadRightLeft;
 		numberOfCarsToSeparation();
-		if (AutoGenerte)
+		if (AutoGenerte) {
 			creatMap ();
-		else
+			Debug.Log ("spawn car plz");
+		} else {
 			ReadJSON ();
-		
+		}
+		Debug.Log ("helloooooooooooo");
 		makeWay ();
-		SpawnCar();
+		Debug.Log ("spawn car plz");
+		//SpawnCar();
 		Spawntraffic ();
-
-
-
-        
     }
 
 	/// <summary>
@@ -229,7 +228,7 @@ public class CityDesgin1 : MonoBehaviour {
 	/// </summary>
     void creatMap()
     {
-         arr= new Road[NumberOfBlocks];
+        arr= new Road[NumberOfBlocks];
        
        	// the frist road is fixed upDown Road 
         arr[0] = roadKinds[0];
@@ -269,11 +268,15 @@ public class CityDesgin1 : MonoBehaviour {
 				SpawnObsatcle(arr[i]);
 			}
             //Obstacle Spawning
-            Waypoints[i] = arr[i].postion + arr[i].startPos;
+			if (arr [i].roadType == streetTurn90DownLeft) {
+				Waypoints[i] = arr [i].roadType.transform.Find ("Cube (4)").transform.position + arr [i].postion;
+			} else {
+				Waypoints [i] = arr [i].postion + arr [i].startPos;
+			}
 		}
-//        SpawnAICar();
+        SpawnCar();
         
-        writeString(ToJSONFromArr(arr),JSONFileWirttern);
+        //writeString(ToJSONFromArr(arr),JSONFileWirttern);
     }
 	/// <summary>
 	/// 	reverse the end of the road to know the start
@@ -502,6 +505,7 @@ public class CityDesgin1 : MonoBehaviour {
 
     void SpawnCar()
     {
+		Debug.Log ("please spawn car");
 		Instantiate(Car, new Vector3(0f, 1.5f, 0f), Quaternion.Euler(new Vector3(0.0f,180.0f,0.0f)));
     }
 

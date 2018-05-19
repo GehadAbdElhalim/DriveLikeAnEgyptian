@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -316,7 +316,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &616819200
 GameObject:
@@ -1091,57 +1091,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: finish_line
-      value: 
-      objectReference: {fileID: 1476329139891510, guid: c411c10f0c6a34604aa807048a26ba0a,
-        type: 2}
     - target: {fileID: 1232864599362044, guid: eec969a5d8fd4ca4f8f35b7ed961479e, type: 2}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: JSONFileWirttern
-      value: D:\GUC\semester8\4\2\DriveLikeAnEgyptian\test project\Assets\Files\writtenRoad.txt
-      objectReference: {fileID: 0}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: JSONFile
-      value: D:\GUC\semester8\4\2\DriveLikeAnEgyptian\test project\Assets\Files\roads.txt
-      objectReference: {fileID: 0}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: strategicCar
-      value: 
-      objectReference: {fileID: 1907371814101078, guid: c24239944e53fe343b3c928af506a26d,
-        type: 2}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: TrafficSeparation
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: streetBump
-      value: 
-      objectReference: {fileID: 1734925800059468, guid: 86669b61e897a6e4babcf8d7cd767112,
-        type: 2}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: NumberOfBlocks
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: numberOfCars
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
-        type: 2}
-      propertyPath: numberOfCarsInOneLane
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eec969a5d8fd4ca4f8f35b7ed961479e, type: 2}
@@ -1269,7 +1221,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4757667815876316, guid: 7be3afc5125eaa5448ccff69dfcecf99, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1825036529507128, guid: 7be3afc5125eaa5448ccff69dfcecf99, type: 2}
       propertyPath: m_IsActive

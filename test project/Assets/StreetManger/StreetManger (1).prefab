@@ -57,19 +57,24 @@ MonoBehaviour:
     type: 2}
   streetTurn90DownLeft: {fileID: 1122659521443458, guid: f18db509edf7fb84c89707b6ff23e0fe,
     type: 2}
-  streetBump: {fileID: 1361554420271148, guid: dce76b92e6ecd43bc9f0a611a4067b55, type: 2}
+  streetBump: {fileID: 1734925800059468, guid: 86669b61e897a6e4babcf8d7cd767112, type: 2}
   streetHole: {fileID: 1756362109579994, guid: 115418702953d4f1c89edf653d8273a3, type: 2}
   intersection: {fileID: 1314782726504576, guid: 132209f5334ae477fbf2b39254fc0c9f,
+    type: 2}
+  finish_line: {fileID: 1476329139891510, guid: c411c10f0c6a34604aa807048a26ba0a,
     type: 2}
   JSONFileWirttern: 
   AutoGenerte: 1
   JSONFile: 
-  NumberOfBlocks: 5
+  NumberOfBlocks: 10
   Waypoints: []
-  CarAI: {fileID: 0}
+  CarAI: {fileID: 1318548613186078, guid: de20d17a4cc53044c8af8ad8adddeb33, type: 2}
   Car: {fileID: 1020663461324284, guid: 54dcef9c290334859ad4917ac2c67a05, type: 2}
   ObstacleGenerator: {fileID: 1644025562524226, guid: da077fd5cb75ed0469068dd2c2cdd451,
     type: 2}
   Rainy: {fileID: 13400000, guid: ef6d9bbac9c81cb4f9c03be76616c2db, type: 2}
   Normal: {fileID: 13400000, guid: 6f9f9350dfc07aa43855f7571ea90334, type: 2}
   isRainy: 0
+  strategicCar: {fileID: 1907371814101078, guid: c24239944e53fe343b3c928af506a26d,
+    type: 2}
+  numberOfCarsInOneLane: 5

@@ -18,6 +18,10 @@ public class networkSocket : MonoBehaviour
 	int a;
 	int stuck_counter;
 	float last_velocity;
+	bool correct_direction;
+	Vector3[] Waypoints;
+	int i;
+	bool restarted;
 
 	public bool done;
 	public bool quit;
@@ -56,12 +60,14 @@ public class networkSocket : MonoBehaviour
 			}
 		} else if(message == "restart"){
 			writeSocket ("oksh");
+			restarted = true;
 			EditorSceneManager.LoadScene ("demo");
+			Waypoints = GameObject.Find ("StreetManger (1)").GetComponent<CityDesgin1> ().Waypoints;
 		} else if(message == "Bye!"){
 //			Application.Quit();
 			UnityEditor.EditorApplication.isPlaying = false;
 		}else{
-			 Debug.Log (message);
+			Debug.Log (message);
 			a = Int32.Parse(message.Substring (10,1));
 			// Debug.Log (a);
 			DoAction (a);
@@ -81,10 +87,27 @@ public class networkSocket : MonoBehaviour
 
 	void Update(){
 		DoAction (a);
+		if(restarted){
+			i = 1;
+			restarted = false;
+		}
+		Vector3 CarToWaypoint = GameObject.Find ("Car(Clone)").transform.position - Waypoints [i];
+
+		if(CarToWaypoint.magnitude < 7 ){
+			i += 1;
+		}
+
+		Vector3 direction = Waypoints [i] - Waypoints [i - 1];
+		if (Vector3.Angle (GameObject.Find ("Car(Clone)").transform.forward, direction) <= 80) {
+			correct_direction = true;
+		} else {
+			correct_direction = false;
+		}
 	}
 
     void Awake()
     {
+		Waypoints = GameObject.Find ("StreetManger (1)").GetComponent<CityDesgin1> ().Waypoints;
 		actions_UI[0] = GameObject.Find ("Canvas/None").GetComponent<Text> ();
 		actions_UI[1] = GameObject.Find ("Canvas/Forward").GetComponent<Text> ();
 		actions_UI[2] = GameObject.Find ("Canvas/Backward").GetComponent<Text> ();
@@ -102,8 +125,10 @@ public class networkSocket : MonoBehaviour
 
 		DontDestroyOnLoad (this.gameObject);
         setupSocket();
+		i = 1;
 		a = 0;
 		stuck_counter = 0;
+		restarted = false;
         InvokeRepeating("UpdateMe", 3f, 0.2f);
     }
 
@@ -172,7 +197,7 @@ public class networkSocket : MonoBehaviour
 
 
 	public String getCurrentState(){
-		float[] state_output = new float[45];
+		float[] state_output = new float[44];
 		/*for (int i = 0; i <= 35; i++) {
 			Debug.Log (i);
 			state_output [i] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().lines [i].distance;
@@ -218,40 +243,46 @@ public class networkSocket : MonoBehaviour
 		state_output[i++] = SensorsGlobalManager.Instance.distance350;
 
 		//Car velocity
-		state_output [36] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).x;
-		state_output [37] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).y;
-		state_output [38] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).z;
+		//state_output [36] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).x;
+		//state_output [37] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).y;
+		state_output [36] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).z;
 		// Debug.Log(state_output [38]);
-		last_velocity = state_output [38];
+		last_velocity = state_output [36];
 		//state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScript>().getRoadBlock().transform.eulerAngles.y;
 
 		//Car Angle
-		state_output [39] = GameObject.Find("Car(Clone)").GetComponent<RecordingScript>().CarAngle;
+		state_output [37] = GameObject.Find("Car(Clone)").GetComponent<RecordingScript>().CarAngle * (180/Mathf.PI) / 10;
 
 		if (GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().trafficLights ()) {
-			state_output [40] = 1f;
+			state_output [38] = 1f;
 		} else {
-			state_output [40] = 0f;
+			state_output [38] = 0f;
 		}
 
 		if (GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().isRainy) {
-			state_output [41] = 1f;
+			state_output [39] = 1f;
 		} else {
-			state_output [41] = 0f;
+			state_output [39] = 0f;
 		}
 
-		state_output [42] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedObstacles.Count;
-		state_output [43] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedPedestrians.Count;
+		state_output [40] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedObstacles.Count;
+		state_output [41] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedPedestrians.Count;
 
 		//Pavement-hit
 		if (GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedPavement) {
-			state_output [44] = 1f;
+			state_output [42] = 1f;
 		} else {
-			state_output [44] = 0f;
+			state_output [42] = 0f;
+		}
+
+		if (correct_direction) {
+			state_output [43] = 1f;
+		} else {
+			state_output [43] = 0f;
 		}
 
 		String output = "";
-		for (int j = 0 ; j < 45 ; j++){
+		for (int j = 0 ; j < state_output.Length ; j++){
 			output = output + Convert.ToString (state_output [j]) + ",";
 		}
 

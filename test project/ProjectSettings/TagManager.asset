@@ -12,6 +12,7 @@ TagManager:
   - Network
   - Canvas
   - Bump
+  - checkpoint
   layers:
   - Default
   - TransparentFX
