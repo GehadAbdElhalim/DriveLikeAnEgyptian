@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-
+using UnityEngine.AI;
 /*
  * a rondom city genertator
  * 
@@ -209,12 +209,12 @@ public class CityDesgin1 : MonoBehaviour {
 //		Road intersectionRoadRightLeft = new Road();
 //		intersectionRoadRightLeft.set(intersection, right, left, -60, 0, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), "intersectionRoadRightLeft", new Vector3(0, 0, 0));
 //		roadKinds[27] = intersectionRoadRightLeft;
-
+		numberOfCarsToSeparation();
 		if (AutoGenerte)
 			creatMap ();
 		else
 			ReadJSON ();
-
+		
 		makeWay ();
 		SpawnCar();
 		Spawntraffic ();
@@ -550,8 +550,9 @@ public class CityDesgin1 : MonoBehaviour {
 
 	[Header("Traffic")]
 	public GameObject strategicCar;
-	public int TrafficSeparation ;
+	int TrafficSeparation ;
 
+	public int numberOfCarsInOneLane;
 	const float straightSeparation = .5f;
 	const float lerpSepration = .1f;
 	const float turnSeparation = .05f; 
@@ -560,7 +561,18 @@ public class CityDesgin1 : MonoBehaviour {
 	List<Vector3> MiddleNodes = new List<Vector3>();
 	List<Vector3> LeftNodes = new List<Vector3>();
 	List<Vector3> RightNodes = new List<Vector3>();
-
+	void numberOfCarsToSeparation(){
+		if(numberOfCarsInOneLane <= 0){
+			TrafficSeparation= (int) 1e9;
+		}
+		else if (MiddleNodes.Count > numberOfCarsInOneLane )
+		{
+			TrafficSeparation = MiddleNodes.Count / numberOfCarsInOneLane ;
+		} else{
+			TrafficSeparation = 1 ;
+		}
+		 
+	}
 	void SpawnStrategicCar()
 	{
 		GameObject car = Instantiate(strategicCar, new Vector3(0, 1.5f, 0), Quaternion.Euler(0,180,0)) as GameObject;
@@ -804,6 +816,7 @@ public class CityDesgin1 : MonoBehaviour {
 		return p.normalized;
 	}
 	void Spawntraffic(){
+		numberOfCarsToSeparation();
 		for (int i = TrafficSeparation; i < MiddleNodes.Count - TrafficSeparation; i+=TrafficSeparation) {
 			SpawntrafficCars (Random.Range(i-TrafficSeparation/2,i+TrafficSeparation/2));
 			SpawntrafficRevCars (Random.Range(i-TrafficSeparation/2,i+TrafficSeparation/2));
@@ -868,6 +881,7 @@ public class CityDesgin1 : MonoBehaviour {
 		}
 			
 	}
+
 
 }
 /* this is a new push cuz this is not working */
