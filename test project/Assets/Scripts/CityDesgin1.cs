@@ -269,7 +269,8 @@ public class CityDesgin1 : MonoBehaviour {
 			}
             //Obstacle Spawning
 			if (arr [i].roadType == streetTurn90DownLeft) {
-				Waypoints[i] = arr [i].roadType.transform.Find ("Cube (4)").transform.position + arr [i].postion;
+				//Waypoints[i] = arr [i].roadType.transform.Find ("Cube (4)").transform.position + arr [i].postion;
+				Waypoints [i] = arr [i].postion + arr [i].startPos;
 			} else {
 				Waypoints [i] = arr [i].postion + arr [i].startPos;
 			}

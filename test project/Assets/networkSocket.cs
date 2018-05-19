@@ -89,7 +89,6 @@ public class networkSocket : MonoBehaviour
 		DoAction (a);
 		if(restarted){
 			i = 1;
-			restarted = false;
 		}
 		Vector3 CarToWaypoint = GameObject.Find ("Car(Clone)").transform.position - Waypoints [i];
 
@@ -98,6 +97,7 @@ public class networkSocket : MonoBehaviour
 		}
 
 		Vector3 direction = Waypoints [i] - Waypoints [i - 1];
+		print ("i = " + i);
 		if (Vector3.Angle (GameObject.Find ("Car(Clone)").transform.forward, direction) <= 80) {
 			correct_direction = true;
 		} else {
@@ -105,9 +105,16 @@ public class networkSocket : MonoBehaviour
 		}
 	}
 
+	void putWaypoints(){
+		if (restarted) {
+			Waypoints = GameObject.FindGameObjectWithTag ("manager").GetComponent<CityDesgin1> ().Waypoints;
+			restarted = false;
+		}
+	}
+
     void Awake()
     {
-		Waypoints = GameObject.Find ("StreetManger (1)").GetComponent<CityDesgin1> ().Waypoints;
+		//Waypoints = GameObject.FindGameObjectWithTag("manager").GetComponent<CityDesgin1> ().Waypoints;
 		actions_UI[0] = GameObject.Find ("Canvas/None").GetComponent<Text> ();
 		actions_UI[1] = GameObject.Find ("Canvas/Forward").GetComponent<Text> ();
 		actions_UI[2] = GameObject.Find ("Canvas/Backward").GetComponent<Text> ();
@@ -128,8 +135,9 @@ public class networkSocket : MonoBehaviour
 		i = 1;
 		a = 0;
 		stuck_counter = 0;
-		restarted = false;
+		restarted = true;
         InvokeRepeating("UpdateMe", 3f, 0.2f);
+		InvokeRepeating("putWaypoints", 3f, 0.2f);
     }
 
     void OnApplicationQuit()
