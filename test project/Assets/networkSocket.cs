@@ -18,10 +18,10 @@ public class networkSocket : MonoBehaviour
 	int a;
 	int stuck_counter;
 	float last_velocity;
-	bool correct_direction;
-	Vector3[] Waypoints;
-	int i;
-	bool restarted;
+	//bool correct_direction;
+	//Vector3[] Waypoints;
+	//int i;
+	//bool restarted;
 
 	public bool done;
 	public bool quit;
@@ -60,9 +60,9 @@ public class networkSocket : MonoBehaviour
 			}
 		} else if(message == "restart"){
 			writeSocket ("oksh");
-			restarted = true;
+			//restarted = true;
 			EditorSceneManager.LoadScene ("demo");
-			Waypoints = GameObject.Find ("StreetManger (1)").GetComponent<CityDesgin1> ().Waypoints;
+			//Waypoints = GameObject.Find ("StreetManger (1)").GetComponent<CityDesgin1> ().Waypoints;
 		} else if(message == "Bye!"){
 //			Application.Quit();
 			UnityEditor.EditorApplication.isPlaying = false;
@@ -87,7 +87,7 @@ public class networkSocket : MonoBehaviour
 
 	void Update(){
 		DoAction (a);
-		if(restarted){
+		/*if(restarted){
 			i = 1;
 		}
 		Vector3 CarToWaypoint = GameObject.Find ("Car(Clone)").transform.position - Waypoints [i];
@@ -102,15 +102,15 @@ public class networkSocket : MonoBehaviour
 			correct_direction = true;
 		} else {
 			correct_direction = false;
-		}
+		}*/
 	}
 
-	void putWaypoints(){
+	/*void putWaypoints(){
 		if (restarted) {
 			Waypoints = GameObject.FindGameObjectWithTag ("manager").GetComponent<CityDesgin1> ().Waypoints;
 			restarted = false;
 		}
-	}
+	}*/
 
     void Awake()
     {
@@ -132,10 +132,10 @@ public class networkSocket : MonoBehaviour
 
 		DontDestroyOnLoad (this.gameObject);
         setupSocket();
-		i = 1;
+		//i = 1;
 		a = 0;
 		stuck_counter = 0;
-		restarted = true;
+		//restarted = true;
         InvokeRepeating("UpdateMe", 3f, 0.2f);
 		InvokeRepeating("putWaypoints", 3f, 0.2f);
     }
@@ -283,7 +283,7 @@ public class networkSocket : MonoBehaviour
 			state_output [42] = 0f;
 		}
 
-		if (correct_direction) {
+		if (GameObject.Find("CarDirection").GetComponent<testScript>().DirectionAngle <= 80) {
 			state_output [43] = 1f;
 		} else {
 			state_output [43] = 0f;
