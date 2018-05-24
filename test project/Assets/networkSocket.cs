@@ -74,8 +74,8 @@ public class networkSocket : MonoBehaviour
 			writeSocket ("action done");
 		}
 
-		if ((float)(Math.Round ((double)GameObject.Find ("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.z, 3)) == (float)(Math.Round ((double)last_velocity, 3))) {
-			if ((float)(Math.Round ((double)last_velocity, 2)) == 0f) {
+		if ((float)(Math.Round ((double)GameObject.Find ("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.z, 2)) == (float)(Math.Round ((double)last_velocity, 2))) {
+			if ((float)(Math.Round ((double)last_velocity, 1)) == 0f) {
 				stuck_counter++;
 			}
 		} else {
@@ -205,7 +205,7 @@ public class networkSocket : MonoBehaviour
 
 
 	public String getCurrentState(){
-		float[] state_output = new float[44];
+		float[] state_output = new float[46];
 		/*for (int i = 0; i <= 35; i++) {
 			Debug.Log (i);
 			state_output [i] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().lines [i].distance;
@@ -289,6 +289,12 @@ public class networkSocket : MonoBehaviour
 			state_output [43] = 0f;
 		}
 
+		//adversarial distance
+		state_output[44] = 0f;
+
+		//adversarial ahead or not
+		state_output[45] = 0f;
+
 		String output = "";
 		for (int j = 0 ; j < state_output.Length ; j++){
 			output = output + Convert.ToString (state_output [j]) + ",";
@@ -301,7 +307,7 @@ public class networkSocket : MonoBehaviour
 	{
 		if (GameObject.Find ("Car(Clone)").transform.position.y < -3) {
 			return true;
-		} else if (stuck_counter >= 30) {
+		} else if (stuck_counter >= 10 && GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().trafficLights () == false) {
 			stuck_counter = 0;
 			return true;
 		} else {

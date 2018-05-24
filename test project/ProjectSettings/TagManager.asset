@@ -14,6 +14,7 @@ TagManager:
   - Bump
   - checkpoint
   - manager
+  - construction
   layers:
   - Default
   - TransparentFX

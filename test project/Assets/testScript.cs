@@ -12,7 +12,7 @@ public class testScript : MonoBehaviour {
 	void Start () {
 		restarted = true;
 		i = 1;
-		Invoke ("putWaypoints", 3f);
+		Invoke ("putWaypoints", 1f);
 	}
 
 	void putWaypoints(){
@@ -33,7 +33,7 @@ public class testScript : MonoBehaviour {
 			Vector3 direction = Waypoints [i] - Waypoints [i - 1];
 
 			this.transform.forward = direction;
-			print (Vector3.Angle (this.transform.forward, GameObject.Find ("Car(Clone)").transform.forward));
+			//print (Vector3.Angle (this.transform.forward, GameObject.Find ("Car(Clone)").transform.forward));
 			DirectionAngle = Vector3.Angle (this.transform.forward, GameObject.Find ("Car(Clone)").transform.forward);
 		}
 	}

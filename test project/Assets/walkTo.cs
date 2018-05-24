@@ -67,17 +67,22 @@ namespace UnityStandardAssets.Vehicles.Car
 
 	    void OnCollisionEnter(Collision other)
 	    {
-	        if (other.gameObject.CompareTag("Player"))
-	        {
-	            if (other.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1.5)
-	            {
-	                Debug.Log("hello");
-	                anim.SetBool("IsRun", false);
-	                anim.SetBool("IsDead", true);
-	                this.gameObject.GetComponent<NavMeshAgent>().isStopped = true;
-	            }
-	        }
+			if (other.gameObject.CompareTag ("Player")) {
+				if (other.gameObject.GetComponent<Rigidbody> ().velocity.magnitude > 1.5) {
+					Debug.Log ("hello");
+					anim.SetBool ("IsRun", false);
+					anim.SetBool ("IsDead", true);
+					this.gameObject.GetComponent<NavMeshAgent> ().isStopped = true;
+					Invoke ("disappear", 1.5f);
+				}
+			} else if (other.gameObject.CompareTag ("construction")) {
+				GameObject.Destroy (this.gameObject);
+			}
 	    }
+
+		void disappear(){
+			GameObject.Destroy (this.gameObject);
+		}
 
 	    /*void OnTriggerEnter(Collider other)
 	    {
