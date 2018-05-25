@@ -212,15 +212,12 @@ public class CityDesgin1 : MonoBehaviour {
 		numberOfCarsToSeparation();
 		if (AutoGenerte) {
 			creatMap ();
-			Debug.Log ("spawn car plz");
 		} else {
 			ReadJSON ();
 		}
-		Debug.Log ("helloooooooooooo");
 		makeWay ();
-		Debug.Log ("spawn car plz");
 		//SpawnCar();
-		Spawntraffic ();
+		//Spawntraffic ();
     }
 
 	/// <summary>
@@ -263,10 +260,10 @@ public class CityDesgin1 : MonoBehaviour {
         {
             Instantiate(arr[i].roadType, arr[i].postion + arr[i].startPos, arr[i].Rotation);
             //Obstacle Spawning
-			if ( (arr[i].roadType == streetLane60mVertical) || (arr[i].roadType == streetBump) || (arr[i].roadType == streetHole) ) 
-			{
-				SpawnObsatcle(arr[i]);
-			}
+			//if ( (arr[i].roadType == streetLane60mVertical) || (arr[i].roadType == streetBump) || (arr[i].roadType == streetHole) ) 
+			//{
+			//	SpawnObsatcle(arr[i]);
+			//}
             //Obstacle Spawning
 			if (arr [i].roadType == streetTurn90DownLeft) {
 				//Waypoints[i] = arr [i].roadType.transform.Find ("Cube (4)").transform.position + arr [i].postion;

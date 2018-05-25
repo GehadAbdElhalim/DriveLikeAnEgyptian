@@ -18,6 +18,8 @@ public class networkSocket : MonoBehaviour
 	int a;
 	int stuck_counter;
 	float last_velocity;
+	bool crashed;
+	bool ready;
 	//bool correct_direction;
 	//Vector3[] Waypoints;
 	//int i;
@@ -38,55 +40,63 @@ public class networkSocket : MonoBehaviour
 	bool finished = false;
 
     void UpdateMe()
-    {		
-		String message = readSocket ();
-		//Debug.Log (readSocket());
-		if (message == "Send the starting State") {
-			// Debug.Log ("arrived");
-			if (finished) {
-				finished = false;
-				writeSocket ("finished");
-			}
-			if (quit) {
-				quit = false;
-				writeSocket ("quit");
-			}
-			if (State_is_done () || done) {
-				done = false;
-				writeSocket ("done");
-			} else {
-				// Debug.Log ("else part");
-				writeSocket (getCurrentState ());
-			}
-		} else if(message == "restart"){
-			writeSocket ("oksh");
-			//restarted = true;
-			EditorSceneManager.LoadScene ("demo");
-			//Waypoints = GameObject.Find ("StreetManger (1)").GetComponent<CityDesgin1> ().Waypoints;
-		} else if(message == "Bye!"){
+    {	
+		if (ready) {
+			String message = readSocket ();
+			//Debug.Log (readSocket());
+			if (message == "Send the starting State") {
+				// Debug.Log ("arrived");
+				if (finished) {
+					finished = false;
+					writeSocket ("finished");
+				}
+				if (quit) {
+					quit = false;
+					writeSocket ("quit");
+				}
+				if (State_is_done () || done) {
+					done = false;
+					writeSocket ("done");
+				} else {
+					// Debug.Log ("else part");
+					writeSocket (getCurrentState ());
+				}
+			} else if (message == "restart") {
+				writeSocket ("oksh");
+				//restarted = true;
+				EditorSceneManager.LoadScene ("demo");
+				ready = false;
+				Invoke ("activate_ready", 3f);
+				//Waypoints = GameObject.Find ("StreetManger (1)").GetComponent<CityDesgin1> ().Waypoints;
+			} else if (message == "Bye!") {
 //			Application.Quit();
-			UnityEditor.EditorApplication.isPlaying = false;
-		}else{
-			Debug.Log (message);
-			a = Int32.Parse(message.Substring (10,1));
-			// Debug.Log (a);
-			DoAction (a);
-			writeSocket ("action done");
-		}
-
-		if ((float)(Math.Round ((double)GameObject.Find ("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.z, 2)) == (float)(Math.Round ((double)last_velocity, 2))) {
-			if ((float)(Math.Round ((double)last_velocity, 1)) == 0f) {
-				stuck_counter++;
+				UnityEditor.EditorApplication.isPlaying = false;
+			} else {
+				Debug.Log (message);
+				a = Int32.Parse (message.Substring (10, 1));
+				// Debug.Log (a);
+				DoAction (a);
+				writeSocket ("action done");
 			}
-		} else {
-			stuck_counter = 0;
-		}
 
-		
+			if ((float)(Math.Round ((double)GameObject.Find ("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.z, 3)) == (float)(Math.Round ((double)last_velocity, 3))) {
+				if ((float)(Math.Round ((double)last_velocity, 2)) == 0f) {
+					stuck_counter++;
+				}
+			} else {
+				stuck_counter = 0;
+			}
+		}
     }
 
+	public void activate_ready(){
+		ready = true;
+	}
+
 	void Update(){
-		DoAction (a);
+		if (ready) {
+			DoAction (a);
+		}
 		/*if(restarted){
 			i = 1;
 		}
@@ -135,6 +145,8 @@ public class networkSocket : MonoBehaviour
 		//i = 1;
 		a = 0;
 		stuck_counter = 0;
+		crashed = false;
+		ready = true;
 		//restarted = true;
         InvokeRepeating("UpdateMe", 3f, 0.2f);
 		InvokeRepeating("putWaypoints", 3f, 0.2f);
@@ -274,6 +286,12 @@ public class networkSocket : MonoBehaviour
 		}
 
 		state_output [40] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedObstacles.Count;
+
+		//just for step one training
+		if(state_output[40] > 0){
+			crashed = true;
+		}
+		//just for step one training
 		state_output [41] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedPedestrians.Count;
 
 		//Pavement-hit
@@ -307,8 +325,11 @@ public class networkSocket : MonoBehaviour
 	{
 		if (GameObject.Find ("Car(Clone)").transform.position.y < -3) {
 			return true;
-		} else if (stuck_counter >= 10 && GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().trafficLights () == false) {
+		} else if (stuck_counter >= 30 && GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().trafficLights () == false) {
 			stuck_counter = 0;
+			return true;
+		} else if(crashed){
+			crashed = false;
 			return true;
 		} else {
 			return false;

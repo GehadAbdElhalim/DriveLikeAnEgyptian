@@ -12,7 +12,7 @@ public class testScript : MonoBehaviour {
 	void Start () {
 		restarted = true;
 		i = 1;
-		Invoke ("putWaypoints", 1f);
+		Invoke ("putWaypoints", 3f);
 	}
 
 	void putWaypoints(){
