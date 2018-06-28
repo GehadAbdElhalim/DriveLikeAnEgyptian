@@ -16,6 +16,7 @@ public class networkSocket : MonoBehaviour
     public Int32 port = 50000;
 
 	int a;
+	float[] x;
 	int stuck_counter;
 	float last_velocity;
 	bool crashed;
@@ -27,6 +28,7 @@ public class networkSocket : MonoBehaviour
 
 	public bool done;
 	public bool quit;
+	public bool A3C;
 
     internal Boolean socket_ready = false;
     internal String input_buffer = "";
@@ -37,19 +39,19 @@ public class networkSocket : MonoBehaviour
     StreamReader socket_reader;
 
 	Text [] actions_UI = new Text[9];
-	bool finished = false;
+	//bool finished = false;
+	public bool myfinished = false;
 
     void UpdateMe()
     {	
 		if (ready) {
 			String message = readSocket ();
-			//Debug.Log (readSocket());
 			if (message == "Send the starting State") {
 				// Debug.Log ("arrived");
-				if (finished) {
-					finished = false;
+				/*else if (myfinished) {
+					myfinished = false;
 					writeSocket ("finished");
-				}
+				}*/
 				if (quit) {
 					quit = false;
 					writeSocket ("quit");
@@ -57,6 +59,9 @@ public class networkSocket : MonoBehaviour
 				if (State_is_done () || done) {
 					done = false;
 					writeSocket ("done");
+				} else if (myfinished) {
+					myfinished = false;
+					writeSocket ("finished");
 				} else {
 					// Debug.Log ("else part");
 					writeSocket (getCurrentState ());
@@ -72,20 +77,36 @@ public class networkSocket : MonoBehaviour
 //			Application.Quit();
 				UnityEditor.EditorApplication.isPlaying = false;
 			} else {
-				Debug.Log (message);
+				if (!A3C) {
 				a = Int32.Parse (message.Substring (10, 1));
 				// Debug.Log (a);
 				DoAction (a);
 				writeSocket ("action done");
+				} else {
+					string[] y;
+					string[] z = new string[2];
+					y = message.Split (',');
+					//z [0] = Math.Round (Convert.ToDouble(y [0]), 4).ToString ();
+					//z [1] = Math.Round (Convert.ToDouble (y [1]), 4).ToString ();
+					//Debug.Log (z[0]);
+					//x [0] = float.Parse (z [0],System.Globalization.CultureInfo.InvariantCulture);
+					//x [1] = float.Parse (z [1],System.Globalization.CultureInfo.InvariantCulture);
+					x[0] = Convert.ToSingle(y[0]);
+					x[1] = Convert.ToSingle(y[1]);
+					DoActionA3C (x[0],x[1]);
+					writeSocket ("action done");
+				}
 			}
 
-			if ((float)(Math.Round ((double)GameObject.Find ("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.z, 3)) == (float)(Math.Round ((double)last_velocity, 3))) {
+			if ((float)(Math.Round ((double)GameObject.Find ("Car(Clone)").transform.GetComponent<Rigidbody> ().velocity.z, 2)) == (float)(Math.Round ((double)last_velocity, 2))) {
 				if ((float)(Math.Round ((double)last_velocity, 2)) == 0f) {
 					stuck_counter++;
 				}
 			} else {
 				stuck_counter = 0;
 			}
+		} else {
+			myfinished = false;
 		}
     }
 
@@ -95,7 +116,11 @@ public class networkSocket : MonoBehaviour
 
 	void Update(){
 		if (ready) {
-			DoAction (a);
+			if (!A3C) {
+				DoAction (a);
+			} else {
+				DoActionA3C (x[0],x[1]);
+			}
 		}
 		/*if(restarted){
 			i = 1;
@@ -144,12 +169,13 @@ public class networkSocket : MonoBehaviour
         setupSocket();
 		//i = 1;
 		a = 0;
+		x = new float[2];
 		stuck_counter = 0;
 		crashed = false;
 		ready = true;
 		//restarted = true;
-        InvokeRepeating("UpdateMe", 3f, 0.2f);
-		InvokeRepeating("putWaypoints", 3f, 0.2f);
+        InvokeRepeating("UpdateMe", 3f, 0.025f);
+		InvokeRepeating("putWaypoints", 3f, 0.1f);
     }
 
     void OnApplicationQuit()
@@ -211,13 +237,17 @@ public class networkSocket : MonoBehaviour
         socket_ready = false;
 	}
 
-	public void set_finished(){
-		finished = true;
+	//public void set_finished(){
+	//	finished = true;
+	//}
+
+	public void set_myfinished(){
+		myfinished = true;
 	}
 
 
 	public String getCurrentState(){
-		float[] state_output = new float[46];
+		float[] state_output = new float[82];
 		/*for (int i = 0; i <= 35; i++) {
 			Debug.Log (i);
 			state_output [i] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript> ().lines [i].distance;
@@ -225,93 +255,129 @@ public class networkSocket : MonoBehaviour
 
 		//Sensor obstacle distance
 		int i = 0;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type0);
 		state_output[i++] = SensorsGlobalManager.Instance.distance0;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type10);
 		state_output[i++] = SensorsGlobalManager.Instance.distance10;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type20);
 		state_output[i++] = SensorsGlobalManager.Instance.distance20;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type30);
 		state_output[i++] = SensorsGlobalManager.Instance.distance30;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type40);
 		state_output[i++] = SensorsGlobalManager.Instance.distance40;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type50);
 		state_output[i++] = SensorsGlobalManager.Instance.distance50;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type60);
 		state_output[i++] = SensorsGlobalManager.Instance.distance60;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type70);
 		state_output[i++] = SensorsGlobalManager.Instance.distance70;
-		state_output[i++] = SensorsGlobalManager.Instance.distance80; 
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type80);
+		state_output[i++] = SensorsGlobalManager.Instance.distance80;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type90);
 		state_output[i++] = SensorsGlobalManager.Instance.distance90;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type100);
 		state_output[i++] = SensorsGlobalManager.Instance.distance100;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type110);
 		state_output[i++] = SensorsGlobalManager.Instance.distance110;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type120);
 		state_output[i++] = SensorsGlobalManager.Instance.distance120;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type130);
 		state_output[i++] = SensorsGlobalManager.Instance.distance130;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type140);
 		state_output[i++] = SensorsGlobalManager.Instance.distance140;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type150);
 		state_output[i++] = SensorsGlobalManager.Instance.distance150;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type160);
 		state_output[i++] = SensorsGlobalManager.Instance.distance160;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type170);
 		state_output[i++] = SensorsGlobalManager.Instance.distance170;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type180);
 		state_output[i++] = SensorsGlobalManager.Instance.distance180;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type190);
 		state_output[i++] = SensorsGlobalManager.Instance.distance190;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type200);
 		state_output[i++] = SensorsGlobalManager.Instance.distance200;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type210);
 		state_output[i++] = SensorsGlobalManager.Instance.distance210;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type220);
 		state_output[i++] = SensorsGlobalManager.Instance.distance220;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type230);
 		state_output[i++] = SensorsGlobalManager.Instance.distance230;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type240);
 		state_output[i++] = SensorsGlobalManager.Instance.distance240;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type250);
 		state_output[i++] = SensorsGlobalManager.Instance.distance250;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type260);
 		state_output[i++] = SensorsGlobalManager.Instance.distance260;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type270);
 		state_output[i++] = SensorsGlobalManager.Instance.distance270;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type280);
 		state_output[i++] = SensorsGlobalManager.Instance.distance280;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type290);
 		state_output[i++] = SensorsGlobalManager.Instance.distance290;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type300);
 		state_output[i++] = SensorsGlobalManager.Instance.distance300;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type310);
 		state_output[i++] = SensorsGlobalManager.Instance.distance310;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type320);
 		state_output[i++] = SensorsGlobalManager.Instance.distance320;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type330);
 		state_output[i++] = SensorsGlobalManager.Instance.distance330;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type340);
 		state_output[i++] = SensorsGlobalManager.Instance.distance340;
+		state_output [i++] = get_type(SensorsGlobalManager.Instance.type350);
 		state_output[i++] = SensorsGlobalManager.Instance.distance350;
 
 		//Car velocity
 		//state_output [36] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).x;
 		//state_output [37] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).y;
-		state_output [36] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).z;
+		state_output [72] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).z;
 		// Debug.Log(state_output [38]);
-		last_velocity = state_output [36];
+		last_velocity = state_output [72];
 		//state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScript>().getRoadBlock().transform.eulerAngles.y;
 
 		//Car Angle
-		state_output [37] = GameObject.Find("Car(Clone)").GetComponent<RecordingScript>().CarAngle * (180/Mathf.PI) / 10;
+		state_output [73] = GameObject.Find("Car(Clone)").GetComponent<RecordingScript>().CarAngle * (180/Mathf.PI) / 10;
 
 		if (GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().trafficLights ()) {
-			state_output [38] = 1f;
+			state_output [74] = 1f;
 		} else {
-			state_output [38] = 0f;
+			state_output [74] = 0f;
 		}
 
 		if (GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().isRainy) {
-			state_output [39] = 1f;
+			state_output [75] = 1f;
 		} else {
-			state_output [39] = 0f;
+			state_output [75] = 0f;
 		}
 
-		state_output [40] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedObstacles.Count;
-
+		state_output [76] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedObstacles.Count;
+		 
 		//just for step one training
-		if(state_output[40] > 0){
+		if(state_output[76] > 0){
 			crashed = true;
 		}
-		//just for step one training
-		state_output [41] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedPedestrians.Count;
+		
+		state_output [77] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedPedestrians.Count;
 
 		//Pavement-hit
 		if (GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().collidedPavement) {
-			state_output [42] = 1f;
+			state_output [78] = 1f;
 		} else {
-			state_output [42] = 0f;
+			state_output [78] = 0f;
 		}
 
 		if (GameObject.Find("CarDirection").GetComponent<testScript>().DirectionAngle <= 80) {
-			state_output [43] = 1f;
+			state_output [79] = 1f;
 		} else {
-			state_output [43] = 0f;
+			state_output [79] = 0f;
 		}
 
 		//adversarial distance
-		state_output[44] = 0f;
+		state_output[80] = 0f;
 
 		//adversarial ahead or not
-		state_output[45] = 0f;
+		state_output[81] = 0f;
 
 		String output = "";
 		for (int j = 0 ; j < state_output.Length ; j++){
@@ -325,7 +391,7 @@ public class networkSocket : MonoBehaviour
 	{
 		if (GameObject.Find ("Car(Clone)").transform.position.y < -3) {
 			return true;
-		} else if (stuck_counter >= 30 && GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().trafficLights () == false) {
+		} else if (stuck_counter >= 200 && GameObject.Find("Car(Clone)").GetComponent<RecordingScript> ().trafficLights () == false) {
 			stuck_counter = 0;
 			return true;
 		} else if(crashed){
@@ -410,6 +476,54 @@ public class networkSocket : MonoBehaviour
 			GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().Acceleration = -1f;
 			//CrossPlatformInputManager.SetAxis ("Horizontal", -1f);
 			//CrossPlatformInputManager.SetAxis ("Vertical", -1f);
+		}
+	}
+
+	public void DoActionA3C(float A , float S){
+		GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().SteeringAngle = S;
+		GameObject.Find("Car(Clone)").GetComponent<CarRemoteControl> ().Acceleration = A;
+	}
+
+	public float get_type(String word){
+
+		/*if (word == "Pavement (1)" || word == "Pavement"){
+			return 1f;
+		}
+
+		if (word == "construction" || word == "construction(2)" ){
+			return 2f;
+		}
+
+		if (word == "Pedestrian"){
+			return 3f;
+		}
+
+		if (word == "hole"){
+			return 4f;
+		}
+
+		if (word == "Body"){
+			return 5f;
+		}
+
+		if (word == "bump"){
+			return 6f;
+		}
+
+		if (word == "RoadBlock") {
+			return 7f;
+		}
+
+		return 0f;*/
+
+		if(word == "construction" || word == "construction(2)" || word == "Pedestrian" || word == "Body" || word == "RoadBlock"){
+			return 1f;
+		}
+		else if(word == "Pavement (1)" || word == "Pavement"){
+			return 0.5f;
+		}
+		else{
+			return 0f;
 		}
 	}
 

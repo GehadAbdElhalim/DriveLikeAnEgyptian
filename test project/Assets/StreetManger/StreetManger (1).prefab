@@ -63,10 +63,10 @@ MonoBehaviour:
     type: 2}
   finish_line: {fileID: 1476329139891510, guid: c411c10f0c6a34604aa807048a26ba0a,
     type: 2}
-  JSONFileWirttern: 
+  JSONFileWirttern: D:\test plz work\DriveLikeAnEgyptian\test project\Assets\Files\WrittenFile.txt
   AutoGenerte: 1
-  JSONFile: 
-  NumberOfBlocks: 10
+  JSONFile: D:\test plz work\DriveLikeAnEgyptian\test project\Assets\Files\ReadFile.txt
+  NumberOfBlocks: 7
   Waypoints: []
   CarAI: {fileID: 1318548613186078, guid: de20d17a4cc53044c8af8ad8adddeb33, type: 2}
   Car: {fileID: 1020663461324284, guid: 54dcef9c290334859ad4917ac2c67a05, type: 2}

@@ -51,7 +51,7 @@ public class CityDesgin1 : MonoBehaviour {
     const int left = 2;
     const int down = 3;
     int NumOfCol = 0;
-    static Road[] roadKinds = new Road[25];
+    static Road[] roadKinds = new Road[24];
     Road[] arr;
     struct Myx
     {
@@ -198,9 +198,9 @@ public class CityDesgin1 : MonoBehaviour {
 //		intersectionRoadUpDown.set(intersection, up, down, 0, -60, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), "intersectionRoadUpDown", new Vector3(0, 0, 0));
 //		roadKinds[24] = intersectionRoadUpDown;
 
-		Road intersectionRoadDownUp = new Road();
-		intersectionRoadDownUp.set(intersection, down, up, 0, 60, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), "intersectionRoadDownUp", new Vector3(0, 0, 0));
-		roadKinds[24] = intersectionRoadDownUp;
+		//Road intersectionRoadDownUp = new Road();
+		//intersectionRoadDownUp.set(intersection, down, up, 0, 60, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), "intersectionRoadDownUp", new Vector3(0, 0, 0));
+		//roadKinds[24] = intersectionRoadDownUp;
 //
 //		Road intersectionRoadLeftRight = new Road();
 //		intersectionRoadLeftRight.set(intersection, left, right, 60, 0, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), "intersectionRoadLeftRight", new Vector3(0, 0, 0));
@@ -215,6 +215,7 @@ public class CityDesgin1 : MonoBehaviour {
 		} else {
 			ReadJSON ();
 		}
+		SpawnCar ();
 		makeWay ();
 		//SpawnCar();
 		//Spawntraffic ();
@@ -258,23 +259,49 @@ public class CityDesgin1 : MonoBehaviour {
 		// if all of the road is made the code will make the map and save it
         for (int i = 0; i < NumberOfBlocks; i++)
         {
-            Instantiate(arr[i].roadType, arr[i].postion + arr[i].startPos, arr[i].Rotation);
-            //Obstacle Spawning
-			//if ( (arr[i].roadType == streetLane60mVertical) || (arr[i].roadType == streetBump) || (arr[i].roadType == streetHole) ) 
-			//{
-			//	SpawnObsatcle(arr[i]);
-			//}
-            //Obstacle Spawning
-			if (arr [i].roadType == streetTurn90DownLeft) {
-				//Waypoints[i] = arr [i].roadType.transform.Find ("Cube (4)").transform.position + arr [i].postion;
-				Waypoints [i] = arr [i].postion + arr [i].startPos;
-			} else {
-				Waypoints [i] = arr [i].postion + arr [i].startPos;
+				if (arr [i].roadType == streetCrossXRoads && (arr [i].start == up || arr [i].start == down)) {
+					arr [i].roadType.transform.Find ("InvisibleWall3").GetComponent<MeshCollider> ().enabled = false;
+					arr [i].roadType.transform.Find ("InvisibleWall4").GetComponent<MeshCollider> ().enabled = false;
+				}
+
+				if (arr [i].roadType == streetCrossXRoads && (arr [i].start == right || arr [i].start == left)) {
+					arr [i].roadType.transform.Find ("InvisibleWall1").GetComponent<MeshCollider> ().enabled = false;
+					arr [i].roadType.transform.Find ("InvisibleWall2").GetComponent<MeshCollider> ().enabled = false;
+				}
+
+				Instantiate (arr [i].roadType, arr [i].postion + arr [i].startPos, arr [i].Rotation);
+				//Obstacle Spawning
+				if ( (arr[i].roadType == streetLane60mVertical) || (arr[i].roadType == streetBump) || (arr[i].roadType == streetHole) ) 
+				{
+					if (i != 0) {
+						SpawnObsatcle (arr [i]);
+					}
+				}
+				//Obstacle Spawning
+
+				if (arr [i].roadType == streetCrossXRoads && (arr [i].start == up || arr [i].start == down)) {
+					arr [i].roadType.transform.Find ("InvisibleWall3").GetComponent<MeshCollider> ().enabled = true;
+					arr [i].roadType.transform.Find ("InvisibleWall4").GetComponent<MeshCollider> ().enabled = true;
+				}
+
+				if (arr [i].roadType == streetCrossXRoads && (arr [i].start == right || arr [i].start == left)) {
+					arr [i].roadType.transform.Find ("InvisibleWall1").GetComponent<MeshCollider> ().enabled = true;
+					arr [i].roadType.transform.Find ("InvisibleWall2").GetComponent<MeshCollider> ().enabled = true;
+				}
+
+				if (arr [i].roadType == streetTurn90DownLeft) {
+					//Waypoints[i] = arr [i].roadType.transform.Find ("Cube (4)").transform.position + arr [i].postion;
+					Waypoints [i] = arr [i].postion + arr [i].startPos;
+				} else {
+					Waypoints [i] = arr [i].postion + arr [i].startPos;
+				}
+
+			if (i == NumberOfBlocks - 1) 
+			{
+				Instantiate (finish_line, arr [i].postion + arr [i].startPos, Quaternion.Euler(0, 0, 0));
 			}
 		}
-        SpawnCar();
-        
-        //writeString(ToJSONFromArr(arr),JSONFileWirttern);
+        writeString(ToJSONFromArr(arr),JSONFileWirttern);
     }
 	/// <summary>
 	/// 	reverse the end of the road to know the start
@@ -442,7 +469,46 @@ public class CityDesgin1 : MonoBehaviour {
 		arr= new Road[NumberOfBlocks];;
 		for (int i = 0; i < roads.Length; i++) {
 			arr [i] = roads [i];
+
+			if (arr [i].name == "crossRoadUpDown" || arr[i].name == "crossRoadDownUp") {
+				stringToRoad(roads[i].name).transform.Find ("InvisibleWall3").GetComponent<MeshCollider> ().enabled = false;
+				stringToRoad(roads[i].name).transform.Find ("InvisibleWall4").GetComponent<MeshCollider> ().enabled = false;
+			}
+
+			if (arr [i].name == "crossRoadLeftRight" || arr[i].name == "crossRoadRightLeft") {
+				stringToRoad(roads[i].name).transform.Find ("InvisibleWall1").GetComponent<MeshCollider> ().enabled = false;
+				stringToRoad(roads[i].name).transform.Find ("InvisibleWall2").GetComponent<MeshCollider> ().enabled = false;
+			}
+
 			Instantiate (stringToRoad(roads[i].name),roads[i].postion+roads[i].startPos,roads[i].Rotation);
+
+			//Obstacle Spawning
+			if ( (arr[i].name == "upDown") || (arr[i].name == "downUp") || (arr[i].name == "leftRight") || (arr[i].name == "rightLeft") ) 
+			{
+				if (i != 0) {
+					SpawnObsatcle (arr[i]);
+				}
+			}
+			//Obstacle Spawning
+
+
+			if (arr [i].name == "crossRoadUpDown" || arr[i].name == "crossRoadDownUp") {
+				stringToRoad(roads[i].name).transform.Find ("InvisibleWall3").GetComponent<MeshCollider> ().enabled = true;
+				stringToRoad(roads[i].name).transform.Find ("InvisibleWall4").GetComponent<MeshCollider> ().enabled = true;
+			}
+
+			if (arr [i].name == "crossRoadLeftRight" || arr[i].name == "crossRoadRightLeft") {
+				stringToRoad(roads[i].name).transform.Find ("InvisibleWall1").GetComponent<MeshCollider> ().enabled = true;
+				stringToRoad(roads[i].name).transform.Find ("InvisibleWall2").GetComponent<MeshCollider> ().enabled = true;
+			}
+
+			Waypoints [i] = arr [i].postion + arr [i].startPos; 
+
+			if (i == roads.Length - 1) 
+			{
+				Instantiate (finish_line, arr [i].postion + arr [i].startPos, Quaternion.Euler(0, 0, 0));
+			}
+
 		}
 	}
 	/// <summary>

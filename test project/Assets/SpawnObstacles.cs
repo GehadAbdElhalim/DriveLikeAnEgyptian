@@ -21,7 +21,7 @@ public class SpawnObstacles : MonoBehaviour {
 
     // Update is called once per frame
     void Start () {
-        int randomNumber = Random.Range(0, 5);
+        int randomNumber = Random.Range(1, 3);
 
 		conflict = false;
 

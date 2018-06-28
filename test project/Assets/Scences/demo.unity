@@ -2144,6 +2144,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
+        type: 2}
+      propertyPath: NumberOfBlocks
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114842081830993152, guid: eec969a5d8fd4ca4f8f35b7ed961479e,
+        type: 2}
+      propertyPath: AutoGenerte
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eec969a5d8fd4ca4f8f35b7ed961479e, type: 2}
   m_IsPrefabParent: 0
@@ -6244,6 +6254,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1825036529507128, guid: 7be3afc5125eaa5448ccff69dfcecf99, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825036529507128, guid: 7be3afc5125eaa5448ccff69dfcecf99, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114626027938139846, guid: 7be3afc5125eaa5448ccff69dfcecf99,
+        type: 2}
+      propertyPath: A3C
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
