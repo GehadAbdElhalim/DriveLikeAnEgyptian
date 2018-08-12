@@ -56,7 +56,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
 	        if (distance.magnitude < 1)
 	        {
-				GameObject.Find ("Car(Clone)").GetComponent<RecordingScript> ().collidedObstacles.Remove(gameObject.GetComponent<Collider>());
+				GameObject.Find ("Car(Clone)").GetComponent<RecordingScript2> ().collidedObstacles.Remove(gameObject.GetComponent<Collider>());
 	            Destroy(this.gameObject);
 	        }
 	        else

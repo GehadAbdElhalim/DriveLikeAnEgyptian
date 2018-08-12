@@ -2117,6 +2117,9 @@ MonoBehaviour:
   m_RevRangeBoundary: 1
   m_SlipLimit: 0.3
   m_BrakeTorque: 20000
+  CenterCamera: {fileID: 0}
+  LeftCamera: {fileID: 0}
+  RightCamera: {fileID: 0}
 --- !u!114 &114347883534196744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2187,7 +2190,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30a05893a61f4f4589ca175528b5c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lane: {fileID: 0}
+  Lane:
+  - {x: 0.0035452638, y: 0, z: 9.1e-44}
+  i: 0
 --- !u!114 &114690657717521062
 MonoBehaviour:
   m_ObjectHideFlags: 1

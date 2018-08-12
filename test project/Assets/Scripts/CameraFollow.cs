@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour {
 
 	void LateUpdate(){
 		try {
-			target = GameObject.Find ("Car(Clone)").transform;
+			target = GameObject.FindWithTag ("CarPlayer").transform;
 			transform.position = new Vector3 (target.position.x, transform.position.y, target.position.z);
 		} catch(System.Exception e){
 			Debug.LogException(e, this);

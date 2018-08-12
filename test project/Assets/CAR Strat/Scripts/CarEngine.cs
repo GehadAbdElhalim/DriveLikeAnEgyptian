@@ -44,9 +44,15 @@ public class CarEngine : MonoBehaviour {
 	private bool avoiding = false;
 	private float targetSteerAngle = 0;
 
+	public bool NoNavMesh ;
 	private void Start() {
 		GetComponent<Rigidbody>().centerOfMass = centerOfMass;
 		NMA = this.GetComponent<NavMeshAgent> ();
+		if (NMA == null){
+			NoNavMesh = true;
+		}else{
+			NoNavMesh = false;
+		}
 		/*Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
         nodes = new List<Transform>();
 
@@ -57,12 +63,16 @@ public class CarEngine : MonoBehaviour {
         }*/
 	}
 	private void FixedUpdate() {
-
-		//ApplySteer();
-		//Drive();
-		CheckWaypointDistance();
-		//Braking();
-		//	LerpToSteerAngle();
+		
+		if(NoNavMesh){
+		ApplySteer();
+		Drive();
+		CheckWaypointDistanceWithNoPoint();
+		Braking();
+		LerpToSteerAngle();
+		} else{
+			CheckWaypointDistance();
+		}
 	}
 	void speedUP (){
 		wheelFL.motorTorque = maxMotorTorque*3;
@@ -219,7 +229,50 @@ public class CarEngine : MonoBehaviour {
 
 	}
 
-
+	private void CheckWaypointDistanceWithNoPoint(){
+			Vector3 BN =  bestNode (currectNode);
+		if (!rev) {
+			if (Vector3.Distance (transform.position,BN) < 1f) {
+				if (currectNode == midPoints.Count - 1) {
+					GameObject car =  Instantiate (gameObject, Vector3.Lerp (leftPoints [0], rightPoints [0], UnityEngine.Random.Range (0, 1)), Quaternion.Euler (0, 180, 0)) as GameObject;
+					//currectNode = 0;
+					//transform.position = Vector3.Lerp (leftPoints[0], rightPoints[0], UnityEngine.Random.Range(0,1)); BN =  bestNode (currectNode);
+					car.GetComponent<CarEngine> ().midPoints = midPoints; 
+					car.GetComponent<CarEngine> ().leftPoints = leftPoints;
+					car.GetComponent<CarEngine> ().rightPoints = rightPoints;
+					car.GetComponent<CarEngine> ().separations = separations;
+					car.GetComponent<CarEngine> ().traffic = true;
+					car.GetComponent<CarEngine> ().rev = false;
+					car.GetComponent<CarEngine> ().currectNode = 0;
+					Destroy (gameObject);
+				} else {
+					currectNode++;
+				}
+			}
+		} else {if (Vector3.Distance (transform.position,BN) < 1f) {
+				if (currectNode == 0) {
+					/*Instantiate (gameObject, Vector3.Lerp (leftPoints [0], rightPoints [0], UnityEngine.Random.Range (0, 1)), Quaternion.Euler (0, 0, 0));
+					currectNode = midPoints.Count - 1;
+					transform.position = Vector3.Lerp (leftPoints[leftPoints.Count-1], rightPoints[leftPoints.Count-1], UnityEngine.Random.Range(0,1)); BN =  bestNode (currectNode);
+					*/
+					GameObject car =  Instantiate (gameObject, Vector3.Lerp (leftPoints[leftPoints.Count-1], rightPoints[leftPoints.Count-1], UnityEngine.Random.Range(0,1)), Quaternion.Euler (0, 0, 0)) as GameObject;
+					//currectNode = 0;
+					//transform.position = Vector3.Lerp (leftPoints[0], rightPoints[0], UnityEngine.Random.Range(0,1)); BN =  bestNode (currectNode);
+					car.GetComponent<CarEngine> ().midPoints = midPoints; 
+					car.GetComponent<CarEngine> ().leftPoints = leftPoints;
+					car.GetComponent<CarEngine> ().rightPoints = rightPoints;
+					car.GetComponent<CarEngine> ().separations = separations;
+					car.GetComponent<CarEngine> ().traffic = true;
+					car.GetComponent<CarEngine> ().rev = true;
+					car.GetComponent<CarEngine> ().currectNode = midPoints.Count - 1;
+					Destroy (gameObject);
+				} else {
+					currectNode--;
+				}
+			}
+		}
+		
+	}
 	private void ApplySteer() {
 		if (avoiding) return;
 		Vector3 relativeVector = transform.InverseTransformPoint(bestNode(currectNode));

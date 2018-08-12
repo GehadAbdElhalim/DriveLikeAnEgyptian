@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scences/demo.unity
     guid: 380a4c95336876e4ca1398321937a8fa
+  - enabled: 0
+    path: Assets/Scences/demo 1.unity
+    guid: afb6a8abdf3df4c42ab5b29c189382b5

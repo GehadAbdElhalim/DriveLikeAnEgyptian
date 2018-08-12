@@ -34,13 +34,20 @@ public class CityDesgin1 : MonoBehaviour {
 	/// 
 	/// 	note that JSONfiles are normal .txt files 
 	/// </summary>
-	public string JSONFileWirttern;
+	string JSONFileWirttern ;
 	public bool AutoGenerte;
-	public string JSONFile ;
-    public int NumberOfBlocks ;
+	string JSONFile ;
+
+	string CSVWrittenRoad ;
+    public  int NumberOfBlocks ;
     public Vector3[] Waypoints;
     public GameObject CarAI;
-    public GameObject Car;
+	public GameObject Car;
+	public bool spawnAD;
+	public GameObject CarAD;
+	public bool spawnADNav;
+	public GameObject CarADNav;
+	public bool SpawnObjectFlag;
     public GameObject ObstacleGenerator;
 	public PhysicMaterial Rainy;
 	public PhysicMaterial Normal;
@@ -52,7 +59,7 @@ public class CityDesgin1 : MonoBehaviour {
     const int down = 3;
     int NumOfCol = 0;
     static Road[] roadKinds = new Road[25];
-    Road[] arr;
+     Road[] arr;
     struct Myx
     {
         public float xmin;
@@ -86,14 +93,22 @@ public class CityDesgin1 : MonoBehaviour {
 			this.curPos = curPos;
 		}
     }
+	private string logFilePathName;
+	private bool record ; 
 	/// <summary>
 	/// 	in the start we put our roads in structs
 	/// 		then we either rondom a generated map 
 	/// 		or we generate the map in the files 
 	/// </summary>
     void Start()
-	{
-
+	{	
+		JSONFileWirttern =  Application.dataPath + "/Files/writtenRoad.txt";
+	 	JSONFile=   Application.dataPath + "/Files/roads.txt";
+		CSVWrittenRoad= Application.dataPath + "/LogFiles/CityDesign/";
+		MiddleNodes.Clear();
+		LeftNodes.Clear();
+		RightNodes.Clear();
+		
 		NumberOfBlocks += 1;
 
         //Gehad things
@@ -213,11 +228,17 @@ public class CityDesgin1 : MonoBehaviour {
 		if (AutoGenerte) {
 			creatMap ();
 		} else {
-			ReadJSON ();
+			//ReadJSON ();
+			ReadCSVFiles();
 		}
 		makeWay ();
+		SpawnCar();
+		if(spawnAD)
+		SpawnCarAd();
 		//SpawnCar();
-		//Spawntraffic ();
+		Spawntraffic ();
+		if(spawnADNav)
+		SpawnCarAdNav ();
     }
 
 	/// <summary>
@@ -260,10 +281,11 @@ public class CityDesgin1 : MonoBehaviour {
         {
             Instantiate(arr[i].roadType, arr[i].postion + arr[i].startPos, arr[i].Rotation);
             //Obstacle Spawning
-			//if ( (arr[i].roadType == streetLane60mVertical) || (arr[i].roadType == streetBump) || (arr[i].roadType == streetHole) ) 
-			//{
-			//	SpawnObsatcle(arr[i]);
-			//}
+			if ( ((arr[i].roadType == streetLane60mVertical) || (arr[i].roadType == streetBump) || (arr[i].roadType == streetHole)) && i !=0) 
+			{
+				if(SpawnObjectFlag)
+				SpawnObsatcle(arr[i]);
+			}
             //Obstacle Spawning
 			if (arr [i].roadType == streetTurn90DownLeft) {
 				//Waypoints[i] = arr [i].roadType.transform.Find ("Cube (4)").transform.position + arr [i].postion;
@@ -272,7 +294,7 @@ public class CityDesgin1 : MonoBehaviour {
 				Waypoints [i] = arr [i].postion + arr [i].startPos;
 			}
 		}
-        SpawnCar();
+       
         
         //writeString(ToJSONFromArr(arr),JSONFileWirttern);
     }
@@ -445,6 +467,79 @@ public class CityDesgin1 : MonoBehaviour {
 			Instantiate (stringToRoad(roads[i].name),roads[i].postion+roads[i].startPos,roads[i].Rotation);
 		}
 	}
+
+	void ReadCSVFiles(){
+		string RandomMapName ="";
+		bool FoundFile = false;
+		string [] filesArr= Directory.GetFiles(CSVWrittenRoad);
+		List<string> ValidFiles = new List<string>();
+		for(int i=0;i<filesArr.Length;i++){
+			if(filesArr[i].EndsWith(".csv")){
+				ValidFiles.Add(filesArr[i]);
+			}
+		}
+		string nameOfRoad ="";
+		while(!FoundFile){
+		nameOfRoad=ValidFiles[(int) Random.RandomRange(0,ValidFiles.Count)];
+		print(nameOfRoad);
+		 if (new FileInfo(nameOfRoad).Length != 0)
+    		{  
+				StreamReader inp_stm = new StreamReader (nameOfRoad);
+				string testLine = inp_stm.ReadLine();
+					if(testLine.Length!=0&&   testLine.Contains(",")){
+						FoundFile= true;
+					}
+				inp_stm.Close();
+			}
+		}
+		string RoadNames = readCSVText (nameOfRoad);
+		
+		// print (JSONObjects);
+		string [] RoadsString = RoadNames.Split(new char[]{','} );
+		// print (RoadsJson[0]);
+		//Road[] roads = ConvertToRoads (RoadsString);
+		NumberOfBlocks = RoadsString.Length;
+		arr= new Road[RoadsString.Length];
+		
+		arr[0] = stringToRoadCSV(RoadsString[0]);
+        arr[0].startPos = new Vector3(0, 0, 0);
+		arr[0].endPos = arr [0].startPos + new Vector3(arr[0].offestX,0,arr[0].offestZ);
+		Instantiate (arr[0].roadType,arr[0].postion+arr[0].startPos,arr[0].Rotation);
+		for (int i = 1; i < RoadsString.Length; i++) {
+			Road temp =stringToRoadCSV(RoadsString[i]);
+			arr [i] = clone(temp);
+			arr[i].startPos = arr[i-1].endPos;
+			// and the end is our start + offest 
+            arr[i].endPos = arr[i].startPos + new Vector3(arr[i].offestX,0,arr[i].offestZ);
+			Instantiate (arr[i].roadType,arr[i].postion+arr[i].startPos,arr[i].Rotation);
+		}
+		 for (int i = 0; i < NumberOfBlocks; i++)
+        {
+           // Instantiate(arr[i].roadType, arr[i].postion + arr[i].startPos, arr[i].Rotation);
+            //Obstacle Spawning
+			if ( ((arr[i].roadType == streetLane60mVertical) || (arr[i].roadType == streetBump) || (arr[i].roadType == streetHole)) && i !=0) 
+			{
+				if(SpawnObjectFlag)
+				SpawnObsatcle(arr[i]);
+			}
+            //Obstacle Spawning
+			if (arr [i].roadType == streetTurn90DownLeft) {
+				//Waypoints[i] = arr [i].roadType.transform.Find ("Cube (4)").transform.position + arr [i].postion;
+				Waypoints [i] = arr [i].postion + arr [i].startPos;
+			} else {
+				Waypoints [i] = arr [i].postion + arr [i].startPos;
+			}
+		}
+		
+	}
+
+
+	string readCSVText (string file_csv_path_name){
+		StreamReader inp_stm = new StreamReader (file_csv_path_name);
+		string line_inp = inp_stm.ReadLine();
+		inp_stm.Close();
+		return line_inp;
+	}
 	/// <summary>
 	/// 	convert array of JSONObjects into Roads
 	/// </summary>
@@ -484,6 +579,14 @@ public class CityDesgin1 : MonoBehaviour {
 		return null;
 	}
 
+	static Road stringToRoadCSV(string roadName){
+		for (int i = 0; i < roadKinds.Length; i++) {
+			if (roadKinds [i].name.Equals (roadName)) {
+				return roadKinds [i];
+			}
+		}
+		return new Road();
+	}
     void SpawnAICar()
     {
         GameObject car = (GameObject)Instantiate(CarAI, new Vector3(0, 0, 0), Quaternion.identity);
@@ -500,13 +603,24 @@ public class CityDesgin1 : MonoBehaviour {
         }
         car.GetComponent<AI>().Lane = Waypoints;
     }
-
+	void SpawnCarAdNav(){
+		
+		GameObject car = Instantiate(CarADNav, new Vector3(2f, 1.5f, 0f), Quaternion.Euler(new Vector3(0.0f,180.0f,0.0f))) as GameObject;
+		car.GetComponent<CarEngine> ().midPoints = MiddleNodes; 
+		car.GetComponent<CarEngine> ().leftPoints = LeftNodes;
+		car.GetComponent<CarEngine> ().rightPoints = RightNodes;
+		car.GetComponent<CarEngine> ().separations = separationJump;
+		car.GetComponent<CarEngine> ().traffic = false;
+		car.GetComponent<CarEngine> ().rev = false;
+		car.GetComponent<CarEngine> ().currectNode = 0;
+	}
     void SpawnCar()
     {
-		Debug.Log ("please spawn car");
-		Instantiate(Car, new Vector3(0f, 1.5f, 0f), Quaternion.Euler(new Vector3(0.0f,180.0f,0.0f)));
+		Instantiate(Car, new Vector3(-2f, 1.5f, 0f), Quaternion.Euler(new Vector3(0.0f,180.0f,0.0f)));
     }
-
+	void SpawnCarAd(){
+		Instantiate(CarAD, new Vector3(2f, 1.5f, 0f), Quaternion.Euler(new Vector3(0.0f,180.0f,0.0f)));
+	}
     void SpawnObsatcle(Road a)
     {
 		GameObject clone = (GameObject)Instantiate(ObstacleGenerator, new Vector3(0, 0, 0), Quaternion.identity);
@@ -555,7 +669,7 @@ public class CityDesgin1 : MonoBehaviour {
 	int TrafficSeparation ;
 
 	public int numberOfCarsInOneLane;
-	const float straightSeparation = .5f;
+	const float straightSeparation = .2f;
 	const float lerpSepration = .1f;
 	const float turnSeparation = .05f; 
 	const float separationJump = .1f;
@@ -563,6 +677,9 @@ public class CityDesgin1 : MonoBehaviour {
 	List<Vector3> MiddleNodes = new List<Vector3>();
 	List<Vector3> LeftNodes = new List<Vector3>();
 	List<Vector3> RightNodes = new List<Vector3>();
+	public  List<Vector3> getMiddleNodes (){
+		return this.MiddleNodes;
+	}
 	void numberOfCarsToSeparation(){
 		if(numberOfCarsInOneLane <= 0){
 			TrafficSeparation= (int) 1e9;
@@ -646,19 +763,7 @@ public class CityDesgin1 : MonoBehaviour {
 			} else {
 				//MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (0, 0, 0));
 				if (arr [i].start == left && arr [i].end == up) {
-					//MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (-30, 0, -30));
-					//MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (-25, 0, -25));
-					/*MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (-20, 0, -12));
-					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (-15, 0, -10));
-					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (-10, 0, -8));
-					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (-5, 0, -5));
-
-					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (0, 0, 0));
-
-					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (5f , 0, 5));
-					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (8, 0, 10));
-					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (10, 0, 15));
-					MiddleNodes.Add (arr [i].startPos + arr[i].postion + new Vector3 (12, 0, 20));*/
+					
 					Vector3 p0 = arr [i].startPos + arr [i].postion + new Vector3 (-26, 0, -14);
 					Vector3 p1 = arr [i].startPos + arr [i].postion + new Vector3 (0, 0, -10);
 					Vector3 p2 = arr [i].startPos + arr[i].postion + new Vector3 (14, 0, 26);
@@ -884,6 +989,35 @@ public class CityDesgin1 : MonoBehaviour {
 			
 	}
 
-
+public void changeFileLocation( string file_path_name){
+	logFilePathName =file_path_name;
+	record = true;
 }
+void Update(){
+	if(record){
+		recordProp();
+		record =false ;
+	}
+}
+void recordProp(){
+	string [] output_string = new string[arr.Length] ;
+	for(int i=0;i<arr.Length;i++){
+		output_string[i]= arr[i].name;
+	}
+	using (FileStream fs = new FileStream(logFilePathName,FileMode.Append, FileAccess.Write))
+			{	
+				if(fs.CanWrite)
+				using (StreamWriter sw = new StreamWriter(fs))
+				{	
+					sw.WriteLine(string.Join (",", output_string)+"\n"+NumberOfBlocks+","+numberOfCarsInOneLane+","+TrafficSeparation);
+					sw.Close();
+					record = false;
+				}
+			}
+	
+	
+	
+}
+}
+
 /* this is a new push cuz this is not working */

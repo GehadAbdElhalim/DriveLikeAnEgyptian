@@ -21,7 +21,7 @@ public class SpawnObstacles : MonoBehaviour {
 
     // Update is called once per frame
     void Start () {
-        int randomNumber = Random.Range(0, 5);
+        int randomNumber = Random.Range(0, 1);
 
 		conflict = false;
 
@@ -63,19 +63,19 @@ public class SpawnObstacles : MonoBehaviour {
 //             Invoke("SpawnRoadBlockRight", 1);
 //         }
 
-        if (randomNumber == 3)
-        {
-            Invoke("SpawnPeople", 1);
-            Invoke("SpawnRoadBlockLeft", 1);
-			conflict = true;
-        }
+//        if (randomNumber == 3)
+//        {
+//            Invoke("SpawnPeople", 1);
+//            Invoke("SpawnRoadBlockLeft", 1);
+//			conflict = true;
+//        }
 		 
-        if (randomNumber == 4)
-        {
-            Invoke("SpawnPeople", 1);
-            Invoke("SpawnRoadBlockRight", 1);
-			conflict = true;
-        }
+//        if (randomNumber == 4)
+//        {
+//            Invoke("SpawnPeople", 1);
+//            Invoke("SpawnRoadBlockRight", 1);
+//			conflict = true;
+//        }
     }
 
     void SpawnBump()

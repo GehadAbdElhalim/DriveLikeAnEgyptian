@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Car{
-	public class PavementScript : MonoBehaviour {
+    public class PavementScript : MonoBehaviour {
 
-		void OnTriggerEnter(Collider other){
-			if(other.gameObject.tag == "Player")
-				GameObject.Find ("Car(Clone)").GetComponent<RecordingScript> ().collidedPavement = true;
-		}
+        void OnTriggerEnter(Collider other){
+            if(other.gameObject.tag == "Player")
+                GameObject.Find ("Car(Clone)").GetComponent<RecordingScript2> ().collidedPavement = true;
+        }
 
-		void OnTriggerStay(Collider other){
-			OnTriggerEnter(other);
-		}
+        void OnTriggerStay(Collider other){
+            OnTriggerEnter(other);
+        }
 
-		void OnTriggerExit(Collider other){
-			if(other.gameObject.tag == "Player")
-				GameObject.Find ("Car(Clone)").GetComponent<RecordingScript> ().collidedPavement = false;
-		}
-	}
+        void OnTriggerExit(Collider other){
+            if(other.gameObject.tag == "Player")
+                GameObject.Find ("Car(Clone)").GetComponent<RecordingScript2> ().collidedPavement = false;
+        }
+    }
 
 }
