@@ -34,7 +34,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			logFilePath_json = Application.dataPath + "/LogFiles/state-action.json";
 			//logFilePath_csv = chooseFile(Application.dataPath + "/LogFiles/AdCar");
 			if(SpawnAd){
-			RecordingScript2.OtherCar = GetComponent<Transform>();
+			RecordingScript1.OtherCar = GetComponent<Transform>();
 			}
 //			GameObject.Find ("Front Facing Camera").enabled = true;
 
@@ -607,7 +607,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			Sensors();
 			
 			if(SpawnAd){
-			RecordingScript2.OtherCar = GetComponent<Transform>();
+			RecordingScript1.OtherCar = GetComponent<Transform>();
 			}
 		}
 		public void changeFileLocation(string  PathAndName){

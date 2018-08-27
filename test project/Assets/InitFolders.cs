@@ -40,13 +40,13 @@ public class InitFolders : MonoBehaviour {
 	}
 	void SSNFRecording1 (String PathAndName){
 		GameObject go = GameObject.Find("CarADNav(Red)(Clone)");
-		UnityStandardAssets.Vehicles.Car.RecordingScript1 RS1 =(UnityStandardAssets.Vehicles.Car.RecordingScript1) go.GetComponent(typeof(UnityStandardAssets.Vehicles.Car.RecordingScript1));
+		UnityStandardAssets.Vehicles.Car.RecordingScriptAbdelrahman RS1 =(UnityStandardAssets.Vehicles.Car.RecordingScriptAbdelrahman) go.GetComponent(typeof(UnityStandardAssets.Vehicles.Car.RecordingScriptAbdelrahman));
 		File.Create(PathAndName);
 		RS1.changeFileLocation( PathAndName);
 	}
 	void SSNFRecording2 (String PathAndName){
 		GameObject go = GameObject.Find("Car(Clone)");
-		UnityStandardAssets.Vehicles.Car.RecordingScript2 RS2 =(UnityStandardAssets.Vehicles.Car.RecordingScript2) go.GetComponent(typeof(UnityStandardAssets.Vehicles.Car.RecordingScript2));
+		UnityStandardAssets.Vehicles.Car.RecordingScriptAbdelrahman RS2 =(UnityStandardAssets.Vehicles.Car.RecordingScriptAbdelrahman) go.GetComponent(typeof(UnityStandardAssets.Vehicles.Car.RecordingScriptAbdelrahman));
 		File.Create(PathAndName);
 		RS2.changeFileLocation( PathAndName);
 	}

@@ -263,83 +263,16 @@ public class networkSocket : MonoBehaviour
 		float[] state_output = new float[82];
 		/*for (int i = 0; i <= 35; i++) {
 			Debug.Log (i);
-			state_output [i] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScript2> ().lines [i].distance;
+			state_output [i] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.GetComponent<RecordingScriptAbdelrahman> ().lines [i].distance;
 		}*/
 
 		//Sensor obstacle distance
 		int i = 0;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type0);
-		state_output[i++] = SensorsGlobalManager.Instance.distance0;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type10);
-		state_output[i++] = SensorsGlobalManager.Instance.distance10;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type20);
-		state_output[i++] = SensorsGlobalManager.Instance.distance20;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type30);
-		state_output[i++] = SensorsGlobalManager.Instance.distance30;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type40);
-		state_output[i++] = SensorsGlobalManager.Instance.distance40;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type50);
-		state_output[i++] = SensorsGlobalManager.Instance.distance50;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type60);
-		state_output[i++] = SensorsGlobalManager.Instance.distance60;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type70);
-		state_output[i++] = SensorsGlobalManager.Instance.distance70;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type80);
-		state_output[i++] = SensorsGlobalManager.Instance.distance80;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type90);
-		state_output[i++] = SensorsGlobalManager.Instance.distance90;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type100);
-		state_output[i++] = SensorsGlobalManager.Instance.distance100;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type110);
-		state_output[i++] = SensorsGlobalManager.Instance.distance110;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type120);
-		state_output[i++] = SensorsGlobalManager.Instance.distance120;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type130);
-		state_output[i++] = SensorsGlobalManager.Instance.distance130;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type140);
-		state_output[i++] = SensorsGlobalManager.Instance.distance140;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type150);
-		state_output[i++] = SensorsGlobalManager.Instance.distance150;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type160);
-		state_output[i++] = SensorsGlobalManager.Instance.distance160;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type170);
-		state_output[i++] = SensorsGlobalManager.Instance.distance170;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type180);
-		state_output[i++] = SensorsGlobalManager.Instance.distance180;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type190);
-		state_output[i++] = SensorsGlobalManager.Instance.distance190;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type200);
-		state_output[i++] = SensorsGlobalManager.Instance.distance200;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type210);
-		state_output[i++] = SensorsGlobalManager.Instance.distance210;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type220);
-		state_output[i++] = SensorsGlobalManager.Instance.distance220;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type230);
-		state_output[i++] = SensorsGlobalManager.Instance.distance230;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type240);
-		state_output[i++] = SensorsGlobalManager.Instance.distance240;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type250);
-		state_output[i++] = SensorsGlobalManager.Instance.distance250;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type260);
-		state_output[i++] = SensorsGlobalManager.Instance.distance260;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type270);
-		state_output[i++] = SensorsGlobalManager.Instance.distance270;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type280);
-		state_output[i++] = SensorsGlobalManager.Instance.distance280;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type290);
-		state_output[i++] = SensorsGlobalManager.Instance.distance290;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type300);
-		state_output[i++] = SensorsGlobalManager.Instance.distance300;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type310);
-		state_output[i++] = SensorsGlobalManager.Instance.distance310;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type320);
-		state_output[i++] = SensorsGlobalManager.Instance.distance320;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type330);
-		state_output[i++] = SensorsGlobalManager.Instance.distance330;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type340);
-		state_output[i++] = SensorsGlobalManager.Instance.distance340;
-		state_output [i++] = get_type(SensorsGlobalManager.Instance.type350);
-		state_output[i++] = SensorsGlobalManager.Instance.distance350;
+		for(int j = 0; j < 36; j++)
+		{
+			state_output[i++] = get_type(SensorManager.Instance.sensors[i].type);
+			state_output[i++] = SensorManager.Instance.sensors[i].distance;
+		}
 
 		//Car velocity
 		//state_output [36] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).x;
@@ -347,12 +280,12 @@ public class networkSocket : MonoBehaviour
 		state_output [72] = (float) GameObject.Find("Car(Clone)").transform.InverseTransformDirection(GameObject.Find("Car(Clone)").transform.GetComponent<Rigidbody>().velocity).z;
 		// Debug.Log(state_output [38]);
 		last_velocity = state_output [72];
-		//state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScript2>().getRoadBlock().transform.eulerAngles.y;
+		//state_output [39] = GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1> ().Car.transform.eulerAngles.y - GameObject.Find("StreetManger (1)").GetComponent<CityDesgin1>().Car.GetComponent<RecordingScriptAbdelrahman>().getRoadBlock().transform.eulerAngles.y;
 
 		//Car Angle
-		state_output [73] = GameObject.Find("Car(Clone)").GetComponent<RecordingScript2>().CarAngle * (180/Mathf.PI) / 10;
+		state_output [73] = GameObject.Find("Car(Clone)").GetComponent<RecordingScriptAbdelrahman>().CarAngle * (180/Mathf.PI) / 10;
 
-		if (GameObject.Find("Car(Clone)").GetComponent<RecordingScript2> ().trafficLights ()) {
+		if (GameObject.Find("Car(Clone)").GetComponent<RecordingScriptAbdelrahman> ().trafficLights ()) {
 			state_output [74] = 1f;
 		} else {
 			state_output [74] = 0f;
@@ -364,17 +297,17 @@ public class networkSocket : MonoBehaviour
 			state_output [75] = 0f;
 		}
 
-		state_output [76] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript2> ().collidedObstacles.Count;
+		state_output [76] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScriptAbdelrahman> ().collidedObstacles.Count;
 		 
 		//just for step one training
 		if(state_output[76] > 0){
 			crashed = true;
 		}
 		
-		state_output [77] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScript2> ().collidedPedestrians.Count;
+		state_output [77] = (float) GameObject.Find("Car(Clone)").GetComponent<RecordingScriptAbdelrahman> ().collidedPedestrians.Count;
 
 		//Pavement-hit
-		if (GameObject.Find("Car(Clone)").GetComponent<RecordingScript2> ().collidedPavement) {
+		if (GameObject.Find("Car(Clone)").GetComponent<RecordingScriptAbdelrahman> ().collidedPavement) {
 			state_output [78] = 1f;
 		} else {
 			state_output [78] = 0f;
@@ -437,7 +370,7 @@ public class networkSocket : MonoBehaviour
 	{
 		if (GameObject.Find ("Car(Clone)").transform.position.y < -3) {
 			return true;
-		} else if (stuck_counter >= 200 && GameObject.Find("Car(Clone)").GetComponent<RecordingScript2> ().trafficLights () == false) {
+		} else if (stuck_counter >= 200 && GameObject.Find("Car(Clone)").GetComponent<RecordingScriptAbdelrahman> ().trafficLights () == false) {
 			stuck_counter = 0;
 			return true;
 		} else if(crashed){

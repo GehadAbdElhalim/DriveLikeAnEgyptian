@@ -33,7 +33,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			logFilePath_json = Application.dataPath + "/LogFiles/state-action.json";
 			//logFilePath_csv = chooseFile(Application.dataPath + "/LogFiles/normalCar");
 			if(SpawnAd)
-			RecordingScript1.OtherCar = GetComponent<Transform>();
+			RecordingScript2.OtherCar = GetComponent<Transform>();
 //			GameObject.Find ("Front Facing Camera").enabled = true;
 
 			// USED FIRST TIME ONLY TO ADD CSV FILE HEADERS
@@ -627,7 +627,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		void Update () {
 			Sensors();  
 			if(SpawnAd)
-			RecordingScript1.OtherCar = GetComponent<Transform>();
+			RecordingScript2.OtherCar = GetComponent<Transform>();
 		}
 
 		public GameObject getRoadBlock(){
